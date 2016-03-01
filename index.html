@@ -5,19 +5,16 @@
                 <link rel="stylesheet" type="text/css" href="reset.css">
                 <link rel="stylesheet" type="text/css" href="style.css">
 
-                <meta charset="UTF-8">
-        </head>
-        <body>
-                <header>
-                        
-                </header>
-                
-                <div class ="main">
-                        <h1>App naam</h1>
-                
-                </div>
+        <meta charset="utf-8" />
 
-                <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-                <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="app.js"></script>
+            <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        </head>
+                <body ng-app="app"> 
+       <header ng-controller="mijnCtrl">
+  <p data-id="1" class="paragraph">Sample text here</p>
+  <footer><a href="#">my site</a></footer>
+        </header>
         </body>
 </html>
