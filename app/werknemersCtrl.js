@@ -1,4 +1,4 @@
-app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
+app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
     $scope.werknemer = {};
     Data.get('werknemers').then(function(data){
         $scope.werknemers = data.data;
@@ -12,8 +12,8 @@ app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
     };
     $scope.open = function (p,size) {
         var modalInstance = $modal.open({
-          templateUrl: 'partials/productEdit.html',
-          controller: 'productEditCtrl',
+          templateUrl: 'partials/werknemersEdit.html',
+          controller: 'werknemersEditCtrl',
           size: size,
           resolve: {
             item: function () {
@@ -57,7 +57,7 @@ app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
 });
 
 
-app.controller('productEditCtrl', function ($scope, $modalInstance, item, Data) {
+app.controller('werknemersEditCtrl', function ($scope, $modalInstance, item, Data) {
 
   $scope.werknemer = angular.copy(item);
         
@@ -85,6 +85,7 @@ app.controller('productEditCtrl', function ($scope, $modalInstance, item, Data) 
                 });
             }else{
                 Data.post('werknemers', werknemer).then(function (result) {
+
                     if(result.status != 'error'){
                         var x = angular.copy(werknemer);
                         x.save = 'insert';
