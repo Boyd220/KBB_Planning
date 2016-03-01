@@ -1,20 +1,44 @@
-<!doctype html>
-<html>
-        <head>
-                <title>App naam</title>
-                <link rel="stylesheet" type="text/css" href="reset.css">
-                <link rel="stylesheet" type="text/css" href="style.css">
+<!DOCTYPE html>
+<html ng-app="myApp">
+<body ng-cloak="">
+  <title>KBB server</title>
+  <meta name="Description" content="Werknemersmanager">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Werknemers</a>
+        </nav>
+      </div>
+    </div>
 
-        <meta charset="utf-8" />
+<div class="container">
+    <div class="page-content">
+      <div ng-view="" id="ng-view"></div>
+    </div>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="app.js"></script>
-            <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        </head>
-                <body ng-app="app"> 
-       <header ng-controller="mijnCtrl">
-  <p data-id="1" class="paragraph">Sample text here</p>
-  <footer><a href="#">my site</a></footer>
-        </header>
-        </body>
+<!-- Libraries -->
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+
+<!-- AngularJS custom codes -->
+<script src="app/app.js"></script>
+<script src="app/data.js"></script>
+<script src="app/directives.js"></script>
+<script src="app/productsCtrl.js"></script>
+
+<!-- Some Bootstrap Helper Libraries -->
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/underscore.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+</body>
 </html>
