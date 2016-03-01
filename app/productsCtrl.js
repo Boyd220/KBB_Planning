@@ -3,10 +3,6 @@ app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
     Data.get('werknemers').then(function(data){
         $scope.werknemers = data.data;
     });
-    $scope.changeWerknemerStatus = function(werknemer){
-        werknemer.status = (werknemer.status=="Active" ? "Inactive" : "Active");
-        Data.put("werknemers/"+werknemer.id,{status:werknemer.status});
-    };
     $scope.deleteWerknemer = function(werknemer){
         if(confirm("Weet u zeker dat u de werknemer wilt verwijderen?")){
             Data.delete("werknemers/"+werknemer.id).then(function(result){
@@ -31,7 +27,6 @@ app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
                 $scope.werknemers = $filter('orderBy')($scope.werknemers, 'id', 'reverse');
             }else if(selectedObject.save == "update"){
                 p.achternaam = selectedObject.achternaam;
-                p.tussenvoegsel = selectedObject.tussenvoegsel;
                 p.voornaam = selectedObject.voornaam;
                 p.werktel = selectedObject.werktel;
                 p.tel = selectedObject.tel;
@@ -48,10 +43,9 @@ app.controller('productsCtrl', function ($scope, $modal, $filter, Data) {
  $scope.columns = [
                     {text:"ID",predicate:"id",sortable:true,dataType:"number"},
                     {text:"achternaam",predicate:"achternaam",sortable:true},
-                    {text:"tussenvoegsel",predicate:"tussenvoegsel",sortable:true},
                     {text:"voornaam",predicate:"voornaam",sortable:true},
-                    {text:"werktel",predicate:"werktel",reverse:true,sortable:true},
-                    {text:"tel",predicate:"tel",sortable:true},
+                    {text:"werktel",predicate:"werktel",reverse:true,sortable:true, dataType:"number"},
+                    {text:"tel",predicate:"tel",sortable:true, dataType:"number"},
                     {text:"adres",predicate:"adres",sortable:true},
                     {text:"huisnr",predicate:"huisnr",sortable:true},
                     {text:"stad",predicate:"stad",sortable:true},
@@ -90,7 +84,6 @@ app.controller('productEditCtrl', function ($scope, $modalInstance, item, Data) 
                     }
                 });
             }else{
-                werknemer.status = 'Active';
                 Data.post('werknemers', werknemer).then(function (result) {
                     if(result.status != 'error'){
                         var x = angular.copy(werknemer);
