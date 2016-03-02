@@ -18,6 +18,7 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
           resolve: {
             item: function () {
               return p;
+              console.log(p);
             }
           }
         });
@@ -26,10 +27,11 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
                 $scope.werknemers.push(selectedObject);
                 $scope.werknemers = $filter('orderBy')($scope.werknemers, 'id', 'reverse');
             }else if(selectedObject.save == "update"){
+                p.id = selectedObject.id;
                 p.achternaam = selectedObject.achternaam;
                 p.voornaam = selectedObject.voornaam;
-                p.werktel = selectedObject.werktel;
                 p.tel = selectedObject.tel;
+                p.werktel = selectedObject.werktel;
                 p.adres = selectedObject.adres;
                 p.huisnr = selectedObject.huisnr;
                 p.stad = selectedObject.stad;
@@ -44,14 +46,15 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
                     {text:"ID",predicate:"id",sortable:true,dataType:"number"},
                     {text:"achternaam",predicate:"achternaam",sortable:true},
                     {text:"voornaam",predicate:"voornaam",sortable:true},
-                    {text:"werktel",predicate:"werktel",reverse:true,sortable:true, dataType:"number"},
                     {text:"tel",predicate:"tel",sortable:true, dataType:"number"},
+                    {text:"werktel",predicate:"werktel",reverse:true,sortable:true, dataType:"number"},
                     {text:"adres",predicate:"adres",sortable:true},
                     {text:"huisnr",predicate:"huisnr",sortable:true},
                     {text:"stad",predicate:"stad",sortable:true},
                     {text:"afkomst",predicate:"afkomst",sortable:true},
                     {text:"postcode",predicate:"postcode",sortable:true},
                     {text:"comments",predicate:"comments",sortable:true},
+                    {text:"Action",predicate:"",sortable:false}
                 ];
 
 });

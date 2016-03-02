@@ -21,13 +21,13 @@ delete(table name, where clause as array)
 // Werknemers
 $app->get('/werknemers', function() { 
     global $db;
-    $rows = $db->select("werknemers", "id,achternaam,voornaam,werktel,adres,huisnr,stad,afkomst,postcode,comments",array());
+    $rows = $db->select("werknemers", "id,achternaam,voornaam,tel,werktel,adres,huisnr,stad,afkomst,postcode,comments",array());
     echoResponse(200, $rows);
 });
 
 $app->post('/werknemers', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('name');
+    $mandatory = array('achternaam');
     global $db;
     $rows = $db->insert("werknemers", $data, $mandatory);
     if($rows["status"]=="success")
@@ -35,9 +35,9 @@ $app->post('/werknemers', function() use ($app) {
     echoResponse(200, $rows);
 });
 
-$app->put('/werknemers/:id', function($id) use ($app) { 
+$app->put('/werknemers/:id', function($achternaam) use ($app) { 
     $data = json_decode($app->request->getBody());
-    $condition = array('id'=>$id);
+    $condition = array('achternaam'=>$achternaam);
     $mandatory = array();
     global $db;
     $rows = $db->update("werknemers", $data, $condition, $mandatory);

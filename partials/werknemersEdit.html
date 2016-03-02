@@ -6,8 +6,15 @@
     </div>
     <div class="modal-body">
         <form name="werknemer_form" class="form-horizontal" role="form" novalidate>
+
+            <form-element label="ID" mod="werknemer">
+                <input type="text" class="form-control" name="id" placeholder="ID" ng-model="werknemer.id">
+                 <small class="errorMessage" ng-show="werknemer_form.id.$dirty && werknemer_form.id.$invalid"> Vul de id in</small>
+            </form-element>
+
             <form-element label="ACHTERNAAM" mod="werknemer">
-                <input type="text" class="form-control" name="achternaam" placeholder="ACHTERNAAM" ng-model="werknemer.achternaam" ng-disabled="werknemer.id"/>
+                <input type="text" class="form-control" name="achternaam" placeholder="ACHTERNAAM" ng-model="werknemer.achternaam"/>
+                 <small class="errorMessage" ng-show="werknemer_form.achternaam.$dirty && werknemer_form.achternaam.$invalid"> Vul de achternaam in</small>
             </form-element>
 
             <form-element label="VOORNAAM" mod="werknemer">
