@@ -28,10 +28,10 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
                 $scope.werknemers = $filter('orderBy')($scope.werknemers, 'id', 'reverse');
             }else if(selectedObject.save == "update"){
                 p.id = selectedObject.id;
+                p.werknemersnummer = selectedObject.werknemersnummer;
                 p.achternaam = selectedObject.achternaam;
                 p.voornaam = selectedObject.voornaam;
                 p.tel = selectedObject.tel;
-                p.werktel = selectedObject.werktel;
                 p.adres = selectedObject.adres;
                 p.huisnr = selectedObject.huisnr;
                 p.stad = selectedObject.stad;
@@ -43,17 +43,17 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
     };
     
  $scope.columns = [
-                    {text:"ID",predicate:"id",sortable:true,dataType:"number"},
-                    {text:"achternaam",predicate:"achternaam",sortable:true},
-                    {text:"voornaam",predicate:"voornaam",sortable:true},
-                    {text:"tel",predicate:"tel",sortable:true, dataType:"number"},
-                    {text:"werktel",predicate:"werktel",reverse:true,sortable:true, dataType:"number"},
-                    {text:"adres",predicate:"adres",sortable:true},
-                    {text:"huisnr",predicate:"huisnr",sortable:true},
-                    {text:"stad",predicate:"stad",sortable:true},
-                    {text:"afkomst",predicate:"afkomst",sortable:true},
-                    {text:"postcode",predicate:"postcode",sortable:true},
-                    {text:"comments",predicate:"comments",sortable:true},
+                    {text:"ID",predicate:"ID",sortable:true,dataType:"number"},
+                    {text:"Nummer",predicate:"Nummer",sortable:true,dataType:"number"},
+                    {text:"Achternaam",predicate:"Achternaam",sortable:true},
+                    {text:"Voornaam",predicate:"Voornaam",sortable:true},
+                    {text:"Telefoonnummer",predicate:"Telefoonnummer",sortable:true},
+                    {text:"Adres",predicate:"Adres",sortable:true},
+                    {text:"Huisnummer",predicate:"Huisnummer",sortable:true},
+                    {text:"Stad",predicate:"Stad",sortable:true},
+                    {text:"Afkomst",predicate:"Afkomst",sortable:true},
+                    {text:"Postcode",predicate:"Postcode",sortable:true},
+                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 

@@ -7,29 +7,24 @@
     <div class="modal-body">
         <form name="werknemer_form" class="form-horizontal" role="form" novalidate>
 
-            <form-element label="ID" mod="werknemer">
-                <input type="text" class="form-control" name="id" placeholder="ID" ng-model="werknemer.id">
-                 <small class="errorMessage" ng-show="werknemer_form.id.$dirty && werknemer_form.id.$invalid"> Vul de id in</small>
+            <form-element label="WERKNEMERSNUMMER" mod="werknemer">
+                <input type="text" class="form-control" name="Werknemersnummer" placeholder="WERKNEMERSNUMMER" ng-model="werknemer.werknemersnummer" only-numbers>
+                 <small class="errorMessage" ng-show="werknemer_form.werknemersnummer.$dirty && werknemer_form.werknemersnummer.$invalid"> Vul de id in</small>
             </form-element>
 
             <form-element label="ACHTERNAAM" mod="werknemer">
-                <input type="text" class="form-control" name="achternaam" placeholder="ACHTERNAAM" ng-model="werknemer.achternaam"/>
+                <input type="text" class="form-control" name="Achternaam" placeholder="ACHTERNAAM" ng-model="werknemer.achternaam"/>
                  <small class="errorMessage" ng-show="werknemer_form.achternaam.$dirty && werknemer_form.achternaam.$invalid"> Vul de achternaam in</small>
             </form-element>
 
             <form-element label="VOORNAAM" mod="werknemer">
-                <input type="text" name="voornaam" class="form-control" placeholder="VOORNAAM" ng-model="werknemer.voornaam"/>
+                <input type="text" name="Voornaam" class="form-control" placeholder="VOORNAAM" ng-model="werknemer.voornaam"/>
                 <small class="errorMessage" ng-show="werknemer_form.voornaam.$dirty && werknemer_form.voornaam.$invalid"> Vul de voornaam in</small>
             </form-element>
 
            <form-element label="TEL" mod="werknemer">
-                <input type="text" name="tel" class="form-control" placeholder="TEL" ng-model="werknemer.tel" only-numbers/>
+                <input type="text" name="Telefoonnummer" class="form-control" placeholder="TEL" ng-model="werknemer.tel"/>
                 <small class="errorMessage" ng-show="werknemer_form.tel.$dirty && werknemer_form.tel.$invalid"> Vul het tel nr in</small>
-            </form-element>
-
-           <form-element label="WERKTEL" mod="werknemer">
-                <input type="text" name="werktel" class="form-control" placeholder="WERKTEL" ng-model="werknemer.werktel" only-numbers/>
-                <small class="errorMessage" ng-show="werknemer_form.werktel.$dirty && werknemer_form.werktel.$invalid"> Vul het tel nr in</small>
             </form-element>
 
             <form-element label="ADRES" mod="werknemer">
@@ -38,30 +33,29 @@
             </form-element>
 
             <form-element label="HUISNR" mod="werknemer">
-                <input type="text" name="huisnr" class="form-control" placeholder="HUISNR" ng-model="werknemer.huisnr"/>
+                <input type="text" name="Huisnummer" class="form-control" placeholder="HUISNR" ng-model="werknemer.huisnr" only-numbers/>
                 <small class="errorMessage" ng-show="werknemer_form.huisnr.$dirty && werknemer_form.huisnr.$invalid"> Vul de huisnr in</small>
             </form-element>
 
             <form-element label="STAD" mod="werknemer">
-                <input type="text" name="stad" class="form-control" placeholder="STAD" ng-model="werknemer.stad"/>
+                <input type="text" name="Stad" class="form-control" placeholder="STAD" ng-model="werknemer.stad"/>
                 <small class="errorMessage" ng-show="werknemer_form.stad.$dirty && werknemer_form.stad.$invalid"> Vul de stad in</small>
             </form-element>
 
              <form-element label="AFKOMST" mod="werknemer">
-                <input type="text" name="afkomst" class="form-control" placeholder="AFKOMST" ng-model="werknemer.afkomst"/>
+                <input type="text" name="Afkomst" class="form-control" placeholder="AFKOMST" ng-model="werknemer.afkomst"/>
                 <small class="errorMessage" ng-show="werknemer_form.afkomst.$dirty && werknemer_form.afkomst.$invalid"> Vul afkomst in</small>
             </form-element>
 
             <form-element label="POSTCODE" mod="werknemer">
-                <input type="text" name="postcode" class="form-control" placeholder="POSTCODE" ng-model="werknemer.postcode"/>
+                <input type="text" name="Postcode" class="form-control" placeholder="POSTCODE" ng-model="werknemer.postcode"/>
                 <small class="errorMessage" ng-show="werknemer_form.postcode.$dirty && werknemer_form.postcode.$invalid"> Vul de postcode in</small>
             </form-element>
 
              <form-element label="COMMENTS" mod="werknemer">
-                <input type="text" name="comments" class="form-control" placeholder="COMMENTS" ng-model="werknemer.comments"/>
+                <input type="text" name="Commentaar" class="form-control" placeholder="COMMENTS" ng-model="werknemer.comments"/>
                 <small class="errorMessage" ng-show="werknemer_form.comments.$dirty && werknemer_form.comments.$invalid"> Vul aanvullend commentaar in</small>
             </form-element>
-
             <div class="space"></div>
             <div class="space-4"></div>
             <div class="modal-footer">

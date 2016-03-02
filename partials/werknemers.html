@@ -23,10 +23,10 @@
 
     <tr ng-repeat="c in werknemers | filter:filterWerknemer | orderBy:'+id'" id="{{c.id}}" ng-animate=" 'animate'">
         <td>{{c.id}}</td>
+        <td>{{c.werknemersnummer}}</td>
         <td>{{c.achternaam}}</td>
         <td>{{c.voornaam}}</td>
-        <td>{{c.tel}}</td>
-        <td>{{c.werktel}}</td>
+        <td>+31{{c.tel}}</td>
         <td>{{c.adres}}</td>
         <td>{{c.huisnr}}</td>
         <td>{{c.stad}}</td>
