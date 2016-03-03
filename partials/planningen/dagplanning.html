@@ -9,8 +9,10 @@
     })
   })</script>
 <h4 class="blog-post-title">Dagplanning</h4>
-<hr/>
-<div>
+<hr/>    <label> Datum:          <i class="fa fa-calendar"><br>
+         </i>
+        <input class="form-control fa fa-calendar" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+</label><hr/>
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(dagplanning);">&nbsp;Voeg dagplanning toe</button>
 
   <label>
@@ -37,11 +39,6 @@
     <input type="checkbox" id="oogst" aria-label="Zakken">Zakken
   </label>
 
-<div>
-        <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
-</div>
-</div>
-
 <div class="table-responsive">
 <div class="panel panel-primary">
   <div class="panel-heading">Dagplanningen
@@ -66,4 +63,5 @@
 </div>
 </div>
 </div>
+
               
