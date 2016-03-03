@@ -1,7 +1,17 @@
+<script>  $(document).ready(function(){
+    var date_input=$('input[name="date"]'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    date_input.datepicker({
+      format: 'dd/mm/yyyy',
+      container: container,
+      todayHighlight: true,
+      autoclose: true,
+    })
+  })</script>
 <h4 class="blog-post-title">Dagplanning</h4>
 <hr/>
 <div>
-<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(werknemer);">&nbsp;Voeg dagplanning toe</button>
+<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(dagplanning);">&nbsp;Voeg dagplanning toe</button>
 
   <label>
     <input type="checkbox" id="algemeen" aria-label="Algemeen" checked="true">Algemeen
@@ -26,6 +36,10 @@
     <label>
     <input type="checkbox" id="oogst" aria-label="Zakken">Zakken
   </label>
+
+<div>
+        <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+</div>
 </div>
 
 <div class="table-responsive">
