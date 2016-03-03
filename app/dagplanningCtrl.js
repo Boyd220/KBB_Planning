@@ -3,7 +3,7 @@ app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
     Data.get('dagplanningen').then(function(data){
         $scope.dagplanningen = data.data;
     });
-    $scope.deleteDagplanning= function(werknemer){
+    $scope.deleteDagplanning= function(dagplanning){
         if(confirm("Weet u zeker dat u deze dagplanning wilt verwijderen?")){
             Data.delete("dagplanningen/"+dagplanning.id).then(function(result){
                 $scope.dagplanningen = _.without($scope.dagplanningen, _.findWhere($scope.dagplanningen, {id:dagplanning.id}));
@@ -54,7 +54,7 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
         $scope.isClean = function() {
             return angular.equals(original, $scope.dagplanning);
         }
-        $scope.saveWerknemer = function (werknemer) {
+        $scope.saveDagplanning = function (dagplanning) {
             dagplanning.uid = $scope.uid;
             if(dagplanning.id > 0){
                 Data.put('dagplanningen/'+dagplanning.id, dagplanning).then(function (result) {
