@@ -27,34 +27,22 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
                 $scope.werknemers.push(selectedObject);
                 $scope.werknemers = $filter('orderBy')($scope.werknemers, 'id', 'reverse');
             }else if(selectedObject.save == "update"){
-                p.id = selectedObject.id;
                 p.werknemersnummer = selectedObject.werknemersnummer;
                 p.achternaam = selectedObject.achternaam;
                 p.voornaam = selectedObject.voornaam;
-                p.tel = selectedObject.tel;
-                p.adres = selectedObject.adres;
-                p.huisnr = selectedObject.huisnr;
-                p.stad = selectedObject.stad;
-                p.afkomst = selectedObject.afkomst;
-                p.postcode = selectedObject.postcode;
+                p.tel = selectedObject.tel;;
                 p.comments = selectedObject.comments;
             }
         });
     };
     
  $scope.columns = [
-                    {text:"ID",predicate:"ID",sortable:true,dataType:"number"},
                     {text:"Nummer",predicate:"Nummer",sortable:true,dataType:"number"},
                     {text:"Achternaam",predicate:"Achternaam",sortable:true},
                     {text:"Voornaam",predicate:"Voornaam",sortable:true},
                     {text:"Telefoonnummer",predicate:"Telefoonnummer",sortable:true},
-                    {text:"Adres",predicate:"Adres",sortable:true},
-                    {text:"Huisnummer",predicate:"Huisnummer",sortable:true},
-                    {text:"Stad",predicate:"Stad",sortable:true},
-                    {text:"Afkomst",predicate:"Afkomst",sortable:true},
-                    {text:"Postcode",predicate:"Postcode",sortable:true},
                     {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
 });

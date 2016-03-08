@@ -34,6 +34,6 @@ app.config(['$routeProvider',
     })
     .otherwise({
       redirectTo: '/Werknemers'
-    });;
+    });
 }]);
     
