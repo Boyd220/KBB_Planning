@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+            <li><a href="#login">Home</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#Planningen/Dagplanning">Werknemers</a></li>
+            <li><a href="#Planningen/Weekplanning">Weekplanning</a></li>
+            <li><a href="#Planningen/Jaarplanning">Jaarplanning</a></li>
+        </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a ng-click="logout();">Logout</a></li>
+        <li> <a href="#Werknemers" class="active">Dagplanning</a></li>
+        </ul>
+        </div>      
+    </div>
+</nav>
+<hr/>
+<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(werknemer);">&nbsp;Voeg nieuwe werknemer toe</button>
+
+<div class="table-responsive">
+<div class="panel panel-primary">
+  <div class="panel-heading">Lijst van werknemers
+      <div class="sw-search" >
+            <div class="nav-search" id="nav-search">
+                    Filter: <span class="input-icon">
+                        <input placeholder="Filter werknemers ..." class="nav-search-input" ng-model="filterWerknemer" ng-change="resetLimit();"  autocomplete="on" type="text" style="width:300px;" focus>
+                        <i class="search-icon fa fa-search nav-search-icon"></i>
+                    </span>
+            </div>
+        </div>
+    </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+    <tr ng-show="werknemers.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+    <tr ng-hide="werknemers.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+    
+    <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
+
+    <tr ng-repeat="c in werknemers | filter:filterWerknemer | orderBy:'+id'" id="{{c.id}}" animate-on-change='c.werknemersnummer + c.achternaam + c.voornaam + c.tel + c.comments' ng-animate=" 'animate'">
+        <td>{{c.werknemersnummer}}</td>
+        <td>{{c.achternaam}}</td>
+        <td>{{c.voornaam}}</td>
+        <td>+31{{c.tel}}</td>
+        <td>{{c.comments}}</td> 
+        <td style="width:100px">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deleteWerknemer(c);"></button>
+            </div>
+        </td>
+    </tr>
+    </table>
+</div>
+</div>
+</div>
+              

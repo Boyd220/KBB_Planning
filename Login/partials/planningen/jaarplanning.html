@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+            <li><a href="#login">Home</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#Werknemers">Werknemers</a></li>
+            <li><a href="#Planningen/Dagplanning">Dagplanning</a></li>
+            <li><a href="#Planningen/Weekplanning">Weekplanning</a></li>
+        </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a ng-click="logout();">Logout</a></li>
+        <li> <a href="#Planningen/Jaarplanning" class="active">Jaarplanning</a></li>
+        </ul>
+        </div>      
+    </div>
+</nav>
+
+<h4 class="blog-post-title">Jaarplanning</h4>
+<hr/>
+<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(jaarplanning);">&nbsp;Voeg jaarplanning toe</button>
+
+<div class="table-responsive">
+<div class="panel panel-primary">
+  <div class="panel-heading">Jaarplanningen
+    </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+    <tr ng-show="jaarplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+    <tr ng-hide="jaarplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+    
+    <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
+
+    <tr ng-repeat="c in jaarplanningen | orderBy:'+id'" id="{{c.id}}">
+        <td>{{c.id}}</td>
+        <td style="width:100px">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deleteJaarplanning(c);"></button>
+            </div>
+        </td>
+    </tr>
+    </table>
+</div>
+</div>
+</div>
+              
