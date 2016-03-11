@@ -1,26 +1,47 @@
 <?php
-$db = new dbHelper();
+
+//Werknemers tabel
+$db = new dbTabellen();
 $app->get('/werknemers', function() {
    global $db;
-    $werknemers = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
-    echoResponse2(200, $werknemers);
+    $rows = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
+    echoResponse2(200, $rows);
 });
 
 $app->post('/werknemers', function() use ($app) { 
-    $r = json_decode($app->request->getBody());
+    $data = json_decode($app->request->getBody());
     $mandatory = array('achternaam');
     global $db;
     $rows = $db->insert("werknemers", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Werknemer added successfully.";
+    echoResponse2(200, $rows);
+});
+
+$app->put('/werknemers/:id', function($id) use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $condition = array('id'=>$id);
+    $mandatory = array();
+    global $db;
+    $rows = $db->update("werknemers", $data, $condition, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Werknemer updated successfully.";
     echoResponse(200, $rows);
 });
 
-//users authentication 
+$app->delete('/werknemers/:id', function($id) { 
+    global $db;
+    $rows = $db->delete("werknemers", array('id'=>$id));
+    if($rows["status"]=="success")
+        $rows["message"] = "Werknemer removed successfully.";
+    echoResponse(200, $rows);
+});
+
+//User authentication tabel
 $app->get('/session', function() {
-    $db = new DbHandler();
+    $db = new DbUserAuth();
     $session = $db->getSession();
-    $response["uid"] = $session['uid'];
+    $response["id"] = $session['id'];
     $response["email"] = $session['email'];
     $response["name"] = $session['name'];
     echoResponse(200, $session);
@@ -31,22 +52,22 @@ $app->post('/login', function() use ($app) {
     $r = json_decode($app->request->getBody());
     verifyRequiredParams(array('email', 'password'),$r->customer);
     $response = array();
-    $db = new DbHandler();
+    $db = new DbUserAuth();
     $password = $r->customer->password;
     $email = $r->customer->email;
-    $user = $db->getOneRecord("select uid,name,password,email,created from customers_auth where phone='$email' or email='$email'");
+    $user = $db->getOneRecord("select id,name,password,email,created from customers_auth where phone='$email' or email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
         $response['message'] = 'Logged in successfully.';
         $response['name'] = $user['name'];
-        $response['uid'] = $user['uid'];
+        $response['id'] = $user['id'];
         $response['email'] = $user['email'];
         $response['createdAt'] = $user['created'];
         if (!isset($_SESSION)) {
             session_start();
         }
-        $_SESSION['uid'] = $user['uid'];
+        $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
         } else {
@@ -64,7 +85,7 @@ $app->post('/signUp', function() use ($app) {
     $r = json_decode($app->request->getBody());
     verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
     require_once 'passwordHash.php';
-    $db = new DbHandler();
+    $db = new DbUserAuth();
     $phone = $r->customer->phone;
     $name = $r->customer->name;
     $email = $r->customer->email;
@@ -79,11 +100,11 @@ $app->post('/signUp', function() use ($app) {
         if ($result != NULL) {
             $response["status"] = "success";
             $response["message"] = "User account created successfully";
-            $response["uid"] = $result;
+            $response["id"] = $result;
             if (!isset($_SESSION)) {
                 session_start();
             }
-            $_SESSION['uid'] = $response["uid"];
+            $_SESSION['id'] = $response["id"];
             $_SESSION['phone'] = $phone;
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
@@ -100,7 +121,7 @@ $app->post('/signUp', function() use ($app) {
     }
 });
 $app->get('/logout', function() {
-    $db = new DbHandler();
+    $db = new DbUserAuth();
     $session = $db->destroySession();
     $response["status"] = "info";
     $response["message"] = "Logged out successfully";

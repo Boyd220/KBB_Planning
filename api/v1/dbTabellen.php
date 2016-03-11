@@ -1,6 +1,7 @@
 <?php
+//Databankconnectie met de werknemerstabel
 require_once '../config.php'; // Database setting constants [DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD]
-class dbHelper {
+class dbTabellen {
     private $db;
     private $err;
     function __construct() {
@@ -68,7 +69,7 @@ class dbHelper {
         return $response;
     }
     function insert($table, $columnsArray, $requiredColumnsArray) {
-        $this->verifyRequiredParams($columnsArray, $requiredColumnsArray);
+        $this->verifyRequiredParams2($columnsArray, $requiredColumnsArray);
         
         try{
             $a = array();
@@ -96,7 +97,7 @@ class dbHelper {
         return $response;
     }
     function update($table, $columnsArray, $where, $requiredColumnsArray){ 
-        $this->verifyRequiredParams($columnsArray, $requiredColumnsArray);
+        $this->verifyRequiredParams2($columnsArray, $requiredColumnsArray);
         try{
             $a = array();
             $w = "";
@@ -183,6 +184,26 @@ class dbHelper {
             exit;
         }
     }*/
+
+        function verifyRequiredParams2($inArray, $requiredColumns) {
+        $error = false;
+        $errorColumns = "";
+        foreach ($requiredColumns as $field) {
+        // strlen($inArray->$field);
+            if (!isset($inArray->$field) || strlen(trim($inArray->$field)) <= 0) {
+                $error = true;
+                $errorColumns .= $field . ', ';
+            }
+        }
+
+        if ($error) {
+            $response = array();
+            $response["status"] = "error";
+            $response["message"] = 'Required field(s) ' . rtrim($errorColumns, ', ') . ' is missing or empty';
+            echoResponse(200, $response);
+            exit;
+        }
+    }
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
-
-class DbHandler {
+//Databank connectie met user authentication tabel
+class DbUserAuth {
 
     private $conn;
 
@@ -50,15 +50,15 @@ public function getSession(){
         session_start();
     }
     $sess = array();
-    if(isset($_SESSION['uid']))
+    if(isset($_SESSION['id']))
     {
-        $sess["uid"] = $_SESSION['uid'];
+        $sess["id"] = $_SESSION['id'];
         $sess["name"] = $_SESSION['name'];
         $sess["email"] = $_SESSION['email'];
     }
     else
     {
-        $sess["uid"] = '';
+        $sess["id"] = '';
         $sess["name"] = 'Guest';
         $sess["email"] = '';
     }
@@ -68,9 +68,9 @@ public function destroySession(){
     if (!isset($_SESSION)) {
     session_start();
     }
-    if(isSet($_SESSION['uid']))
+    if(isSet($_SESSION['id']))
     {
-        unset($_SESSION['uid']);
+        unset($_SESSION['id']);
         unset($_SESSION['name']);
         unset($_SESSION['email']);
         $info='info';

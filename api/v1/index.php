@@ -1,7 +1,7 @@
 <?php
 
-require_once 'dbHandler.php';
-require_once 'dbHelper.php';
+require_once 'dbUserAuth.php';
+require_once 'dbTabellen.php';
 require_once 'passwordHash.php';
 require '.././libs/Slim/Slim.php';
 
@@ -12,7 +12,7 @@ $app = new \Slim\Slim();
 // User id from db - Global Variable
 $user_id = NULL;
 
-require_once 'authentication.php';
+require_once 'tabellen.php';
 
 /**
  * Verifying required params posted or not

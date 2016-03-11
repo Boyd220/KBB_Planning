@@ -5,7 +5,7 @@
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-          <title>User authentication KBB</title>
+          <title>KBB Server</title>
           <!-- Bootstrap -->
           <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/custom.css" rel="stylesheet">
@@ -23,7 +23,7 @@
       <div class="container">
         <div class="row">
           <div class="navbar-header col-md-8">
-            <a class="navbar-brand" rel="home" title="KBB">Welkom op de KBB server</a>
+            <a class="navbar-brand" rel="home" title="KBB">KBB server</a>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
 
       </div>
     </body>
-  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+  <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   <!-- Libs -->
