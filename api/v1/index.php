@@ -1,60 +1,56 @@
 <?php
-require '.././libs/Slim/Slim.php';
+
+require_once 'dbHandler.php';
 require_once 'dbHelper.php';
+require_once 'passwordHash.php';
+require '.././libs/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
+
 $app = new \Slim\Slim();
-$app = \Slim\Slim::getInstance();
-$db = new dbHelper();
+
+// User id from db - Global Variable
+$user_id = NULL;
+
+require_once 'authentication.php';
 
 /**
- * Database Helper Function templates
+ * Verifying required params posted or not
  */
-/*
-select(table name, where clause as associative array)
-insert(table name, data as associative array, mandatory column names as array)
-update(table name, column names as associative array, where clause as associative array, required columns as array)
-delete(table name, where clause as array)
-*/
+function verifyRequiredParams($required_fields,$request_params) {
+    $error = false;
+    $error_fields = "";
+    foreach ($required_fields as $field) {
+        if (!isset($request_params->$field) || strlen(trim($request_params->$field)) <= 0) {
+            $error = true;
+            $error_fields .= $field . ', ';
+        }
+    }
 
-
-// Werknemers
-$app->get('/werknemers', function() { 
-    global $db;
-    $rows = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
-    echoResponse(200, $rows);
-});
-
-$app->post('/werknemers', function() use ($app) { 
-    $data = json_decode($app->request->getBody());
-    $mandatory = array('achternaam');
-    global $db;
-    $rows = $db->insert("werknemers", $data, $mandatory);
-    if($rows["status"]=="success")
-        $rows["message"] = "Werknemer added successfully.";
-    echoResponse(200, $rows);
-});
-
-$app->put('/werknemers/:id', function($id) use ($app) { 
-    $data = json_decode($app->request->getBody());
-    $condition = array('id'=>$id);
-    $mandatory = array();
-    global $db;
-    $rows = $db->update("werknemers", $data, $condition, $mandatory);
-    if($rows["status"]=="success")
-        $rows["message"] = "Werknemer updated successfully.";
-    echoResponse(200, $rows);
-});
-
-$app->delete('/werknemers/:id', function($id) { 
-    global $db;
-    $rows = $db->delete("werknemers", array('id'=>$id));
-    if($rows["status"]=="success")
-        $rows["message"] = "Werknemer removed successfully.";
-    echoResponse(200, $rows);
-});
+    if ($error) {
+        // Required field(s) are missing or empty
+        // echo error json and stop the app
+        $response = array();
+        $app = \Slim\Slim::getInstance();
+        $response["status"] = "error";
+        $response["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
+        echoResponse(200, $response);
+        $app->stop();
+    }
+}
 
 function echoResponse($status_code, $response) {
+    $app = \Slim\Slim::getInstance();
+    // Http response code
+    $app->status($status_code);
+
+    // setting response content type to json
+    $app->contentType('application/json');
+
+    echo json_encode($response);
+}
+
+function echoResponse2($status_code, $response) {
     global $app;
     $app->status($status_code);
     $app->contentType('application/json');

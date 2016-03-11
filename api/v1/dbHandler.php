@@ -86,26 +86,6 @@ public function destroySession(){
     }
     return $msg;
 }
-
-    function verifyRequiredParams($inArray, $requiredColumns) {
-        $error = false;
-        $errorColumns = "";
-        foreach ($requiredColumns as $field) {
-        // strlen($inArray->$field);
-            if (!isset($inArray->$field) || strlen(trim($inArray->$field)) <= 0) {
-                $error = true;
-                $errorColumns .= $field . ', ';
-            }
-        }
-
-        if ($error) {
-            $response = array();
-            $response["status"] = "error";
-            $response["message"] = 'Required field(s) ' . rtrim($errorColumns, ', ') . ' is missing or empty';
-            echoResponse(200, $response);
-            exit;
-        }
-    }
  
 }
 

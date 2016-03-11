@@ -1,4 +1,21 @@
 <?php
+$db = new dbHelper();
+$app->get('/werknemers', function() {
+   global $db;
+    $werknemers = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
+    echoResponse2(200, $werknemers);
+});
+
+$app->post('/werknemers', function() use ($app) { 
+    $r = json_decode($app->request->getBody());
+    $mandatory = array('achternaam');
+    global $db;
+    $rows = $db->insert("werknemers", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Werknemer added successfully.";
+    echoResponse(200, $rows);
+});
+
 //users authentication 
 $app->get('/session', function() {
     $db = new DbHandler();
