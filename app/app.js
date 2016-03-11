@@ -31,31 +31,37 @@ app.config(['$routeProvider',
             }).    when('/Werknemers', {
       title: 'Werknemers',
       templateUrl: 'partials/werknemers.html',
-      controller: 'werknemersCtrl'
+      controller: 'werknemersCtrl',
+                role: '0'
     })
     .when('/Planningen', {
       title: 'Planningen',
       templateUrl: 'partials/planning.html',
+                role: '0'
     })
     .when('/Planningen/Dagplanning',{
       title: 'Dagplanning',
       templateUrl: 'partials/planningen/dagplanning.html',
-      controller: 'dagplanningCtrl'
+      controller: 'dagplanningCtrl',
+                role: '0'
     })
     .when('/Planningen/Weekplanning',{
       title: 'Weekplanning',
       templateUrl: 'partials/planningen/weekplanning.html',
-      controller: 'weekplanningCtrl'
+      controller: 'weekplanningCtrl',
+                role: '0'
     })
     .when('/Planningen/Maandplanning',{
       title: 'Maandplanning',
       templateUrl: 'partials/planningen/maandplanning.html',
-      controller: 'maandplanningCtrl'
+      controller: 'maandplanningCtrl',
+                role: '0'
     })
     .when('/Planningen/Jaarplanning',{
       title: 'Jaarplanning',
       templateUrl: 'partials/planningen/jaarplanning.html',
-      controller: 'jaarplanningCtrl'
+      controller: 'jaarplanningCtrl',
+                role: '0'
     })
             .otherwise({
                 redirectTo: '/login'
