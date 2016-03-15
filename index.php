@@ -15,19 +15,17 @@
 
 
           <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-7tY7Dc2Q8WQTKGz2Fa0vC4dWQo07N4mJjKvHfIGnxuC4vPqFGFQppd9b3NWpf18/" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" integrity="sha384-VI5+XuguQ/l3kUhh4knz7Hxptx47wpQbVRDnp8v7Vvuhzwn1PEYb/uvtH6KLxv6d" crossorigin="anonymous"></script>
 
 <!--Toaster-->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.min.css">
-<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" ></script>
-
-
-            <link href="css/custom.css" rel="stylesheet">
+<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.min.js" ></script>
 
               <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+            <link href="css/custom.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.min.css">
                 <style>
                   a {
                   color: blue;
@@ -49,7 +47,7 @@
     <div >
       <div class="container" style="margin-top:20px;">
 
-        <div data-ng-view="" id="ng-view" class="slide-animation page-content"></div>
+        <div data-ng-view="" id="ng-view" class="slide-animation"></div>
 
       </div>
     </body>
@@ -57,12 +55,15 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   <!-- Libs -->
-  <script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
-  <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
-  <script src="https://code.angularjs.org/1.2.16/angular-animate.min.js" ></script>
+<script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
+ <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
+  <script src="js/angular-animate.min.js" ></script>
   <script src="js/toaster.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.2/ui-bootstrap.min.js"></script>
+  <script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" integrity="sha384-VI5+XuguQ/l3kUhh4knz7Hxptx47wpQbVRDnp8v7Vvuhzwn1PEYb/uvtH6KLxv6d" crossorigin="anonymous"></script>
+<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" ></script>
+
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="js/ie10-viewport-bug-workaround.js"></script>
 
@@ -77,4 +78,3 @@
 <script src="app/jaarplanningCtrl.js"></script>
 <script src="app/dagplanningCtrl.js"></script>
 </html>
-
