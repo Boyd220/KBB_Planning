@@ -13,7 +13,7 @@ app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.open = function (p,size) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/planningen/jaarplanningEdit.html',
-          controller: 'jaarplanningenEditCtrl',
+          controller: 'jaarplanningEditCtrl',
           size: size,
           resolve: {
             item: function () {

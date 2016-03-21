@@ -1,5 +1,5 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
-    $scope.werknemer = {};
+    $scope.dagplanning = {};
     Data.get('dagplanningen').then(function(data){
         $scope.dagplanningen = data.data;
     });
@@ -25,7 +25,7 @@ app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
         modalInstance.result.then(function(selectedObject) {
             if(selectedObject.save == "insert"){
                 $scope.dagplanningen.push(selectedObject);
-                $scope.dagplanningen = $filter('orderBy')($scope.werknemers, 'id', 'reverse');
+                $scope.dagplanningen = $filter('orderBy')($scope.dagplanningen, 'id', 'reverse');
             }else if(selectedObject.save == "update"){
                         p.id = selectedObject.id;
             }

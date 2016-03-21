@@ -1,14 +1,14 @@
-<div class="breadcrumbs" id="breadcrumbs">
+<div  ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="#Login">Home</a>
-        </li>
-        <li class="active">Werknemers
+            <a ng-click="logout();">Home</a>
         </li>
         <li>
             <a href="#dashboard">Dashboard</a>
         </li>
+
+        <li class="active">Werknemers</li>
         <li>
             <a href="#Planningen/Dagplanning">Dagplanning</a>
         </li>

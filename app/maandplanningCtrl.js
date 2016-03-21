@@ -13,7 +13,7 @@ app.controller('maandplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.open = function (p,size) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/planningen/maandplanningEdit.html',
-          controller: 'maandplanningenEditCtrl',
+          controller: 'maandplanningEditCtrl',
           size: size,
           resolve: {
             item: function () {

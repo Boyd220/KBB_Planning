@@ -1,23 +1,26 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+<div  ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
         <li>
-            <li><a href="#login">Home</a></li>
-            <li><a href="#Werknemers">Werknemers</a></li>
-            <li><a href="#Planningen/Dagplanning">Dagplanning</a></li>
-            <li><a href="#Planningen/Weekplanning">Weekplanning</a></li>
-            <li><a href="#Planningen/Jaarplanning">Jaarplanning</a></li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+            <a ng-click="logout();">Home</a>
         </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-        <li> <a href="#dashboard" class="active">Dashboard</a></li>
-        </ul>
-        </div>      
-    </div>
-</nav>
+        <li class="active">Dashboard
+        </li>
+        <li>
+            <a href="#Werknemers">Werknemers</a>
+        </li>
+        <li>
+            <a href="#Planningen/Dagplanning">Dagplanning</a>
+        </li>
+        <li>
+            <a href="#Planningen/Weekplanning">Weekplanning</a>
+        </li>
+            
+        <li>
+            <a href="#Planningen/Jaarplanning">Jaarplanning</a>
+        </li>
+    </ul>
+</div>  
 
 <div class="page-content">
     <div class="row">
@@ -30,7 +33,6 @@
                     <i class="icon-coffee green"></i>
                     Ingelogd
                 </h4>
-                        <div class="space-16"></div>
                         <br/>Naam: {{name}}
                         <br/>E-MAIL: {{email}}
                         <br/>

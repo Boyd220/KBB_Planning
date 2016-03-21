@@ -1,7 +1,116 @@
 <?php
-
-//Werknemers tabel
 $db = new dbTabellen();
+
+//Dagplanningen
+$app->get('/dagplanningen', function() {
+   global $db;
+    $rows = $db->select("dagplanningen", "id,date",array());
+    echoResponse2(200, $rows);
+});
+
+$app->post('/dagplanningen', function() use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $mandatory = array('date');
+    global $db;
+    $rows = $db->insert("dagplanningen", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Dagplanning added successfully.";
+    echoResponse2(200, $rows);
+});
+
+$app->put('/dagplanningen/:id', function($id) use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $condition = array('id'=>$id);
+    $mandatory = array();
+    global $db;
+    $rows = $db->update("dagplanningen", $data, $condition, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Dagplanning updated successfully.";
+    echoResponse(200, $rows);
+});
+
+$app->delete('/dagplanningen/:id', function($id) { 
+    global $db;
+    $rows = $db->delete("dagplanningen", array('id'=>$id));
+    if($rows["status"]=="success")
+        $rows["message"] = "Dagplanning removed successfully.";
+    echoResponse(200, $rows);
+});
+
+//Weekplanningen
+$app->get('/weekplanningen', function() {
+   global $db;
+    $rows = $db->select("weekplanningen", "id,date",array());
+    echoResponse2(200, $rows);
+});
+
+$app->post('/weekplanningen', function() use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $mandatory = array('date');
+    global $db;
+    $rows = $db->insert("weekplanningen", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Weekplanning added successfully.";
+    echoResponse2(200, $rows);
+});
+
+$app->put('/weekplanningen/:id', function($id) use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $condition = array('id'=>$id);
+    $mandatory = array();
+    global $db;
+    $rows = $db->update("weekplanningen", $data, $condition, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Weekplanning updated successfully.";
+    echoResponse(200, $rows);
+});
+
+$app->delete('/weekplanningen/:id', function($id) { 
+    global $db;
+    $rows = $db->delete("weekplanningen", array('id'=>$id));
+    if($rows["status"]=="success")
+        $rows["message"] = "Weekplanning removed successfully.";
+    echoResponse(200, $rows);
+});
+
+//Jaarplanningen
+$app->get('/jaarplanningen', function() {
+   global $db;
+    $rows = $db->select("jaarplanningen", "id,date",array());
+    echoResponse2(200, $rows);
+});
+
+$app->post('/jaarplanningen', function() use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $mandatory = array('date');
+    global $db;
+    $rows = $db->insert("jaarplanningen", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Jaarplanning added successfully.";
+    echoResponse2(200, $rows);
+});
+
+$app->put('/jaarplanningen/:id', function($id) use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $condition = array('id'=>$id);
+    $mandatory = array();
+    global $db;
+    $rows = $db->update("jaarplanningen", $data, $condition, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Jaarplanning updated successfully.";
+    echoResponse(200, $rows);
+});
+
+$app->delete('/jaarplanningen/:id', function($id) { 
+    global $db;
+    $rows = $db->delete("jaarplanningen", array('id'=>$id));
+    if($rows["status"]=="success")
+        $rows["message"] = "Jaarplanning removed successfully.";
+    echoResponse(200, $rows);
+});
+
+
+//Werknemerstabel
 $app->get('/werknemers', function() {
    global $db;
     $rows = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
