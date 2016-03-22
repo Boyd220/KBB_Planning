@@ -4,13 +4,14 @@ $db = new dbTabellen();
 //Dagplanningen
 $app->get('/dagplanningen', function() {
    global $db;
-    $rows = $db->select("dagplanningen", "id,date",array());
+   $condition= array('datum'=>'2016-03-22');
+    $rows = $db->select("dagplanningen", "id,datum", $condition, array());
     echoResponse2(200, $rows);
 });
 
 $app->post('/dagplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('date');
+    $mandatory = array('datum');
     global $db;
     $rows = $db->insert("dagplanningen", $data, $mandatory);
     if($rows["status"]=="success")
@@ -25,7 +26,7 @@ $app->put('/dagplanningen/:id', function($id) use ($app) {
     global $db;
     $rows = $db->update("dagplanningen", $data, $condition, $mandatory);
     if($rows["status"]=="success")
-        $rows["message"] = "Dagplanning updated successfully.";
+        $rows["message"] = "Dagplanning update successfully.";
     echoResponse(200, $rows);
 });
 
@@ -40,13 +41,13 @@ $app->delete('/dagplanningen/:id', function($id) {
 //Weekplanningen
 $app->get('/weekplanningen', function() {
    global $db;
-    $rows = $db->select("weekplanningen", "id,date",array());
+    $rows = $db->select("weekplanningen", "id,datum",array());
     echoResponse2(200, $rows);
 });
 
 $app->post('/weekplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('date');
+    $mandatory = array('datum');
     global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
@@ -76,13 +77,13 @@ $app->delete('/weekplanningen/:id', function($id) {
 //Jaarplanningen
 $app->get('/jaarplanningen', function() {
    global $db;
-    $rows = $db->select("jaarplanningen", "id,date",array());
+    $rows = $db->select("jaarplanningen", "id,datum",array());
     echoResponse2(200, $rows);
 });
 
 $app->post('/jaarplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('date');
+    $mandatory = array('datum');
     global $db;
     $rows = $db->insert("jaarplanningen", $data, $mandatory);
     if($rows["status"]=="success")

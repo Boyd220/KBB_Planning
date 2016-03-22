@@ -1,28 +1,13 @@
-    <script>  $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    date_input.datepicker({
-      format: 'dd/mm/yyyy',
-      container: container,
-      todayHighlight: true,
-      autoclose: true,
-    })
-  })</script>
-
-    <button type="button" class="close" ng-click="cancel();">
+  <button type="button" class="close" ng-click="cancel();">
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
     <div class="modal-header">
-        <h3 class="modal-title">Pas de dagplanning aan [Datum: {{weekplanningen.date}}]</h3>
+        <h3 class="modal-title">Pas de dagplanning aan [Datum: {{dagplanningen.datum}}]</h3>
     </div>
     <div class="modal-body">
         <form name="dagplanning_form" class="form-horizontal" role="form" novalidate>
 
-            <form-element label="Datum" mod="dagplanning">
-
-                <input type="date" class="form-control fa fa-calendar" id="date" name="date" placeholder="DD/MM/YYYY" name="date" ng-model="dagplanning.date"/>
-                 <small class="errorMessage" ng-show="dagplanning_form.date.$dirty && dagplanning_form.date.$invalid"> Voer de gewenste datum in</small>                   
-            </form-element>
+                <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="dagplanning.datum"/>                   
 
             <form-element>
 <h2 style="text-align: center;">Oogst</h2>

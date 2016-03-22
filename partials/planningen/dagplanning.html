@@ -1,13 +1,3 @@
-<script>  $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    date_input.datepicker({
-      format: 'dd/mm/yyyy',
-      container: container,
-      todayHighlight: true,
-      autoclose: true,
-    })
-  })</script>
 <div ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -32,9 +22,7 @@
 </div>  
     
 <hr/>
-    <label> Datum:{{dagplanningen.date}} <i class="fa fa-calendar"></i>
-            <input class="form-control fa fa-calendar" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
-    </label>
+            <input class="form-control fa fa-calendar" id="Date" ng-click="open(dagplanning)" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" />
   <hr/>
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(dagplanning);">&nbsp;Voeg dagplanning toe</button>
@@ -83,9 +71,9 @@
     
     <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
 
-    <tr ng-repeat="c in dagplanningen | orderBy:'+id'" id="{{c.id}}">
+    <tr ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
         <td>{{c.id}}</td>
-        <td>{{c.date}}</td>
+        <td>{{c.datum}}</td>
         <td style="width:100px">
             <div class="btn-group">
               <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
