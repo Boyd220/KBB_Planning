@@ -22,7 +22,9 @@
 </div>  
     
 <hr/>
-            <input class="form-control fa fa-calendar" id="Date" ng-click="open(dagplanning)" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" />
+  <input class="form-control" id="Date" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" />
+
+  <button style="margin-top: 1em;" class="btn btn-default" ng-click="getDagplanning(dagplanning)">Vraag dagplanning op</button>
   <hr/>
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(dagplanning);">&nbsp;Voeg dagplanning toe</button>

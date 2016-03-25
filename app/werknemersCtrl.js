@@ -5,8 +5,10 @@ app.controller('werknemersCtrl', function ($scope, $modal, $filter, Data) {
     });
     $scope.deleteWerknemer = function(werknemer){
         if(confirm("Weet u zeker dat u de werknemer wilt verwijderen?")){
+            console.log($scope.werknemers);
             Data.delete("werknemers/"+werknemer.id).then(function(result){
                 $scope.werknemers = _.without($scope.werknemers, _.findWhere($scope.werknemers, {id:werknemer.id}));
+                console.log($scope.werknemers);
             });
         }
     };

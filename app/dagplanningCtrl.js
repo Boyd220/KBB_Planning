@@ -1,8 +1,12 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.dagplanning = {};
-    Data.get('dagplanningen').then(function(data){
-        $scope.dagplanningen = data.data;
-    });
+
+    $scope.getDagplanning = function(dagplanning){
+        Data.get('dagplanningen/' + dagplanning.datum).then(function(result){
+            $scope.dagplanningen = result.data;
+        });
+    };
+
     $scope.deleteDagplanning= function(dagplanning){
         if(confirm("Weet u zeker dat u deze dagplanning wilt verwijderen?")){
             Data.delete("dagplanningen/"+dagplanning.id).then(function(result){

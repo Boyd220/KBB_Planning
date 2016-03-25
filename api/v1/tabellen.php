@@ -2,9 +2,9 @@
 $db = new dbTabellen();
 
 //Dagplanningen
-$app->get('/dagplanningen', function() {
+$app->get('/dagplanningen/:datum', function($datum) {
    global $db;
-   $condition= array('datum'=>'2016-03-22');
+   $condition = array('datum'=>$datum);
     $rows = $db->select("dagplanningen", "id,datum", $condition, array());
     echoResponse2(200, $rows);
 });
