@@ -10,22 +10,28 @@
         <li>
             <a href="#Werknemers">Werknemers</a>
         </li>
-        <li>
-            <a href="#Planningen/Dagplanning">Dagplanning</a>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+     Planningen <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li> <a href="#Planningen/Dagplanning"> Dagplanning </a></li>
+        <li class="active">
+            <a href="#Planningen/Weekplanning">Weekplanning</a>
         </li>
-
-        <li class="active">Weekplanning</li>
-
+            
         <li>
             <a href="#Planningen/Jaarplanning">Jaarplanning</a>
         </li>
     </ul>
+    </li>
+    </ul>
 </div>  
 
 <hr/>
-    <label> Datum: <i class="fa fa-calendar"></i>
-            <input class="form-control fa fa-calendar" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
-    </label>
+  <input class="form-control" id="Date" placeholder="DD/MM/YYYY" type="week" ng-model="weekplanning.datum" min="2016-W1" max="2030-W12" />
+
+  <button style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <hr/>
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(weekplanning);">&nbsp;Voeg weekplanning toe</button>
