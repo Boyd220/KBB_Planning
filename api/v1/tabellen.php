@@ -5,7 +5,7 @@ $db = new dbTabellen();
 $app->get('/dagplanningen/:datum', function($datum) {
    global $db;
    $condition = array('datum'=>$datum);
-    $rows = $db->select("dagplanningen", "id,datum", $condition, array());
+    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst", $condition, array());
     echoResponse2(200, $rows);
 });
 

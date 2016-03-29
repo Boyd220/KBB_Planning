@@ -196,6 +196,11 @@ padding-right: 6px;
 float: right;
 margin-top: -4.5px;
 }
+
+.table-responsive
+{
+    overflow-x: auto;
+}
 /*
  * Globals
  */
@@ -204,12 +209,12 @@ margin-top: -4.5px;
  * Override Bootstrap's default container.
  */
 
-/*@media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .container {
     width: 970px;
   }
 }
-*/
+
 
 /*
  * Masthead for nav

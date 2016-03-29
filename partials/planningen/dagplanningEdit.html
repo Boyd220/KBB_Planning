@@ -2,16 +2,67 @@
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
     <div class="modal-header">
-        <h3 class="modal-title">Pas de dagplanning aan [Datum: {{dagplanningen.datum}}]</h3>
+        <h3 class="modal-title">Voeg dagplanning toe of pas deze aan</h3>
     </div>
     <div class="modal-body">
-        <form name="dagplanning_form" class="form-horizontal" role="form" novalidate>
+      <form name="dagplanning_form" class="form-horizontal" role="form" novalidate>
+        <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="dagplanning.datum"/> 
 
-                <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="dagplanning.datum"/>                   
+        <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
 
-            <form-element>
-<h2 style="text-align: center;">Oogst</h2>
+            <form-element label="PLANTEN OOGST" mod="dagplanning">
+
+                <input type="text" class="form-control" name="Plantenoogst" placeholder="PLANTEN OOGST" ng-model="dagplanning.plantenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.plantenOogst.$dirty &&dagplanning_form.plantenOogst.$invalid"> Vul het aantal te knippen planten in.</small>
+
             </form-element>
+
+            <form-element label="NORM OOGST" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="NormOogst" placeholder="NORM OOGST" ng-model="dagplanning.normOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.normOogst.$dirty &&dagplanning_form.normOogst.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenOogst" placeholder="VERWACHTE UREN OOGST" ng-model="dagplanning.verwachtUrenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenOogst.$dirty &&dagplanning_form.verwachtUrenOogst.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensOogst" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensOogst.$dirty &&dagplanning_form.mensOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormOogst" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatOogst.$dirty &&dagplanning_form.normResultaatNormOogst.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenOogst" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenOogst.$dirty &&dagplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Dieven/draaien</h4>
+
+        <h4 style="text-align: center;"; class="modal-title">Bladknippen</h4>
+
+        <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
+
+        <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
+
+        <h4 style="text-align: center;"; class="modal-title">Verpakking</h4>
+
+        <h4 style="text-align: center;"; class="modal-title">Overige</h4>                  
             
             <div class="space"></div>
             <div class="space-4"></div>

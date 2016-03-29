@@ -39,12 +39,11 @@
         <div class="row">
           <div class="navbar-header col-md-8">
             <a class="navbar-brand" rel="home" title="KBB">KBB server</a>
-                    <button  type="button" class="btn btn-danger navbar-right" ng-hide="auth.id<1" ng-click="logout();">Logout</button>
+              <button  type="button" class="btn btn-danger navbar-right" ng-hide="auth.id<1" ng-click="logout();">Logout</button>
           </div>
         </div>
       </div>
     </div>
-    <div >
       <div class="container" style="margin-top:20px;">
 
         <div data-ng-view="" id="ng-view" class="slide-animation"></div>
