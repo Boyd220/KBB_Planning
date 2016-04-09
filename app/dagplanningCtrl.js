@@ -112,14 +112,13 @@ $scope.columnsAlgemeen = [
  $scope.columnsVerpakking = [
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Verwachte pallets",predicate:"Verwachte pallets",sortable:true,dataType:"number"},
+                    {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
+                    {text:"Pallets",predicate:"Verwachte pallets",sortable:true,dataType:"number"},
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
-                    {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsOverige = [
