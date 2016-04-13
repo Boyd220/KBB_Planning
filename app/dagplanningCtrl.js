@@ -1,4 +1,5 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
+    
     $scope.dagplanning = {};
 
     $scope.getDagplanning = function(dagplanning){
