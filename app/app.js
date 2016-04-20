@@ -6,21 +6,25 @@ app.config(['$routeProvider',
         when('/login', {
             title: 'Login',
             templateUrl: 'partials/login.html',
-            controller: 'authCtrl'
+            controller: 'authCtrl',
+            
         })
             .when('/logout', {
                 title: 'Logout',
                 templateUrl: 'partials/login.html',
-                controller: 'logoutCtrl'
+                controller: 'logoutCtrl',
+                authenticate: 'true'
             })
             .when('/signup', {
                 title: 'Signup',
                 templateUrl: 'partials/signup.html',
-                controller: 'authCtrl'
+                controller: 'authCtrl',
+                authenticate: 'true'
             })
             .when('/dashboard', {
                 title: 'Dashboard',
-                templateUrl: 'partials/dashboard.html'
+                templateUrl: 'partials/dashboard.html',
+                authenticate: 'true'
             })
             .when('/', {
                 title: 'Login',
@@ -36,31 +40,36 @@ app.config(['$routeProvider',
     .when('/Planningen', {
       title: 'Planningen',
       templateUrl: 'partials/planning.html',
-                role: '0'
+                role: '0',
+                authenticate: 'true'
     })
     .when('/Planningen/Dagplanning',{
       title: 'Dagplanning',
       templateUrl: 'partials/planningen/dagplanning.html',
       controller: 'dagplanningCtrl',
-                role: '0'
+                role: '0',
+                authenticate: 'true'
     })
     .when('/Planningen/Weekplanning',{
       title: 'Weekplanning',
       templateUrl: 'partials/planningen/weekplanning.html',
       controller: 'weekplanningCtrl',
-                role: '0'
+                role: '0',
+                authenticate: 'true'
     })
     .when('/Planningen/Maandplanning',{
       title: 'Maandplanning',
       templateUrl: 'partials/planningen/maandplanning.html',
       controller: 'maandplanningCtrl',
-                role: '0'
+                role: '0',
+                authenticate: 'true'
     })
     .when('/Planningen/Jaarplanning',{
       title: 'Jaarplanning',
       templateUrl: 'partials/planningen/jaarplanning.html',
       controller: 'jaarplanningCtrl',
-                role: '0'
+                role: '0',
+                authenticate: 'true'
     })
             .otherwise({
                 redirectTo: '/login'
