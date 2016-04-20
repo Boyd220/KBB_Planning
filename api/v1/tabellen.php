@@ -79,15 +79,16 @@ $app->delete('/weekplanningen/:id', function($id) {
 });
 
 //Jaarplanningen
-$app->get('/jaarplanningen', function() {
+$app->get('/jaarplanningen/:jaar', function($jaar) {
    global $db;
-    $rows = $db->select("jaarplanningen", "id,datum",array());
+       $condition = array('jaar'=>$jaar);
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking", $condition, array());
     echoResponse2(200, $rows);
 });
 
 $app->post('/jaarplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('datum');
+    $mandatory = array('jaar');
     global $db;
     $rows = $db->insert("jaarplanningen", $data, $mandatory);
     if($rows["status"]=="success")

@@ -15,7 +15,7 @@
      Planningen <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li> <a href="#Planningen/weekplanning"> Dagplanning </a></li>
+        <li> <a href="#Planningen/Dagplanning"> Dagplanning </a></li>
         <li class="active">
             <a href="#Planningen/Weekplanning">Weekplanning</a>
         </li>
@@ -29,7 +29,7 @@
 </div>  
 
 <hr/>
-  <input class="form-control" id="Date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week" />
+  <input class="form-control" id="date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week" />
 
   <button style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <hr/>
@@ -88,7 +88,7 @@
     <tr><th ng-show="content == 'verpakking'" ng-repeat="c in columnsVerpakking">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'overige'" ng-repeat="c in columnsOverige">{{c.text}}</th></tr>
 
-    <tr ng-show="content=='oogst'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+    <tr ng-show="content=='oogst'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
         <td>{{c.plantenOogst}}</td>
         <td>{{c.normOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
@@ -102,7 +102,7 @@
         </td>
     </tr>
 
-        <tr ng-show="content=='dieven'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <tr ng-show="content=='dieven'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
           <td>{{c.plantenDieven}}</td>
           <td>{{c.normDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
@@ -116,7 +116,7 @@
           </td>
         </tr>
 
-                <tr ng-show="content=='bladknippen'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <tr ng-show="content=='bladknippen'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
           <td>{{c.plantenBladknippen}}</td>
           <td>{{c.normBladknippen}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
@@ -130,7 +130,7 @@
           </td>
         </tr>
 
-                <tr ng-show="content=='snoeien'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <tr ng-show="content=='snoeien'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normSnoeien}}</td>
           <td>{{c.verwachtUrenSnoeien}}</td>
@@ -144,7 +144,7 @@
           </td>
         </tr>
 
-                <tr ng-show="content=='zakken'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <tr ng-show="content=='zakken'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
           <td>{{c.plantenZakken}}</td>
           <td>{{c.normZakken}}</td>
           <td>{{c.verwachtUrenZakken}}</td>
@@ -158,7 +158,7 @@
           </td>
         </tr>
 
-        <tr ng-show="content=='verpakking'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <tr ng-show="content=='verpakking'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
           <td>{{c.plantenVerpakking}}</td>
           <td>{{c.normVerpakking}}</td>
           <td>{{c.verwachtUrenVerpakking}}</td>
@@ -174,7 +174,8 @@
           </td>
         </tr>
 
-          <tr ng-show="content=='overige'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <tr ng-show="content=='overige'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+
           <td style="width:100px">
               <div class="btn-group">
                 <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
