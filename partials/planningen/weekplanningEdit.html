@@ -2,11 +2,301 @@
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
     <div class="modal-header">
-        <h3 class="modal-title">Pas de weekplanning aan [Week: {{}}]</h3>
+        <h3 class="modal-title">Voeg een weekplanning toe of pas deze aan.</h3>
     </div>
     <div class="modal-body">
         <form name="weekplanning_form" class="form-horizontal" role="form" novalidate>
+  <input id="Date" placeholder="DD/MM/YYYY" type="week" ng-model="weekplanning.week" min="2016-W1" max="2030-W12" />
 
+        <h4 style="text-align: center;"; class="modal-title">Kies een tuin</h4>
+
+              <form-element label="TUIN" mod="weekplanning">
+                            <input type="number" class="form-control" name="Tuin" placeholder="TUIN" ng-model="weekplanning.tuin" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="weekplanning_form.tuin.$dirty &&weekplanning_form.tuin.$invalid"> Vul een geldige tuin in</small>
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
+
+            <form-element label="PLANTEN OOGST" mod="weekplanning">
+
+                <input type="text" class="form-control" name="Plantenoogst" placeholder="PLANTEN OOGST" ng-model="weekplanning.plantenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenOogst.$dirty &&weekplanning_form.plantenOogst.$invalid"> Vul het aantal te knippen planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM OOGST" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormOogst" placeholder="NORM OOGST" ng-model="weekplanning.normOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normOogst.$dirty &&weekplanning_form.normOogst.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenOogst" placeholder="VERWACHTE UREN OOGST" ng-model="weekplanning.verwachtUrenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenOogst.$dirty &&weekplanning_form.verwachtUrenOogst.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensOogst" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensOogst.$dirty &&weekplanning_form.mensOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormOogst" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatOogst.$dirty &&weekplanning_form.normResultaatNormOogst.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenOogst" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenOogst" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenOogst.$dirty &&weekplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Dieven/draaien</h4>
+
+
+            <form-element label="PLANTEN DIEVEN" mod="weekplanning">
+
+                <input type="text" class="form-control" name="PlantenDieven" placeholder="PLANTEN Dieven" ng-model="weekplanning.plantenDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenDieven.$dirty &&weekplanning_form.plantenDieven.$invalid"> Vul het aantal te dieven/draaien planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM DIEVEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormDieven" placeholder="NORM DIEVEN" ng-model="weekplanning.normDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normDieven.$dirty &&weekplanning_form.normDieven.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenDieven" placeholder="VERWACHTE UREN Dieven" ng-model="weekplanning.verwachtUrenDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenDieven.$dirty &&weekplanning_form.verwachtUrenDieven.$invalid"> Vul de beoogde uren in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensDieven" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensDieven.$dirty &&weekplanning_form.mensDieven.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormDieven" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatDieven.$dirty &&weekplanning_form.normResultaatNormDieven.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenDieven" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenDieven" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenDieven.$dirty &&weekplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Bladknippen</h4>
+
+
+            <form-element label="PLANTEN BLADKNIPPEN" mod="weekplanning">
+
+                <input type="text" class="form-control" name="PlantenBladknippen" placeholder="PLANTEN BLADKNIPPEN" ng-model="weekplanning.plantenBladknippen" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenBladknippen.$dirty &&weekplanning_form.plantenBladknippen.$invalid"> Vul het aantal te bladknippen planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM BLADKNIPPEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormBlad" placeholder="NORM BLADKNIPPEN" ng-model="weekplanning.normBladknippen" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normBladknippen.$dirty &&weekplanning_form.normBladknippen.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenBlad" placeholder="VERWACHTE UREN BLADKNIPPEN" ng-model="weekplanning.verwachtUrenBlad" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenBlad.$dirty &&weekplanning_form.verwachtUrenBlad.$invalid"> Vul de beoogde uren in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensBlad" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensBlad" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensBlad.$dirty &&weekplanning_form.mensBlad.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormBlad" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatBlad" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatBlad.$dirty &&weekplanning_form.normResultaatNormBlad.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenBlad" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenBlad" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenBlad.$dirty &&weekplanning_form.resultaatUrenBlad.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
+
+            <form-element label="PLANTEN SNOEIEN" mod="weekplanning">
+
+                <input type="text" class="form-control" name="PlantenSnoeien" placeholder="PLANTEN SNOEIEN" ng-model="weekplanning.plantenSnoeien" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenSnoeien.$dirty &&weekplanning_form.plantenSnoeien.$invalid"> Vul het aantal te snoeien planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM SNOEIEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormSnoeien" placeholder="NORM SNOEIEN" ng-model="weekplanning.normSnoeien" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normSnoeien.$dirty &&weekplanning_form.normSnoeienn.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenSnoeien" placeholder="VERWACHTE UREN SNOEIEN" ng-model="weekplanning.verwachtUrenSnoeien" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenSnoeien.$dirty &&weekplanning_form.verwachtUrenSnoeien.$invalid"> Vul de beoogde uren in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensSnoeien" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensSnoei" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensSnoei.$dirty &&weekplanning_form.mensSnoei.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormSnoeien" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatSnoeien" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatSnoeien.$dirty &&weekplanning_form.normResultaatNormSnoeien.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenSnoeien" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenSnoeien" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenSnoeien.$dirty &&weekplanning_form.resultaatUrenSnoeien.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
+
+            <form-element label="PLANTEN DIEVEN" mod="weekplanning">
+
+                <input type="text" class="form-control" name="PlantenZakken" placeholder="PLANTEN ZAKKEN" ng-model="weekplanning.plantenZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenZakken.$dirty &&weekplanning_form.plantenZakken.$invalid"> Vul het aantal te zakken planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM DIEVEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormZakken" placeholder="NORM ZAKKEN" ng-model="weekplanning.normZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normZakken.$dirty &&weekplanning_form.normZakken.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenZakken" placeholder="VERWACHTE UREN ZAKKEN" ng-model="weekplanning.verwachtUrenZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenZakken.$dirty &&weekplanning_form.verwachtUrenZakken.$invalid"> Vul de beoogde uren in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensZakken" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensZakken.$dirty &&weekplanning_form.mensZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormZakken" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatZakken.$dirty &&weekplanning_form.normResultaatNormZakken.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenZakken" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenZakken" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenZakken.$dirty &&weekplanning_form.resultaatUrenZakken.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Verpakking</h4>
+
+
+            <form-element label="PLANTEN VERPAKKING" mod="weekplanning">
+
+                <input type="text" class="form-control" name="PlantenVerpakking" placeholder="PLANTEN VERPAKKING" ng-model="weekplanning.plantenVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.plantenVerpakking.$dirty &&weekplanning_form.plantenVerpakking.$invalid"> Vul het aantal te verpakken planten in.</small>
+
+            </form-element>
+
+            <form-element label="NORM VERPAKKING" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="NormVerpakking" placeholder="NORM VERPAKKING" ng-model="weekplanning.normVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normVerpakking.$dirty &&weekplanning_form.normVerpakking.$invalid"> Vul de beoogde norm in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtUrenVerpakking" placeholder="VERWACHTE UREN VERPAKKING" ng-model="weekplanning.verwachtUrenVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtUrenVerpakking.$dirty &&weekplanning_form.verwachtUrenVerpakking.$invalid"> Vul de beoogde uren in</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE PALLETS" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="VerwachtePalletsVerpakking" placeholder="VERWACHTING PALLETS" ng-model="weekplanning.verwachtPalletsVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.verwachtPalletsVerpakking.$dirty &&weekplanning_form.verwachtPalletsVerpakking.$invalid"> Vul de verwachte aantal pallets in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="MensVerpakking" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.mensVerpakking.$dirty &&weekplanning_form.mensVerpakking.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT NORM" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatNormVerpakking" placeholder="RESULTAAT VERPAKKING" ng-model="weekplanning.normResultaatVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatVerpakking.$dirty &&weekplanning_form.normResultaatNormVerpakking.$invalid"> Vul het normresultaat in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT PALLETS" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatPalletsVerpakking" placeholder="RESULTAAT PALLETS" ng-model="weekplanning.resultaatPalletsVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatPalletsVerpakking.$dirty &&weekplanning_form.resultaatPalletsVerpakking.$invalid"> Vul het resulterende aantal pallets in</small>
+
+            </form-element>
+
+            <form-element label="RESULTAAT UREN" mod="weekplanning">
+            
+                <input type="text" class="form-control" name="ResultaatUrenVerpakking" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenVerpakking.$dirty &&weekplanning_form.resultaatUrenVerpakking.$invalid"> Vul de resulterend uren in</small>
+
+            </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Overige</h4>   
             
             <div class="space"></div>
             <div class="space-4"></div>

@@ -41,13 +41,14 @@ $app->delete('/dagplanningen/:id', function($id) {
 //Weekplanningen
 $app->get('/weekplanningen', function() {
    global $db;
-    $rows = $db->select("weekplanningen", "id,datum",array());
+    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuin",array());
+
     echoResponse2(200, $rows);
 });
 
 $app->post('/weekplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('datum');
+    $mandatory = array('week');
     global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
