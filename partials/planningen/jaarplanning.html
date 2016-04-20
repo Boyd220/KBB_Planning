@@ -79,10 +79,96 @@
     <tr ng-show="jaarplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
     <tr ng-hide="jaarplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
     
-    <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
+<tr ng-repeat="c in columnsAlgemeen"><th ng-show="content == 'algemeen'">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst" >{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'dieven'" ng-repeat="c in columnsDieven">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'bladknippen'" ng-repeat="c in columnsBladknippen">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'snoeien'" ng-repeat="c in columnsSnoeien">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'zakken'" ng-repeat="c in columnsZakken">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'verpakking'" ng-repeat="c in columnsVerpakking">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'overige'" ng-repeat="c in columnsOverige">{{c.text}}</th></tr>
 
-    <tr ng-repeat="c in jaarplanningen | orderBy:'+id'" id="{{c.id}}">
-        <td>{{c.id}}</td>
+    <tr ng-show="content=='oogst'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <td>{{c.plantenOogst}}</td>
+        <td>{{c.verwachtUrenOogst}}</td>
+        <td>{{c.mensOogst}}</td>
+        <td>{{c.normResultaatOogst}}</td>
+        <td>{{c.resultaatUrenOogst}}</td>
+        <td style="width:100px">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+            </div>
+        </td>
+    </tr>
+
+        <tr ng-show="content=='dieven'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenDieven}}</td>
+          <td>{{c.verwachtUrenDieven}}</td>
+          <td>{{c.mensDieven}}</td>
+          <td>{{c.normResultaatDieven}}</td>
+          <td>{{c.resultaatUrenDieven}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+                <tr ng-show="content=='bladknippen'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenBladknippen}}</td>
+          <td>{{c.verwachtUrenBlad}}</td>
+          <td>{{c.mensBlad}}</td>
+          <td>{{c.normResultaatBlad}}</td>
+          <td>{{c.resultaatUrenBlad}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+                <tr ng-show="content=='snoeien'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenSnoeien}}</td>
+          <td>{{c.verwachtUrenSnoeien}}</td>
+          <td>{{c.mensSnoei}}</td>
+          <td>{{c.normResultaatSnoeien}}</td>
+          <td>{{c.resultaatUrenSnoeien}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+                <tr ng-show="content=='zakken'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenZakken}}</td>
+          <td>{{c.verwachtUrenZakken}}</td>
+          <td>{{c.mensZakken}}</td>
+          <td>{{c.normResultaatZakken}}</td>
+          <td>{{c.resultaatUrenZakken}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+        <tr ng-show="content=='verpakking'" ng-repeat="c in weekplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenVerpakking}}</td>
+          <td>{{c.verwachtUrenVerpakking}}</td>
+          <td>{{c.verwachtPalletsVerpakking}}</td>
+          <td>{{c.mensVerpakking}}</td>
+          <td>{{c.normResultaatVerpakking}}</td>
+          <td>{{c.resultaatPalletsVerpakking}}</td>
+          <td>{{c.resultaatUrenVerpakking}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+
         <td style="width:100px">
             <div class="btn-group">
               <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
