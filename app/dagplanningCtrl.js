@@ -61,7 +61,6 @@ $scope.columnsAlgemeen = [
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -72,7 +71,6 @@ $scope.columnsAlgemeen = [
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -84,7 +82,6 @@ $scope.columnsAlgemeen = [
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -95,7 +92,6 @@ $scope.columnsAlgemeen = [
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -106,7 +102,6 @@ $scope.columnsAlgemeen = [
                     {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -119,7 +114,7 @@ $scope.columnsAlgemeen = [
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Opmerkingen",predicate:"Opmerkingen",sortable:true,dataType:"text"},
+                    {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsOverige = [

@@ -97,7 +97,6 @@
         <td>{{c.mensOogst}}</td>
         <td>{{c.normResultaatOogst}}</td>
         <td>{{c.resultaatUrenOogst}}</td>
-        <td>{{c.opmerkingen}}</td>
         <td style="width:100px">
             <div class="btn-group">
               <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
@@ -105,7 +104,85 @@
         </td>
     </tr>
 
+        <tr ng-show="content=='dieven'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenDieven}}</td>
+          <td>{{c.normDieven}}</td>
+          <td>{{c.verwachtUrenDieven}}</td>
+          <td>{{c.mensDieven}}</td>
+          <td>{{c.normResultaatDieven}}</td>
+          <td>{{c.resultaatUrenDieven}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
 
+                <tr ng-show="content=='bladknippen'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenBladknippen}}</td>
+          <td>{{c.normBladknippen}}</td>
+          <td>{{c.verwachtUrenBlad}}</td>
+          <td>{{c.mensBlad}}</td>
+          <td>{{c.normResultaatBlad}}</td>
+          <td>{{c.resultaatUrenBlad}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+                <tr ng-show="content=='snoeien'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenSnoeien}}</td>
+          <td>{{c.normSnoeien}}</td>
+          <td>{{c.verwachtUrenSnoeien}}</td>
+          <td>{{c.mensSnoei}}</td>
+          <td>{{c.normResultaatSnoeien}}</td>
+          <td>{{c.resultaatUrenSnoeien}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+                <tr ng-show="content=='zakken'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenZakken}}</td>
+          <td>{{c.normZakken}}</td>
+          <td>{{c.verwachtUrenZakken}}</td>
+          <td>{{c.mensZakken}}</td>
+          <td>{{c.normResultaatZakken}}</td>
+          <td>{{c.resultaatUrenZakken}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+        <tr ng-show="content=='verpakking'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td>{{c.plantenVerpakking}}</td>
+          <td>{{c.normVerpakking}}</td>
+          <td>{{c.verwachtUrenVerpakking}}</td>
+          <td>{{c.verwachtPalletsVerpakking}}</td>
+          <td>{{c.mensVerpakking}}</td>
+          <td>{{c.normResultaatVerpakking}}</td>
+          <td>{{c.resultaatPalletsVerpakking}}</td>
+          <td>{{c.resultaatUrenVerpakking}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+          <tr ng-show="content=='overige'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
 
     </table>
 </div>
