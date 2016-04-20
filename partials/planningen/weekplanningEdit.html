@@ -1,3 +1,4 @@
+
     <button type="button" class="close" ng-click="cancel();">
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
@@ -6,7 +7,7 @@
     </div>
     <div class="modal-body">
         <form name="weekplanning_form" class="form-horizontal" role="form" novalidate>
-  <input id="Date" placeholder="DD/MM/YYYY" type="week" ng-model="weekplanning.week" min="2016-W1" max="2030-W12" />
+  <input ng-click="getMonday();" id="Date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week"/>
 
         <h4 style="text-align: center;"; class="modal-title">Kies een tuin</h4>
 

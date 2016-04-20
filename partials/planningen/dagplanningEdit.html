@@ -10,11 +10,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
 
-        <form-element label="TUIN" mod="dagplanning">
-
-                <input ng-model="dagplanning.tuinOogst" type="checkbox" name="tuin" value="1">Tuin 1
-                <input ng-model="dagplanning.tuinOogst" type="checkbox" name="tuin" value="2">Tuin 2
-                <input ng-model="dagplanning.tuinOogst" type="checkbox" name="tuin" value="3">Tuin 3
+              <form-element label="TUIN OOGST" mod="dagplanning">
+                            <input type="number" class="form-control" name="TuinOogst" placeholder="TUIN OOGST" ng-model="dagplanning.tuinOogst" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="dagplanning_form.tuinOogst.$dirty &&dagplanning_form.tuinOogst.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN OOGST" mod="dagplanning">
@@ -61,11 +59,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Dieven/draaien</h4>
 
-        <form-element label="TUIN" mod="dagplanning">
-
-                <input ng-model="dagplanning.tuinDieven" type="checkbox" name="tuin" value="1">Tuin 1
-                <input ng-model="dagplanning.tuinDieven" type="checkbox" name="tuin" value="2">Tuin 2
-                <input ng-model="dagplanning.tuinDieven" type="checkbox" name="tuin" value="3">Tuin 3
+              <form-element label="TUIN DIEVEN" mod="dagplanning">
+                            <input type="number" class="form-control" name="TuinDieven" placeholder="TUIN DIEVEN" ng-model="dagplanning.tuinDieven" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="dagplanning_form.tuinDieven.$dirty &&dagplanning_form.tuinDieven.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN DIEVEN" mod="dagplanning">
@@ -112,11 +108,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Bladknippen</h4>
 
-        <form-element label="TUIN" mod="dagplanning">
-
-                <input ng-model="dagplanning.tuinBlad" type="checkbox" name="tuin" value="1">Tuin 1
-                <input ng-model="dagplanning.tuinBlad" type="checkbox" name="tuin" value="2">Tuin 2
-                <input ng-model="dagplanning.tuinBlad" type="checkbox" name="tuin" value="3">Tuin 3
+              <form-element label="TUIN BLADKNIPPEN" mod="dagplanning">
+                            <input type="number" class="form-control" name="TuinDieven" placeholder="TUIN BLADKNIPPEN" ng-model="dagplanning.tuinBlad" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="dagplanning_form.tuinBlad.$dirty &&dagplanning_form.tuinBlad.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN BLADKNIPPEN" mod="dagplanning">
@@ -163,11 +157,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
 
-        <form-element label="TUIN" mod="dagplanning">
-
-                <input ng-model="dagplanning.tuinSnoeien" type="checkbox" name="tuin" value="1">Tuin 1
-                <input ng-model="dagplanning.tuinSnoeien" type="checkbox" name="tuin" value="2">Tuin 2
-                <input ng-model="dagplanning.tuinSnoeien" type="checkbox" name="tuin" value="3">Tuin 3
+              <form-element label="TUIN SNOEIEN" mod="dagplanning">
+                            <input type="number" class="form-control" name="TuinSnoeien" placeholder="TUIN SNOEIEN" ng-model="dagplanning.tuinSnoeien" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="dagplanning_form.tuinSnoeien.$dirty &&dagplanning_form.tuinSnoeien.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN SNOEIEN" mod="dagplanning">
@@ -214,11 +206,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
 
-        <form-element label="TUIN" mod="dagplanning">
-
-                <input ng-model="dagplanning.tuinZakken" type="checkbox" name="tuin1" value="1">Tuin 1
-                <input ng-model="dagplanning.tuinZakken" type="checkbox" name="tuin2" value="2">Tuin 2
-                <input ng-model="dagplanning.tuinZakken" type="checkbox" name="tuin3" value="3">Tuin 3
+              <form-element label="TUIN ZAKKEN" mod="dagplanning">
+                            <input type="number" class="form-control" name="TuinZakken" placeholder="TUIN ZAKKEN" ng-model="dagplanning.tuinZakken" only-numbers min="1" max="3">
+                             <small class="errorMessage" ng-show="dagplanning_form.tuinZakken.$dirty &&dagplanning_form.tuinZakken.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN DIEVEN" mod="dagplanning">

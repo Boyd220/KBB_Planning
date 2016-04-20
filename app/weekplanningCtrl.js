@@ -1,10 +1,12 @@
 app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.weekplanning = {};
-    Data.get('weekplanningen').then(function(data){
-        $scope.weekplanningen = data.data;
 
-        console.log(data.id);
-    });
+
+    $scope.getWeekplanning = function(weekplanning){
+        Data.get('weekplanningen/' + weekplanning.week).then(function(result){
+            $scope.weekplanningen = result.data;
+        });
+    };
 
 
     $scope.deleteWeekplanning= function(weekplanning){
@@ -140,6 +142,7 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
             return angular.equals(original, $scope.weekplanning);
         }
         $scope.saveWeekplanning = function (weekplanning) {
+
             weekplanning.uid = $scope.uid;
             if(weekplanning.id > 0){
                 Data.put('weekplanningen/'+weekplanning.id, weekplanning).then(function (result) {

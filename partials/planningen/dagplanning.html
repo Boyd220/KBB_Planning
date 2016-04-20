@@ -91,6 +91,7 @@
     <tr><th ng-show="content == 'overige'" ng-repeat="c in columnsOverige">{{c.text}}</th></tr>
 
     <tr ng-show="content=='oogst'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+    <td>{{c.tuinOogst}}</td>
         <td>{{c.plantenOogst}}</td>
         <td>{{c.normOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
@@ -105,6 +106,7 @@
     </tr>
 
         <tr ng-show="content=='dieven'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <td>{{c.tuinDieven}}</td>
           <td>{{c.plantenDieven}}</td>
           <td>{{c.normDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
@@ -119,6 +121,7 @@
         </tr>
 
                 <tr ng-show="content=='bladknippen'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.tuinBlad}}</td>
           <td>{{c.plantenBladknippen}}</td>
           <td>{{c.normBladknippen}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
@@ -133,6 +136,7 @@
         </tr>
 
                 <tr ng-show="content=='snoeien'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.tuinSnoeien}}</td>
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normSnoeien}}</td>
           <td>{{c.verwachtUrenSnoeien}}</td>
@@ -147,6 +151,7 @@
         </tr>
 
                 <tr ng-show="content=='zakken'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.tuinZakken}}</td>
           <td>{{c.plantenZakken}}</td>
           <td>{{c.normZakken}}</td>
           <td>{{c.verwachtUrenZakken}}</td>

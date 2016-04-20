@@ -55,6 +55,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsOogst = [
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -65,6 +66,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsDieven = [
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -76,6 +78,7 @@ $scope.columnsAlgemeen = [
 
 
  $scope.columnsBladknippen = [
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -86,6 +89,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsSnoeien = [
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -96,6 +100,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsZakken = [
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},

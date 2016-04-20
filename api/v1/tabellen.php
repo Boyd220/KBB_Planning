@@ -38,10 +38,13 @@ $app->delete('/dagplanningen/:id', function($id) {
     echoResponse(200, $rows);
 });
 
+
 //Weekplanningen
-$app->get('/weekplanningen', function() {
+$app->get('/weekplanningen/:week', function($week) {
    global $db;
-    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuin",array());
+
+   $condition = array('week'=>$week);
+    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuin", $condition, array());
 
     echoResponse2(200, $rows);
 });
