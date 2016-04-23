@@ -10,13 +10,21 @@ $app->get('/dagplanningen/:datum', function($datum) {
 });
 
 $app->post('/dagplanningen', function() use ($app) { 
+        global $db;
     $data = json_decode($app->request->getBody());
-    $mandatory = array('datum');
-    global $db;
+        $mandatory = array('datum');
+    $condition = array('datum=> !$mandatory');
+        $isDatumExists = $db->select("dagplanningen", "datum", $condition, array());
+    if(!$isDatumExists){
     $rows = $db->insert("dagplanningen", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Dagplanning added successfully.";
     echoResponse2(200, $rows);
+}
+
+else{
+   echo "Datum exists";
+}
 });
 
 $app->put('/dagplanningen/:id', function($id) use ($app) { 
@@ -159,18 +167,19 @@ $app->get('/session', function() {
     $response["id"] = $session['id'];
     $response["email"] = $session['email'];
     $response["name"] = $session['name'];
+    $response["u_role"] = $session['u_role'];
     echoResponse(200, $session);
 });
 
 $app->post('/login', function() use ($app) {
     require_once 'passwordHash.php';
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'password'),$r->customer);
+    verifyRequiredParams(array('email', 'password'),$r->werknemer);
     $response = array();
     $db = new DbUserAuth();
-    $password = $r->customer->password;
-    $email = $r->customer->email;
-    $user = $db->getOneRecord("select id,name,password,email,created from auth where email='$email'");
+    $password = $r->werknemer->password;
+    $email = $r->werknemer->email;
+    $user = $db->getOneRecord("select id,name,password,email, created, u_role from auth where email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
@@ -178,13 +187,16 @@ $app->post('/login', function() use ($app) {
         $response['name'] = $user['name'];
         $response['id'] = $user['id'];
         $response['email'] = $user['email'];
-        $response['createdAt'] = $user['created'];
+        $response['created'] = $user['created'];
+        $response['u_role'] = $user['u_role'];
         if (!isset($_SESSION)) {
             session_start();
         }
         $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
+        $_SESSION['created'] = $user['created'];
+        $_SESSION['u_role'] = $user['u_role'];
         } else {
             $response['status'] = "error";
             $response['message'] = 'Inloggen niet gelukt. Verkeerde gegevens.';
@@ -198,18 +210,19 @@ $app->post('/login', function() use ($app) {
 $app->post('/signUp', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'name', 'password'),$r->customer);
+    verifyRequiredParams(array('email', 'name', 'password', 'u_role'),$r->werknemer);
     require_once 'passwordHash.php';
     $db = new DbUserAuth();
-    $name = $r->customer->name;
-    $email = $r->customer->email;
-    $password = $r->customer->password;
+    $name = $r->werknemer->name;
+    $email = $r->werknemer->email;
+    $password = $r->werknemer->password;
+    $u_role = $r->werknemer->u_role;
     $isUserExists = $db->getOneRecord("select 1 from auth where email='$email'");
     if(!$isUserExists){
-        $r->customer->password = passwordHash::hash($password);
+        $r->werknemer->password = passwordHash::hash($password);
         $tabble_name = "auth";
-        $column_names = array('name', 'email', 'password');
-        $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
+        $column_names = array('name', 'email', 'password', 'u_role');
+        $result = $db->insertIntoTable($r->werknemer, $column_names, $tabble_name);
         if ($result != NULL) {
             $response["status"] = "success";
             $response["message"] = "Uw account is succesvol aangemaakt";
@@ -220,6 +233,7 @@ $app->post('/signUp', function() use ($app) {
             $_SESSION['id'] = $response["id"];
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
+            $_SESSION['u_role'] = $u_role;
             echoResponse(200, $response);
         } else {
             $response["status"] = "error";
