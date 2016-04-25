@@ -78,15 +78,48 @@ app.config(['$routeProvider',
     .run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             $rootScope.authenticated = false;
+            $rootScope.admin = false;
+            $rootScope.manager=false;
+            $rootScope.guest = true;
+            $rootScope.rol;
             Data.get('session').then(function (results) {
                 if (results.id) {
                     $rootScope.authenticated = true;
                     $rootScope.id = results.id;
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
-                } else {
+                    $rootScope.created = results.created;
+                    $rootScope.u_role = results.u_role;
+
+                    if (results.u_role==1) 
+                    {
+                      $rootScope.admin = true;
+                      $rootScope.manager = false;
+                      $rootScope.guest = false;
+                      $rootScope.rol="Admin";
+                    }
+
+                    if (results.u_role==2) 
+                    {
+                      $rootScope.admin = false;
+                      $rootScope.manager = true;
+                      $rootScope.guest = false;
+                      $rootScope.rol="Manager";
+                    }  
+
+                    if (results.u_role==3) 
+                    {
+                      $rootScope.admin = false;
+                      $rootScope.manager = false;
+                      $rootScope.guest = true;
+                      $rootScope.rol="Werknemer";
+                    }  
+
+                    console.log($rootScope.admin, $rootScope.manager, $rootScope.guest, $rootScope.rol);
+                }
+                 else {
                     var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login') {
+                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl=='/Werknemers') {
 
                     } else {
                         $location.path("/login");

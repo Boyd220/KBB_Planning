@@ -1,5 +1,5 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
-    
+    $scope.exists;
     $scope.dagplanning = {};
 
     $scope.getDagplanning = function(dagplanning){
@@ -31,8 +31,14 @@ app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
             if(selectedObject.save == "insert"){
                 $scope.dagplanningen.push(selectedObject);
                 $scope.dagplanningen = $filter('orderBy')($scope.dagplanningen, 'id', 'reverse');
+
             }else if(selectedObject.save == "update"){
                         p.id = selectedObject.id;
+            }
+            else if(selectedObject == "error")
+            { 
+              $scope.exists = 1;
+              console.log($scope.exists);
             }
         });
     };

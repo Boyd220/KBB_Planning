@@ -27,7 +27,7 @@
     </ul>
 </div>      
 <hr/>
-<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(werknemer);">&nbsp;Voeg nieuwe werknemer toe</button>
+<button type="button" class="btn btn-danger fa fa-plus" ng-show="admin||manager" ng-click="open(werknemer);">&nbsp;Voeg nieuwe werknemer toe</button>
 
 <div class="table-responsive">
 <div class="panel panel-primary">
@@ -48,7 +48,7 @@
     
     <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
 
-    <tr ng-repeat="c in auth | filter:filterWerknemer | orderBy:'+id'" id="{{c.id}}" animate-on-change='c.werknemersnummer + c.achternaam + c.voornaam + c.tel + c.comments' ng-animate=" 'animate'">
+    <tr ng-repeat="c in werknemers | filter:filterWerknemer | orderBy:'+id'" id="{{c.id}}" animate-on-change='c.werknemersnummer + c.achternaam + c.voornaam + c.tel + c.comments' ng-animate=" 'animate'">
         <td>{{c.werknemersnummer}}</td>
         <td>{{c.achternaam}}</td>
         <td>{{c.voornaam}}</td>
@@ -56,8 +56,8 @@
         <td>{{c.comments}}</td> 
         <td style="width:100px">
             <div class="btn-group">
-              <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
-              <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deleteWerknemer(c);"></button>
+              <button type="button" class="btn btn-default fa fa-edit" ng-show="admin || manager" ng-click="open(c);"></button>
+              <button type="button" class="btn btn-danger fa fa-trash-o" ng-show="admin" ng-click="deleteWerknemer(c);"></button>
             </div>
         </td>
     </tr>

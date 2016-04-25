@@ -1,12 +1,13 @@
-<div  ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
+<div ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
         <i class="ace-icon fa fa-home home-icon"></i>
             <a href="#" ng-click="logout();">Home</a>
         </li>
-        <li class="active">Dashboard
-        </li>
         <li>
+            <a href="#dashboard">Dashboard</a>
+        </li>
+        <li ng-show="admin||manager">
             <a href="#Werknemers">Werknemers</a>
         </li>
   <li role="presentation" class="dropdown">
@@ -14,7 +15,7 @@
      Planningen <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li> <a href="#Planningen/Dagplanning"> Dagplanning </a></li>
+                <li> <a href="#Planningen/Dagplanning"> Dagplanning </a></li>
         <li>
             <a href="#Planningen/Weekplanning">Weekplanning</a>
         </li>
@@ -26,6 +27,7 @@
     </li>
     </ul>
 </div>  
+
 
 <div class="page-content">
     <div class="row">
@@ -39,9 +41,8 @@
                     Ingelogd
                 </h4>
                         <br/>Naam: {{name}}
-                        <br/>E-MAIL: {{email}}<br>
-                        <br/>Role: {{u_role}}<br>
-                        created: {{created}}
+                        <br/>E-MAIL: {{email}}
+                        <br/>Role: {{rol}}<br>
                 </div>
                 </div>
             </div>
