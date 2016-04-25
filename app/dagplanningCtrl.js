@@ -1,10 +1,10 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
-    $scope.exists;
     $scope.dagplanning = {};
 
     $scope.getDagplanning = function(dagplanning){
         Data.get('dagplanningen/' + dagplanning.datum).then(function(result){
             $scope.dagplanningen = result.data;
+            console.log(dagplanning.datum);
         });
     };
 
@@ -34,11 +34,6 @@ app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
 
             }else if(selectedObject.save == "update"){
                         p.id = selectedObject.id;
-            }
-            else if(selectedObject == "error")
-            { 
-              $scope.exists = 1;
-              console.log($scope.exists);
             }
         });
     };

@@ -80,7 +80,7 @@ app.config(['$routeProvider',
             $rootScope.authenticated = false;
             $rootScope.admin = false;
             $rootScope.manager=false;
-            $rootScope.guest = true;
+            $rootScope.werknemer = true;
             $rootScope.rol;
             Data.get('session').then(function (results) {
                 if (results.id) {
@@ -115,11 +115,11 @@ app.config(['$routeProvider',
                       $rootScope.rol="Werknemer";
                     }  
 
-                    console.log($rootScope.admin, $rootScope.manager, $rootScope.guest, $rootScope.rol);
+                    console.log($rootScope.admin, $rootScope.manager, $rootScope.werknemer, $rootScope.rol);
                 }
                  else {
                     var nextUrl = next.$$route.originalPath;
-                    if (nextUrl == '/signup' || nextUrl == '/login' || nextUrl=='/Werknemers') {
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
 
                     } else {
                         $location.path("/login");

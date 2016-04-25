@@ -33,13 +33,13 @@
                 </style>
               </head>
 
-  <body ng-controller="authCtrl" ng-cloak="">
+  <body ng-cloak="">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="row">
           <div class="navbar-header col-md-8">
             <a class="navbar-brand" rel="home" title="KBB">KBB server</a>
-              <button  type="button" class="btn btn-danger navbar-right" ng-hide="auth.id<1" ng-click="logout();">Logout</button>
+              <button ng-controller="authCtrl"  type="button" class="btn btn-danger navbar-right" ng-hide="!authenticated" ng-click="logout();">Logout</button>
           </div>
         </div>
       </div>

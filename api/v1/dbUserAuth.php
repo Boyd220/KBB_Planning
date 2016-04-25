@@ -82,6 +82,7 @@ public function destroySession(){
         if(isSet($_COOKIE[$info]))
         {
             setcookie ($info, '', time() - $cookie_time);
+            echo "$cookie_time";
         }
         $msg="Logged Out Successfully...";
     }

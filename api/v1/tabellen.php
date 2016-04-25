@@ -13,18 +13,14 @@ $app->post('/dagplanningen', function() use ($app) {
         global $db;
     $data = json_decode($app->request->getBody());
         $mandatory = array('datum');
-    $condition = array('datum=> !$mandatory');
-        $isDatumExists = $db->select("dagplanningen", "datum", $condition, array());
-    if(!$isDatumExists){
+    //$condition = array('datum=> !$mandatory');
+        //$isDatumExists = $db->select("dagplanningen", "datum", $condition, array());
     $rows = $db->insert("dagplanningen", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Dagplanning added successfully.";
     echoResponse2(200, $rows);
-}
 
-else{
-   echo "Datum exists";
-}
+
 });
 
 $app->put('/dagplanningen/:id', function($id) use ($app) { 
@@ -179,7 +175,7 @@ $app->post('/login', function() use ($app) {
     $db = new DbUserAuth();
     $password = $r->werknemer->password;
     $email = $r->werknemer->email;
-    $user = $db->getOneRecord("select id,name,password,email, created, u_role from auth where email='$email'");
+    $user = $db->getOneRecord("select id,name,password,email, u_role from auth where email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
@@ -187,7 +183,6 @@ $app->post('/login', function() use ($app) {
         $response['name'] = $user['name'];
         $response['id'] = $user['id'];
         $response['email'] = $user['email'];
-        $response['created'] = $user['created'];
         $response['u_role'] = $user['u_role'];
         if (!isset($_SESSION)) {
             session_start();
@@ -195,7 +190,6 @@ $app->post('/login', function() use ($app) {
         $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
-        $_SESSION['created'] = $user['created'];
         $_SESSION['u_role'] = $user['u_role'];
         } else {
             $response['status'] = "error";
