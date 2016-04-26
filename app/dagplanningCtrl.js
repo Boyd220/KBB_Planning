@@ -156,18 +156,16 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
                         console.log(result);
                     }
                 });
-            }else{
-                Data.post('dagplanningen', dagplanning).then(function (result) {
-
-                    if(result.status != 'error'){
-                        var x = angular.copy(dagplanning);
-                        x.save = 'insert';
-                        x.id = result.data;
-                        $modalInstance.close(x);
-                    }else{
-                        console.log(result);
-                    }
-                });
+            }else
+            {
+                $scope.dagplanning = {datum:''};
+                Data.post('dagplanningen',{
+                    dagplanning:dagplanning
+                }).then(function (results) {
+                    Data.toast(results)});                           
             }
         };
 });
+
+
+

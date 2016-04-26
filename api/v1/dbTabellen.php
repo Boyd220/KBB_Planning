@@ -111,7 +111,6 @@ class dbTabellen {
                 $a[":".$key] = $value;
             }
                 $c = rtrim($c,", ");
-
             $stmt =  $this->db->prepare("UPDATE $table SET $c WHERE 1=1 ".$w);
             $stmt->execute($a);
             $affected_rows = $stmt->rowCount();
@@ -175,7 +174,6 @@ class dbTabellen {
             $stmt = $this->db->prepare("select @resultId as Id"); 
             $stmt->execute(); 
             $myResultId = $stmt->fetchColumn();
-
             print "procedure returned \n".$myResultId;
             
         }catch(PDOException $e){
@@ -184,7 +182,6 @@ class dbTabellen {
             exit;
         }
     }*/
-
         function verifyRequiredParams2($inArray, $requiredColumns) {
         $error = false;
         $errorColumns = "";
@@ -195,7 +192,6 @@ class dbTabellen {
                 $errorColumns .= $field . ', ';
             }
         }
-
         if ($error) {
             $response = array();
             $response["status"] = "error";
@@ -205,5 +201,4 @@ class dbTabellen {
         }
     }
 }
-
 ?>
