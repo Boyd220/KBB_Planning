@@ -39,7 +39,7 @@
         <div class="row">
           <div class="navbar-header col-md-8">
             <a class="navbar-brand" rel="home" title="KBB">KBB server</a>
-              <button ng-controller="authCtrl"  type="button" class="btn btn-danger navbar-right" ng-hide="!authenticated" ng-click="logout();">Logout</button>
+              <button ng-controller="authCtrl" style="margin-top: 0.5em;"  type="button" class="btn btn-danger navbar-right" ng-hide="!authenticated" ng-click="logout();">Logout</button>
           </div>
         </div>
       </div>

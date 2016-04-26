@@ -48,7 +48,7 @@
     
     <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
 
-    <tr ng-repeat="c in werknemers | filter:filterWerknemer | orderBy:'+id'" id="{{c.id}}" animate-on-change='c.werknemersnummer + c.achternaam + c.voornaam + c.tel + c.comments' ng-animate=" 'animate'">
+    <tr ng-repeat="c in werknemers | filter:filterWerknemer | orderBy:'+werknemersnummer'" id="{{c.werknemersnummer}}" animate-on-change='c.werknemersnummer + c.achternaam + c.voornaam + c.tel + c.comments' ng-animate=" 'animate'">
         <td>{{c.werknemersnummer}}</td>
         <td>{{c.achternaam}}</td>
         <td>{{c.voornaam}}</td>

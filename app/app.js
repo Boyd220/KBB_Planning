@@ -96,7 +96,7 @@ app.config(['$routeProvider',
                       $rootScope.admin = true;
                       $rootScope.manager = false;
                       $rootScope.guest = false;
-                      $rootScope.rol="Admin";
+                      $rootScope.rol="Administrator.";
                     }
 
                     if (results.u_role==2) 
@@ -104,7 +104,7 @@ app.config(['$routeProvider',
                       $rootScope.admin = false;
                       $rootScope.manager = true;
                       $rootScope.guest = false;
-                      $rootScope.rol="Manager";
+                      $rootScope.rol="Manager.";
                     }  
 
                     if (results.u_role==3) 
@@ -112,7 +112,7 @@ app.config(['$routeProvider',
                       $rootScope.admin = false;
                       $rootScope.manager = false;
                       $rootScope.guest = true;
-                      $rootScope.rol="Werknemer";
+                      $rootScope.rol="Werknemer.";
                     }  
 
                     console.log($rootScope.admin, $rootScope.manager, $rootScope.werknemer, $rootScope.rol);
