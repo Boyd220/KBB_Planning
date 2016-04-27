@@ -151,21 +151,28 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
                     if(result.status != 'error'){
                         var x = angular.copy(dagplanning);
                         x.save = 'update';
+                        Data.toast(result);
                         $modalInstance.close(x);
                     }else{
                         console.log(result);
+                        Data.toast(result);
                     }
                 });
-            }else
-            {
-                $scope.dagplanning = {datum:''};
-                Data.post('dagplanningen',{
-                    dagplanning:dagplanning
-                }).then(function (results) {
-                    Data.toast(results)});                           
+            }else{
+                Data.post('dagplanningen', dagplanning).then(function (result) {
+
+                    if(result.status != 'error'){
+                        var x = angular.copy(dagplanning);
+                        x.save = 'insert';
+                        x.id = result.data;
+                        Data.toast(result);
+                        $modalInstance.close(x);
+                    }else{
+                        console.log(result);
+                        Data.toast(result);
+
+                    }
+                });
             }
         };
 });
-
-
-

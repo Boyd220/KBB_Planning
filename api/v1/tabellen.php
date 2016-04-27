@@ -1,37 +1,34 @@
 <?php
+$db = new dbTabellen();
+
 //Dagplanningen
 $app->get('/dagplanningen/:datum', function($datum) {
-   $db = new dbTabellen();
+   global $db;
    $condition = array('datum'=>$datum);
     $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken ", $condition, array());
     echoResponse2(200, $rows);
 });
 
 $app->post('/dagplanningen', function() use ($app) { 
-$r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('datum'), $r->dagplanning);
-    $db = new DbUserAuth();                
-        $datum = $r->dagplanning->datum;
-$response = array();
-        $isDatumExists = $db->getOneRecord("select 1 from dagplanningen where datum='$datum'");
-if(!$isDatumExists)
-{ 
-    $table_name="dagplanningen";
-$column_names = array("datum");
-    $rows = $db->insertIntoTable($r->dagplanning, $column_names, $table_name);
-    if($rows != NULL)
-    {
-        $response["status"] = "success";
-        $response["message"] = "Dagplanning succesvol aangemaakt.";
-    echoResponse(200, $response);
-    }
-}
+        global $db;
+    $data = json_decode($app->request->getBody());
+        $mandatory = array('datum');
+    $condition = array('datum=> !$mandatory');
+        $isDatumExists = $db->select("dagplanningen", "datum", $condition, array());
 
-if ($isDatumExists) {
-    $response['status'] = "error";
-        $response['message'] = 'Datum bestaat al';
-echoResponse(201, $response);
-}
+        if(!$isDatumExists)
+        {
+    $rows = $db->insert("dagplanningen", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Dagplanning successvol toegevoegd";
+    echoResponse2(200, $rows);
+        }
+        else
+        {
+            $rows["message"] = "Datum bestaat al";
+            echoResponse2(200,$rows)
+        }
+
 
 
 });
@@ -40,25 +37,25 @@ $app->put('/dagplanningen/:id', function($id) use ($app) {
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->update("dagplanningen", $data, $condition, $mandatory);
     if($rows["status"]=="success")
-        $rows["message"] = "Dagplanning update successfully.";
+        $rows["message"] = "Dagplanning succesvol geüpdate";
     echoResponse(200, $rows);
 });
 
 $app->delete('/dagplanningen/:id', function($id) { 
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->delete("dagplanningen", array('id'=>$id));
     if($rows["status"]=="success")
-        $rows["message"] = "Dagplanning removed successfully.";
+        $rows["message"] = "Dagplanning successvol verwijderd";
     echoResponse(200, $rows);
 });
 
 
 //Weekplanningen
 $app->get('/weekplanningen/:week', function($week) {
-   $db = new dbTabellen();
+   global $db;
 
    $condition = array('week'=>$week);
     $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuin", $condition, array());
@@ -69,7 +66,7 @@ $app->get('/weekplanningen/:week', function($week) {
 $app->post('/weekplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
     $mandatory = array('week');
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Weekplanning added successfully.";
@@ -80,7 +77,7 @@ $app->put('/weekplanningen/:id', function($id) use ($app) {
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->update("weekplanningen", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Weekplanning updated successfully.";
@@ -88,7 +85,7 @@ $app->put('/weekplanningen/:id', function($id) use ($app) {
 });
 
 $app->delete('/weekplanningen/:id', function($id) { 
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->delete("weekplanningen", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Weekplanning removed successfully.";
@@ -97,7 +94,7 @@ $app->delete('/weekplanningen/:id', function($id) {
 
 //Jaarplanningen
 $app->get('/jaarplanningen/:jaar', function($jaar) {
-   $db = new dbTabellen();
+   global $db;
        $condition = array('jaar'=>$jaar);
     $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking", $condition, array());
     echoResponse2(200, $rows);
@@ -106,7 +103,7 @@ $app->get('/jaarplanningen/:jaar', function($jaar) {
 $app->post('/jaarplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
     $mandatory = array('jaar');
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->insert("jaarplanningen", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning added successfully.";
@@ -117,7 +114,7 @@ $app->put('/jaarplanningen/:id', function($id) use ($app) {
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->update("jaarplanningen", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning updated successfully.";
@@ -125,7 +122,7 @@ $app->put('/jaarplanningen/:id', function($id) use ($app) {
 });
 
 $app->delete('/jaarplanningen/:id', function($id) { 
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->delete("jaarplanningen", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning removed successfully.";
@@ -135,7 +132,7 @@ $app->delete('/jaarplanningen/:id', function($id) {
 
 //Werknemerstabel
 $app->get('/werknemers', function() {
-   $db = new dbTabellen();
+   global $db;
     $rows = $db->select("werknemers", "id,werknemersnummer,achternaam,voornaam,tel,comments",array());
     echoResponse2(200, $rows);
 });
@@ -143,7 +140,7 @@ $app->get('/werknemers', function() {
 $app->post('/werknemers', function() use ($app) { 
     $data = json_decode($app->request->getBody());
     $mandatory = array('achternaam');
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->insert("werknemers", $data, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Werknemer added successfully.";
@@ -154,7 +151,7 @@ $app->put('/werknemers/:id', function($id) use ($app) {
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->update("werknemers", $data, $condition, $mandatory);
     if($rows["status"]=="success")
         $rows["message"] = "Werknemer updated successfully.";
@@ -162,7 +159,7 @@ $app->put('/werknemers/:id', function($id) use ($app) {
 });
 
 $app->delete('/werknemers/:id', function($id) { 
-    $db = new dbTabellen();
+    global $db;
     $rows = $db->delete("werknemers", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Werknemer removed successfully.";

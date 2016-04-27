@@ -16,6 +16,29 @@ class dbTabellen {
             exit;
         }
     }
+    function fetchOneRecord($table, $columns, $where)
+    {
+        try
+        {
+        $stmt = $this->db->prepare("select ".$columns." from ".$table." where 1=1 ". "LIMIT 1");
+        $stmt->execute();
+        $rows = $stmt->fetch();
+        if(count($rows)<=0){
+                $response["status"] = "warning";
+                $response["message"] = "No data found.";
+            }else{
+                $response["status"] = "success";
+                $response["message"] = "Data selected from database";
+            }
+                $response["data"] = $rows;
+        }catch(PDOException $e){
+            $response["status"] = "error";
+            $response["message"] = 'Select Failed: ' .$e->getMessage();
+            $response["data"] = null;
+        }
+        return $response;
+        
+    }
     function select($table, $columns, $where){
         try{
             $a = array();
@@ -111,6 +134,7 @@ class dbTabellen {
                 $a[":".$key] = $value;
             }
                 $c = rtrim($c,", ");
+
             $stmt =  $this->db->prepare("UPDATE $table SET $c WHERE 1=1 ".$w);
             $stmt->execute($a);
             $affected_rows = $stmt->rowCount();
@@ -174,6 +198,7 @@ class dbTabellen {
             $stmt = $this->db->prepare("select @resultId as Id"); 
             $stmt->execute(); 
             $myResultId = $stmt->fetchColumn();
+
             print "procedure returned \n".$myResultId;
             
         }catch(PDOException $e){
@@ -182,6 +207,7 @@ class dbTabellen {
             exit;
         }
     }*/
+
         function verifyRequiredParams2($inArray, $requiredColumns) {
         $error = false;
         $errorColumns = "";
@@ -192,6 +218,7 @@ class dbTabellen {
                 $errorColumns .= $field . ', ';
             }
         }
+
         if ($error) {
             $response = array();
             $response["status"] = "error";
@@ -201,4 +228,5 @@ class dbTabellen {
         }
     }
 }
+
 ?>
