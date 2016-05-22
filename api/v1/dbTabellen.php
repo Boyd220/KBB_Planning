@@ -20,20 +20,26 @@ class dbTabellen {
     {
         try
         {
+            $a=array();
+$w="";
+        foreach ($where as $key => $value) {
+                $w .= " and " .$key. " like :".$key;
+                $a[":".$key] = $value;
+            }
         $stmt = $this->db->prepare("select ".$columns." from ".$table." where 1=1 ". "LIMIT 1");
-        $stmt->execute();
-        $rows = $stmt->fetch();
-        if(count($rows)<=0){
+        $stmt->execute($a);
+        $isDatumExists = $stmt->fetch();
+        if(count($isDatumExists)<=0){
                 $response["status"] = "warning";
-                $response["message"] = "No data found.";
+                $response["message"] = "Data niet gevonden.";
             }else{
                 $response["status"] = "success";
-                $response["message"] = "Data selected from database";
+                $response["message"] = "Data gevonden uit databank.";
             }
-                $response["data"] = $rows;
+                $response["data"] = $isDatumExists;
         }catch(PDOException $e){
             $response["status"] = "error";
-            $response["message"] = 'Select Failed: ' .$e->getMessage();
+            $response["message"] = 'Gefaald: ' .$e->getMessage();
             $response["data"] = null;
         }
         return $response;
@@ -52,15 +58,15 @@ class dbTabellen {
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(count($rows)<=0){
                 $response["status"] = "warning";
-                $response["message"] = "No data found.";
+                $response["message"] = "Data niet gevonden.";
             }else{
                 $response["status"] = "success";
-                $response["message"] = "Data selected from database";
+                $response["message"] = "Data gevonden uit databank.";
             }
                 $response["data"] = $rows;
         }catch(PDOException $e){
             $response["status"] = "error";
-            $response["message"] = 'Select Failed: ' .$e->getMessage();
+            $response["message"] = 'Select gefaald: ' .$e->getMessage();
             $response["data"] = null;
         }
         return $response;
@@ -78,15 +84,15 @@ class dbTabellen {
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(count($rows)<=0){
                 $response["status"] = "warning";
-                $response["message"] = "No data found.";
+                $response["message"] = "Data niet gevonden";
             }else{
                 $response["status"] = "success";
-                $response["message"] = "Data selected from database";
+                $response["message"] = "Data gevonden uit databank";
             }
                 $response["data"] = $rows;
         }catch(PDOException $e){
             $response["status"] = "error";
-            $response["message"] = 'Select Failed: ' .$e->getMessage();
+            $response["message"] = 'Select gefaald ' .$e->getMessage();
             $response["data"] = null;
         }
         return $response;
@@ -110,11 +116,11 @@ class dbTabellen {
             $affected_rows = $stmt->rowCount();
             $lastInsertId = $this->db->lastInsertId();
             $response["status"] = "success";
-            $response["message"] = $affected_rows." row inserted into database";
+            $response["message"] = $affected_rows." kolom in databank gezet";
             $response["data"] = $lastInsertId;
         }catch(PDOException $e){
             $response["status"] = "error";
-            $response["message"] = 'Insert Failed: ' .$e->getMessage();
+            $response["message"] = 'Insert gefaald: ' .$e->getMessage();
             $response["data"] = 0;
         }
         return $response;
@@ -140,21 +146,21 @@ class dbTabellen {
             $affected_rows = $stmt->rowCount();
             if($affected_rows<=0){
                 $response["status"] = "warning";
-                $response["message"] = "No row updated";
+                $response["message"] = "Rij niet geüpdate";
             }else{
                 $response["status"] = "success";
-                $response["message"] = $affected_rows." row(s) updated in database";
+                $response["message"] = $affected_rows." rij(en) geüpdate in database";
             }
         }catch(PDOException $e){
             $response["status"] = "error";
-            $response["message"] = "Update Failed: " .$e->getMessage();
+            $response["message"] = "Update gefaald: " .$e->getMessage();
         }
         return $response;
     }
     function delete($table, $where){
         if(count($where)<=0){
             $response["status"] = "warning";
-            $response["message"] = "Delete Failed: At least one condition is required";
+            $response["message"] = "Delete gefaald: Er is een parameter nodig op zijn minst";
         }else{
             try{
                 $a = array();
@@ -168,10 +174,10 @@ class dbTabellen {
                 $affected_rows = $stmt->rowCount();
                 if($affected_rows<=0){
                     $response["status"] = "warning";
-                    $response["message"] = "No row deleted";
+                    $response["message"] = "Geen rij verwijderd";
                 }else{
                     $response["status"] = "success";
-                    $response["message"] = $affected_rows." row(s) deleted from database";
+                    $response["message"] = $affected_rows." rijden verwijderd uit database";
                 }
             }catch(PDOException $e){
                 $response["status"] = "error";
@@ -222,7 +228,7 @@ class dbTabellen {
         if ($error) {
             $response = array();
             $response["status"] = "error";
-            $response["message"] = 'Required field(s) ' . rtrim($errorColumns, ', ') . ' is missing or empty';
+            $response["message"] = 'De benodigde velden ' . rtrim($errorColumns, ', ') . ' zijn niet of niet volledig ingevuld';
             echoResponse(200, $response);
             exit;
         }

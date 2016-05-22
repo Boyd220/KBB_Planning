@@ -1,12 +1,20 @@
     <button type="button" class="close" ng-click="cancel();">
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
-    <div class="modal-header">
-        <h3 class="modal-title">Pas de jaarplanning aan [Jaar: {{}}]</h3>
-    </div>
     <div class="modal-body">
         <form name="jaarplanning_form" class="form-horizontal" role="form" novalidate>
-            <input id="Year" placeholder="YEAR" type="year" ng-model="jaarplanning.jaar"/>
+            
+
+            
+              <form-element label="JAARTAL" mod="jaarplanning">
+                     <input type="number" id="Year" min="2015" max="2030" placeholder="YEAR" ng-model="jaarplanning.jaar"/>
+                             <small class="errorMessage" data-ng-show="jaarplanning_form.jaar.$dirty &&jaarplanning_form.jaar.$invalid"> Vul een jaar tussen 2015 en 2030 in.</small>
+            </form-element>
+
+                          <form-element label="WEEKNUMMER" mod="jaarplanning">
+                     <input id="week" min="1" max="53" type="number" placeholder="Weeknummer" ng-model="jaarplanning.weeknr">
+                             <small class="errorMessage" data-ng-show="jaarplanning_form.weeknr.$error.weeknr"> Vul een week tussen 1 en 53 in.</small>
+            </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
 
@@ -17,7 +25,12 @@
 
             </form-element>
 
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormOogst" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtOogst" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtOogst.$dirty &&jaarplanning_form.normVerwachtOogst.$invalid"> Vul de verwachte norm in</small>
 
+            </form-element>
             <form-element label="VERWACHTE UREN" mod="jaarplanning">
             
                 <input type="text" class="form-control" name="VerwachtUrenOogst" placeholder="VERWACHTE UREN OOGST" ng-model="jaarplanning.verwachtUrenOogst" only-numbers>
@@ -25,10 +38,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensOogst" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensOogst" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensOogst.$dirty &&jaarplanning_form.mensOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensOogstNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensOogstNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensOogstNodig.$dirty &&jaarplanning_form.mensOogstNodig.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensOogstBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensOogstBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensOogstBeschikbaar.$dirty &&jaarplanning_form.mensOogstBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -56,6 +76,12 @@
 
             </form-element>
 
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormDieven" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtDieven" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtDieven.$dirty &&jaarplanning_form.normVerwachtDieven.$invalid"> Vul de verwachte norm in</small>
+
+            </form-element>
 
             <form-element label="VERWACHTE UREN" mod="jaarplanning">
             
@@ -64,10 +90,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensDieven" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensDieven" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensDieven.$dirty &&jaarplanning_form.mensDieven.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MenDievenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensDievenNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensDievenNodig.$dirty &&jaarplanning_form.mensDievenNodig.$invalid"> Vul het benodigde aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensDievenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensDievenBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensDievenBeschikbaar.$dirty &&jaarplanning_form.mensDievenBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -95,6 +128,13 @@
 
             </form-element>
 
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormBlad" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtBlad" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtBlad.$dirty &&jaarplanning_form.normVerwachtBlad.$invalid"> Vul de verwachte norm in</small>
+
+            </form-element>
+
             <form-element label="VERWACHTE UREN" mod="jaarplanning">
             
                 <input type="text" class="form-control" name="VerwachtUrenBlad" placeholder="VERWACHTE UREN BLADKNIPPEN" ng-model="jaarplanning.verwachtUrenBlad" only-numbers>
@@ -102,10 +142,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensBlad" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensBlad" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensBlad.$dirty &&jaarplanning_form.mensBlad.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensBladNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensBladNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensBladNodig.$dirty &&jaarplanning_form.mensBladNodig.$invalid"> Vul het benodigde aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensBladBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensBladBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensBladBeschikbaar.$dirty &&jaarplanning_form.mensBladBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -132,6 +179,13 @@
 
             </form-element>
 
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormSnoei" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtSnoei" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtSnoei.$dirty &&jaarplanning_form.normVerwachtSnoei.$invalid"> Vul de verwachte norm in</small>
+
+            </form-element>
+
             <form-element label="VERWACHTE UREN" mod="jaarplanning">
             
                 <input type="text" class="form-control" name="VerwachtUrenSnoeien" placeholder="VERWACHTE UREN SNOEIEN" ng-model="jaarplanning.verwachtUrenSnoeien" only-numbers>
@@ -139,10 +193,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensSnoeien" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensSnoei" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensSnoei.$dirty &&jaarplanning_form.mensSnoei.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensSnoeiNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensSnoeiNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensSnoeiNodig.$dirty &&jaarplanning_form.mensSnoeiNodig.$invalid"> Vul het benodigde aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensSnoeiBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensSnoeiBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensSnoeiBeschikbaar.$dirty &&jaarplanning_form.mensSnoeiBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -169,6 +230,13 @@
 
             </form-element>
 
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormZakken" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtZakken" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtZakken.$dirty &&jaarplanning_form.normVerwachtZakken.$invalid"> Vul de verwachte norm in</small>
+
+            </form-element>
+
             <form-element label="VERWACHTE UREN" mod="jaarplanning">
             
                 <input type="text" class="form-control" name="VerwachtUrenZakken" placeholder="VERWACHTE UREN ZAKKEN" ng-model="jaarplanning.verwachtUrenZakken" only-numbers>
@@ -176,10 +244,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensZakken" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensZakken" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensZakken.$dirty &&jaarplanning_form.mensZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensZakkenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensZakkenNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensZakkenNodig.$dirty &&jaarplanning_form.mensZakkenNodig.$invalid"> Vul het benodigde aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensZakkenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensZakkenBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensZakkenBeschikbaar.$dirty &&jaarplanning_form.mensZakkenBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -200,10 +275,17 @@
         <h4 style="text-align: center;"; class="modal-title">Verpakking</h4>
 
 
-            <form-element label="PLANTEN VERPAKKING" mod="jaarplanning">
+            <form-element label="Verwachting pallets" mod="jaarplanning">
 
-                <input type="text" class="form-control" name="PlantenVerpakking" placeholder="PLANTEN VERPAKKING" ng-model="jaarplanning.plantenVerpakking" only-numbers>
+                <input type="text" class="form-control" name="PlantenVerpakking" placeholder="Verwachting pallets" ng-model="jaarplanning.plantenVerpakking" only-numbers>
                  <small class="errorMessage" ng-show="jaarplanning_form.plantenVerpakking.$dirty &&jaarplanning_form.plantenVerpakking.$invalid"> Vul het aantal te verpakken planten in.</small>
+
+            </form-element>
+
+            <form-element label="VERWACHTE NORM" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="VerwachteNormVerpakking" placeholder="VERWACHTE NORM" ng-model="jaarplanning.normVerwachtVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.normVerwachtVerpakking.$dirty &&jaarplanning_form.normVerwachtVerpakking.$invalid"> Vul de verwachte norm in</small>
 
             </form-element>
 
@@ -214,10 +296,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="jaarplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="jaarplanning">
             
-                <input type="text" class="form-control" name="MensVerpakking" placeholder="AANTAL MENSEN" ng-model="jaarplanning.mensVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="jaarplanning_form.mensVerpakking.$dirty &&jaarplanning_form.mensVerpakking.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensVerpakkingNodig" placeholder="AANTAL MENSEN NODIG" ng-model="jaarplanning.mensVerpakkingNodig" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensVerpakkingNodig.$dirty &&jaarplanning_form.mensVerpakkingNodig.$invalid"> Vul het beschikbare aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="jaarplanning">
+            
+                <input type="text" class="form-control" name="MensVerpakkingBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="jaarplanning.mensVerpakkingBeschikbaar" only-numbers>
+                 <small class="errorMessage" ng-show="jaarplanning_form.mensVerpakkingBeschikbaar.$dirty &&jaarplanning_form.mensVerpakkingBeschikbaar.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 

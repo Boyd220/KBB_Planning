@@ -14,20 +14,21 @@ $app->post('/dagplanningen', function() use ($app) {
     $data = json_decode($app->request->getBody());
         $mandatory = array('datum');
     $condition = array('datum=> !$mandatory');
-        $isDatumExists = $db->select("dagplanningen", "datum", $condition, array());
+        $isDatumExists = $db->fetchOneRecord("dagplanningen", "datum", $condition, array());
 
-        if(!$isDatumExists)
-        {
-    $rows = $db->insert("dagplanningen", $data, $mandatory);
-    if($rows["status"]=="success")
-        $rows["message"] = "Dagplanning successvol toegevoegd";
-    echoResponse2(200, $rows);
-        }
-        else
-        {
-            $rows["message"] = "Datum bestaat al";
-            echoResponse2(200,$rows)
-        }
+            
+            if($isDatumExists["status"]=="warning")
+            {
+            $rows = $db->insert("dagplanningen", $data, $mandatory);
+            $rows["message"] = "Dagplanning successvol toegevoegd";
+            echoResponse2(200, $rows);
+            }
+
+            if($isDatumExists["status"]=="success")
+            {
+                $rows["message"] = "Datum bestaat al";
+                echoResponse2(200,$rows);
+            }
 
 
 
@@ -96,18 +97,24 @@ $app->delete('/weekplanningen/:id', function($id) {
 $app->get('/jaarplanningen/:jaar', function($jaar) {
    global $db;
        $condition = array('jaar'=>$jaar);
-    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking", $condition, array());
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
     echoResponse2(200, $rows);
 });
 
-$app->post('/jaarplanningen', function() use ($app) { 
+$app->post('/jaarplanningen', function() use ($app) {
+
     $data = json_decode($app->request->getBody());
-    $mandatory = array('jaar');
+    $mandatory = array('jaar', 'weeknr');
     global $db;
-    $rows = $db->insert("jaarplanningen", $data, $mandatory);
+        $rows = $db->insert("jaarplanningen", $data, $mandatory);
+    
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning added successfully.";
     echoResponse2(200, $rows);
+    
+
+
+
 });
 
 $app->put('/jaarplanningen/:id', function($id) use ($app) { 

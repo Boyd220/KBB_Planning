@@ -3,6 +3,7 @@ app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.getJaarplanning = function(jaarplanning){
         Data.get('jaarplanningen/' + jaarplanning.jaar).then(function(result){
             $scope.jaarplanningen = result.data;
+            console.log(jaarplanning.jaar);
         });
     };
     $scope.deleteJaarplanning= function(jaarplanning){
@@ -48,18 +49,24 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsOogst = [
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsDieven = [
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
@@ -67,38 +74,49 @@ $scope.columnsAlgemeen = [
 
 
  $scope.columnsBladknippen = [
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsSnoeien = [
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsZakken = [
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsVerpakking = [
-                    {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
-                    {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                    {text:"Verwachting pallets",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
+                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
@@ -132,8 +150,10 @@ app.controller('jaarplanningenEditCtrl', function ($scope, $modalInstance, item,
                     if(result.status != 'error'){
                         var x = angular.copy(jaarplanning);
                         x.save = 'update';
+                        Data.toast(result);
                         $modalInstance.close(x);
                     }else{
+                        Data.toast(result);
                         console.log(result);
                     }
                 });
@@ -144,8 +164,10 @@ app.controller('jaarplanningenEditCtrl', function ($scope, $modalInstance, item,
                         var x = angular.copy(jaarplanning);
                         x.save = 'insert';
                         x.id = result.data;
+                        Data.toast(result);
                         $modalInstance.close(x);
                     }else{
+                        Data.toast(result);
                         console.log(result);
                     }
                 });
