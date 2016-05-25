@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         <form name="weekplanning_form" class="form-horizontal" role="form" novalidate>
-  <input id="Date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week"/>
+  <input id="Date" ng-click="bla(weekplanning.week);" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week"/>
 
         <h4 style="text-align: center;"; class="modal-title">Kies een tuin</h4>
 
@@ -46,20 +46,6 @@
 
             </form-element>
 
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormOogst" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatOogst" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatOogst.$dirty &&weekplanning_form.normResultaatNormOogst.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenOogst" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenOogst" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenOogst.$dirty &&weekplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
-
-            </form-element>
-
         <h4 style="text-align: center;"; class="modal-title">Dieven/draaien</h4>
 
 
@@ -88,20 +74,6 @@
             
                 <input type="text" class="form-control" name="MensDieven" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensDieven" only-numbers>
                  <small class="errorMessage" ng-show="weekplanning_form.mensDieven.$dirty &&weekplanning_form.mensDieven.$invalid"> Vul het beschikbare aantal mensen in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormDieven" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatDieven" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatDieven.$dirty &&weekplanning_form.normResultaatNormDieven.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenDieven" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenDieven" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenDieven.$dirty &&weekplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
 
             </form-element>
 
@@ -136,19 +108,6 @@
 
             </form-element>
 
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormBlad" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatBlad" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatBlad.$dirty &&weekplanning_form.normResultaatNormBlad.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenBlad" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenBlad" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenBlad.$dirty &&weekplanning_form.resultaatUrenBlad.$invalid"> Vul de resulterend uren in</small>
-
-            </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
 
@@ -180,19 +139,6 @@
 
             </form-element>
 
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormSnoeien" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatSnoeien.$dirty &&weekplanning_form.normResultaatNormSnoeien.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenSnoeien" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenSnoeien.$dirty &&weekplanning_form.resultaatUrenSnoeien.$invalid"> Vul de resulterend uren in</small>
-
-            </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
 
@@ -221,20 +167,6 @@
             
                 <input type="text" class="form-control" name="MensZakken" placeholder="AANTAL MENSEN" ng-model="weekplanning.mensZakken" only-numbers>
                  <small class="errorMessage" ng-show="weekplanning_form.mensZakken.$dirty &&weekplanning_form.mensZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormZakken" placeholder="RESULTAAT NORM" ng-model="weekplanning.normResultaatZakken" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatZakken.$dirty &&weekplanning_form.normResultaatNormZakken.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenZakken" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenZakken" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenZakken.$dirty &&weekplanning_form.resultaatUrenZakken.$invalid"> Vul de resulterend uren in</small>
 
             </form-element>
 
@@ -276,26 +208,6 @@
 
             </form-element>
 
-            <form-element label="RESULTAAT NORM" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatNormVerpakking" placeholder="RESULTAAT VERPAKKING" ng-model="weekplanning.normResultaatVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.normResultaatVerpakking.$dirty &&weekplanning_form.normResultaatNormVerpakking.$invalid"> Vul het normresultaat in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT PALLETS" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatPalletsVerpakking" placeholder="RESULTAAT PALLETS" ng-model="weekplanning.resultaatPalletsVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatPalletsVerpakking.$dirty &&weekplanning_form.resultaatPalletsVerpakking.$invalid"> Vul het resulterende aantal pallets in</small>
-
-            </form-element>
-
-            <form-element label="RESULTAAT UREN" mod="weekplanning">
-            
-                <input type="text" class="form-control" name="ResultaatUrenVerpakking" placeholder="RESULTAAT UREN" ng-model="weekplanning.resultaatUrenVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="weekplanning_form.resultaatUrenVerpakking.$dirty &&weekplanning_form.resultaatUrenVerpakking.$invalid"> Vul de resulterend uren in</small>
-
-            </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Overige</h4>   
             

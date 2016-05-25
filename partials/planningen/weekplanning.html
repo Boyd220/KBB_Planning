@@ -28,11 +28,11 @@
     </ul>
 </div> 
 
-<hr/>
+  <p style="font-weight:bold;" ng-repeat="c in weekje">Huidig weeknummer: {{c.text}}</p>
   <input class="form-control" id="date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week" />
-
   <button style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <hr/>
+
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(weekplanning);">&nbsp;Voeg weekplanning toe</button>
 <div class="btn-group">

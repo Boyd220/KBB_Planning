@@ -13,20 +13,24 @@ $app->post('/dagplanningen', function() use ($app) {
         global $db;
     $data = json_decode($app->request->getBody());
         $mandatory = array('datum');
-    $condition = array('datum=> !$mandatory');
-        $isDatumExists = $db->fetchOneRecord("dagplanningen", "datum", $condition, array());
+        $paramValue = $app->request->post('datum');
+    $condition = array('datum'=> !$paramValue);
+        $bla= $db->select("dagplanningen", "datum", $condition, array());
 
             
-            if($isDatumExists["status"]=="warning")
+            if($bla["status"]=="warning")
             {
+
             $rows = $db->insert("dagplanningen", $data, $mandatory);
-            $rows["message"] = "Dagplanning successvol toegevoegd";
+            $rows["message"] = serialize($paramValue);
+          
             echoResponse2(200, $rows);
             }
 
-            if($isDatumExists["status"]=="success")
+            if($bla["status"]=="success")
             {
-                $rows["message"] = "Datum bestaat al";
+                $rows["message"] = "Datum bestaat al.";
+   
                 echoResponse2(200,$rows);
             }
 
@@ -59,7 +63,7 @@ $app->get('/weekplanningen/:week', function($week) {
    global $db;
 
    $condition = array('week'=>$week);
-    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuin", $condition, array());
+    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, verwachtUrenOogst, normDieven, plantenDieven, mensDieven, verwachtUrenDieven, normBladknippen, plantenBladknippen, mensBlad,  verwachtUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, verwachtUrenSnoeien, normZakken, plantenZakken, mensZakken, verwachtUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, tuin", $condition, array());
 
     echoResponse2(200, $rows);
 });
@@ -112,8 +116,6 @@ $app->post('/jaarplanningen', function() use ($app) {
         $rows["message"] = "Jaarplanning added successfully.";
     echoResponse2(200, $rows);
     
-
-
 
 });
 

@@ -105,6 +105,7 @@ $w="";
             $c = "";
             $v = "";
             foreach ($columnsArray as $key => $value) {
+
                 $c .= $key. ", ";
                 $v .= ":".$key. ", ";
                 $a[":".$key] = $value;

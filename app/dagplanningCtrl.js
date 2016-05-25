@@ -145,7 +145,6 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
             return angular.equals(original, $scope.dagplanning);
         }
         $scope.saveDagplanning = function (dagplanning) {
-            dagplanning.uid = $scope.uid;
             if(dagplanning.id > 0){
                 Data.put('dagplanningen/'+dagplanning.id, dagplanning).then(function (result) {
                     if(result.status != 'error'){

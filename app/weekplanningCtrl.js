@@ -8,6 +8,24 @@ app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
         });
     };
 
+    $scope.getWeeknumber = function(dt) 
+  {
+     var tdt = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+        }
+
+dt = new Date();
+$scope.weekje = [
+{text: $scope.getWeeknumber(dt), predicate: $scope.getWeeknumber(dt), sortable:true, dataType:"number"}
+]
 
     $scope.deleteWeekplanning= function(weekplanning){
         if(confirm("Weet u zeker dat u deze weekplanning wilt verwijderen?")){
@@ -128,9 +146,21 @@ $scope.columnsAlgemeen = [
 
 
 app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item, Data) {
-
+    $scope.getWeeknumber = function(dt) 
+  {
+     var tdt = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+        }
   $scope.weekplanning = angular.copy(item);
-        
+                                                 dt = new Date($scope.weekplanning.week);  
         $scope.cancel = function () {
             $modalInstance.dismiss('Afsluiten');
         };
@@ -143,7 +173,6 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
         }
         $scope.saveWeekplanning = function (weekplanning) {
 
-            weekplanning.uid = $scope.uid;
             if(weekplanning.id > 0){
                 Data.put('weekplanningen/'+weekplanning.id, weekplanning).then(function (result) {
                     if(result.status != 'error'){
@@ -168,4 +197,9 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
                 });
             }
         };
+
+        $scope.bla = function(lol){
+            dt = new Date(lol);
+    console.log('lol');
+}
 });
