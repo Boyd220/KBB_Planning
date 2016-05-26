@@ -1,20 +1,31 @@
 app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.weekplanning = {};
+    $scope.getWeekplanning = function(weekplanning){
+        bla = new Date(weekplanning.weeknr);
+        var jaar = bla.getFullYear();
+        var week = $scope.getWeeknumber(bla)+""+jaar;
+        console.log(bla + " " + $scope.getWeeknumber(bla) + " " + week + " " + jaar);
+        Data.get('weekplanningen/' + week).then(function(result){
+            $scope.weekplanningen = result.data;
+        });
+    };
+  /*$("#weeklyDatePicker").datetimepicker({
+      format: 'MM-DD-YYYY'
+  });
 
-
+   //Get the value of Start and End of Week
+  $('#weeklyDatePicker').on('dp.change', function (e) {
+      var value = $("#weeklyDatePicker").val();
+      var firstDate = moment(value, "MM-DD-YYYY").day(0).format("MM-DD-YYYY");
+      var lastDate =  moment(value, "MM-DD-YYYY").day(6).format("MM-DD-YYYY");
+      $("#weeklyDatePicker").val(firstDate + " - " + lastDate);
+  });
     $scope.getWeekplanning = function(weekplanning){
         Data.get('weekplanningen/' + weekplanning.weeknr).then(function(result){
             $scope.weekplanningen = result.data;
         });
-    };
+    };*/
 
-        $scope.getWeekplanning2 = function(weekplanning){
-            datum = new Date(weekplanning.date);
-            var week = $scope.getWeeknumber(datum);
-        Data.get('weekplanningen/' +week).then(function(result){
-            $scope.weekplanningen = result.data;
-        });
-    };
     $scope.getWeeknumber = function(dt) 
   {
      var tdt = new Date(dt.valueOf());
@@ -159,6 +170,7 @@ $scope.columnsAlgemeen = [
 
 
 app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item, Data) {
+
         $scope.getWeeknumber = function(dt) 
   {
      var tdt = new Date(dt.valueOf());
@@ -172,11 +184,15 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
         }
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
         }
-$scope.convertWeeknumber = function(dt) {
-        blaa = new Date(dt);
-        $scope.weeknr = $scope.getWeeknumber(blaa);
 
+$scope.getW = function(d){
+    w = new Date(d);
+    var jaar = w.getFullYear();
+console.log($scope.getWeeknumber(w));
+    $scope.weeknr= $scope.getWeeknumber(w)+""+jaar;
+    $scope.date = w;
 }
+    
   $scope.weekplanning = angular.copy(item);
                                                
         $scope.cancel = function () {

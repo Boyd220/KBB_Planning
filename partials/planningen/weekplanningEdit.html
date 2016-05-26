@@ -7,12 +7,10 @@
     </div>
     <div class="modal-body">
         <form name="weekplanning_form" class="form-horizontal" role="form" novalidate>
-  <input id="Date" ng-change="convertWeeknumber(weekplanning.date);" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.date"/>
-              <form-element label="WEEKNR" mod="weekplanning">
-                <p>Tik het weeknummer over anders word de waarde niet geregistreert.</p>
-                <input required type="text" class="form-control" ng-model="weekplanning.weeknr" only-numbers placeholder="{{weeknr}}">
-                 <small class="errorMessage" ng-show="weekplanning_form.plantenOogst.$dirty &&weekplanning_form.plantenOogst.$invalid"> weeknr</small>
-                        
+<input type="date" name="Weeknr" ng-change="getW(weekplanning.date);" ng-model="weekplanning.date">
+              <form-element label="Weeknummer" mod="weekplanning">
+                            <input type="text" class="form-control" name="Weeknummer" placeholder="{{weeknr}}" ng-model="weekplanning.weeknr">
+                             <small class="errorMessage" ng-show="weekplanning_form.tuin.$dirty &&weekplanning_form.tuin.$invalid"> Vul een geldige tuin in</small>
             </form-element>
         <h4 style="text-align: center;"; class="modal-title">Kies een tuin</h4>
 

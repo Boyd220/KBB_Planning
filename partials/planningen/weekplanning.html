@@ -27,21 +27,10 @@
     </li>
     </ul>
 </div> 
-<div class="btn-group">
 
- <label for="Datum" class="btn btn-default active">
-    <input type="radio" id="datum" name="switch" ng-model="switch" value="datum" aria-label="Datum">Datum
-  </label>
-
- <label for="Weeknummer" class="btn btn-default">
-    <input type="radio" id="weeknummer" name="switch" ng-model="switch" value="weeknummer" aria-label="weeknummer">weeknummer
-  </label>
-  </div>
   <p style="font-weight:bold;" ng-repeat="c in weekje">Huidig weeknummer: {{c.text}}</p>
-  <input ng-show="switch=='datum'" class="form-control" id="date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.date" />
-  <input ng-show="switch=='weeknummer'" class="form-control" id="date" placeholder="Weeknummer" type="text" ng-model="weekplanning.weeknr" />
-  <button ng-show="switch=='weeknummer'" style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
-  <button ng-show="switch=='datum'" style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning2(weekplanning)">Vraag weekplanning op</button>
+<input type="date" name="Date" ng-model="weekplanning.weeknr">
+  <button  style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <hr/>
 
 

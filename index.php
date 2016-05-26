@@ -51,8 +51,9 @@
       </div>
     </body>
   <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <script src="js/moment.min.js"></script>
+  <link src="js/bootstrap-datetimepicker.css"></link>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
   <!-- Libs -->
 <script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
  <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>

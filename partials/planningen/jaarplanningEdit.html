@@ -2,17 +2,17 @@
         <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
     </button>
     <div class="modal-body">
-        <form name="jaarplanning_form" class="form-horizontal" role="form" novalidate>
-            
-
+        <form name="jaarplanning_form" class="form-horizontal" role="form">
+<form-element label="DATUM" mod="jaarplanning">            
+<input id="Date" style="align-content:center; width: 300px; " ng-change="convertWeeknumber(jaarplanning.date);" placeholder="DD/MM/YYYY" type="date" ng-model="jaarplanning.date"/>
+</form-element>
             
               <form-element label="JAARTAL" mod="jaarplanning">
                      <input type="number" id="Year" min="2015" max="2030" placeholder="YEAR" ng-model="jaarplanning.jaar"/>
                              <small class="errorMessage" data-ng-show="jaarplanning_form.jaar.$dirty &&jaarplanning_form.jaar.$invalid"> Vul een jaar tussen 2015 en 2030 in.</small>
             </form-element>
-
             <form-element label="WEEKNUMMER" mod="jaarplanning">
-                     <input id="week" min="1" max="53" type="number" placeholder="Weeknummer" ng-model="jaarplanning.weeknr">
+                     <input id="week" type="number" placeholder="{{weeknr}}" ng-model="jaarplanning.weeknr">
                              <small class="errorMessage" data-ng-show="jaarplanning_form.weeknr.$error.weeknr"> Vul een week tussen 1 en 53 in.</small>
             </form-element>
 

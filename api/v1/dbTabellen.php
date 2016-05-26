@@ -53,7 +53,7 @@ $w="";
                 $w .= " and " .$key. " like :".$key;
                 $a[":".$key] = $value;
             }
-            $stmt = $this->db->prepare("select ".$columns." from ".$table." where 1=1 ". $w);
+            $stmt = $this->db->prepare("select ".$columns." from ".$table. " where 1=1". $w);
             $stmt->execute($a);
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(count($rows)<=0){

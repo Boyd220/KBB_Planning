@@ -1,5 +1,7 @@
 app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.jaarplanning = {};
+
+    
           $('#Year').keypress(function (e) {
         if (e.keyCode == 13) {
             var jaar = $('#Year').val();
@@ -141,7 +143,24 @@ $scope.columnsAlgemeen = [
 
 
 app.controller('jaarplanningenEditCtrl', function ($scope, $modalInstance, item, Data) {
+        $scope.getWeeknumber = function(dt) 
+  {
+     var tdt = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+        }
+$scope.convertWeeknumber = function(dt) {
+        blaa = new Date(dt);
+        $scope.weeknr = $scope.getWeeknumber(blaa);
 
+}
   $scope.jaarplanning = angular.copy(item);
         
         $scope.cancel = function () {
