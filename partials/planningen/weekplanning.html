@@ -27,10 +27,21 @@
     </li>
     </ul>
 </div> 
+<div class="btn-group">
 
+ <label for="Datum" class="btn btn-default active">
+    <input type="radio" id="datum" name="switch" ng-model="switch" value="datum" aria-label="Datum">Datum
+  </label>
+
+ <label for="Weeknummer" class="btn btn-default">
+    <input type="radio" id="weeknummer" name="switch" ng-model="switch" value="weeknummer" aria-label="weeknummer">weeknummer
+  </label>
+  </div>
   <p style="font-weight:bold;" ng-repeat="c in weekje">Huidig weeknummer: {{c.text}}</p>
-  <input class="form-control" id="date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.week" />
-  <button style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
+  <input ng-show="switch=='datum'" class="form-control" id="date" placeholder="DD/MM/YYYY" type="date" ng-model="weekplanning.date" />
+  <input ng-show="switch=='weeknummer'" class="form-control" id="date" placeholder="Weeknummer" type="text" ng-model="weekplanning.weeknr" />
+  <button ng-show="switch=='weeknummer'" style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
+  <button ng-show="switch=='datum'" style="margin-top: 1em;" class="btn btn-default" ng-click="getWeekplanning2(weekplanning)">Vraag weekplanning op</button>
   <hr/>
 
 
@@ -89,6 +100,7 @@
     <tr><th ng-show="content == 'overige'" ng-repeat="c in columnsOverige">{{c.text}}</th></tr>
 
     <tr ng-show="content=='oogst'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+    <td>{{c.weeknr}}</td>
         <td>{{c.plantenOogst}}</td>
         <td>{{c.normOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
@@ -103,6 +115,7 @@
     </tr>
 
         <tr ng-show="content=='dieven'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+        <td>{{c.weeknr}}</td>
           <td>{{c.plantenDieven}}</td>
           <td>{{c.normDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
@@ -117,6 +130,7 @@
         </tr>
 
                 <tr ng-show="content=='bladknippen'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+                <td>{{c.weeknr}}</td>
           <td>{{c.plantenBladknippen}}</td>
           <td>{{c.normBladknippen}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
@@ -131,6 +145,7 @@
         </tr>
 
                 <tr ng-show="content=='snoeien'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+                <td>{{c.weeknr}}</td>
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normSnoeien}}</td>
           <td>{{c.verwachtUrenSnoeien}}</td>
@@ -145,6 +160,7 @@
         </tr>
 
                 <tr ng-show="content=='zakken'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+                <td>{{c.weeknr}}</td>
           <td>{{c.plantenZakken}}</td>
           <td>{{c.normZakken}}</td>
           <td>{{c.verwachtUrenZakken}}</td>
@@ -159,6 +175,7 @@
         </tr>
 
         <tr ng-show="content=='verpakking'" ng-repeat="c in weekplanningen | orderBy:'+week'" id="{{c.date}}">
+        <td>{{c.weeknr}}</td>
           <td>{{c.plantenVerpakking}}</td>
           <td>{{c.normVerpakking}}</td>
           <td>{{c.verwachtUrenVerpakking}}</td>

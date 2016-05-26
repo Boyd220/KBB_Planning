@@ -70,12 +70,7 @@ app.config(['$routeProvider',
       controller: 'jaarplanningCtrl',
                 role: '0',
                 authenticate: 'true'
-    }).when('/Planningen/jaarplanningEdit',{
-      title: 'JaarplanningEdit',
-    templateUrl: 'partials/planningen/jaarplanningEdit.html',
-    controller:'jaarplanningCtrl',
-    role:'0',
-    authenticate: 'true'})
+    })
             .otherwise({
                 redirectTo: '/login'
             });

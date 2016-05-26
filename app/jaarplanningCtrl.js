@@ -1,5 +1,16 @@
 app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.jaarplanning = {};
+          $('#Year').keypress(function (e) {
+        if (e.keyCode == 13) {
+            var jaar = $('#Year').val();
+
+        Data.get('jaarplanningen/' + jaar).then(function(result){
+            $scope.jaarplanningen = result.data;
+        });
+    
+}
+});
+
     $scope.getJaarplanning = function(jaarplanning){
         Data.get('jaarplanningen/' + jaarplanning.jaar).then(function(result){
             $scope.jaarplanningen = result.data;

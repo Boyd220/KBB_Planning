@@ -5,7 +5,7 @@
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-          <title>KBB Server</title>
+          <title>KBB</title>
 
     <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I="   crossorigin="anonymous"></script>
 
@@ -38,7 +38,7 @@
       <div class="container">
         <div class="row">
           <div class="navbar-header col-md-8">
-            <a class="navbar-brand" rel="home" title="KBB">KBB server</a>
+            <a class="navbar-brand" rel="home" title="KBB">KBB</a>
               <button ng-controller="authCtrl" style="margin-top: 0.5em;"  type="button" class="btn btn-danger navbar-right" ng-hide="!authenticated" ng-click="logout();">Logout</button>
           </div>
         </div>

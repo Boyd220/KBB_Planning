@@ -3,11 +3,18 @@ app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
 
 
     $scope.getWeekplanning = function(weekplanning){
-        Data.get('weekplanningen/' + weekplanning.week).then(function(result){
+        Data.get('weekplanningen/' + weekplanning.weeknr).then(function(result){
             $scope.weekplanningen = result.data;
         });
     };
 
+        $scope.getWeekplanning2 = function(weekplanning){
+            datum = new Date(weekplanning.date);
+            var week = $scope.getWeeknumber(datum);
+        Data.get('weekplanningen/' +week).then(function(result){
+            $scope.weekplanningen = result.data;
+        });
+    };
     $scope.getWeeknumber = function(dt) 
   {
      var tdt = new Date(dt.valueOf());
@@ -75,6 +82,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsOogst = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -85,6 +93,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsDieven = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -96,6 +105,7 @@ $scope.columnsAlgemeen = [
 
 
  $scope.columnsBladknippen = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -106,6 +116,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsSnoeien = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -116,6 +127,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsZakken = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -126,6 +138,7 @@ $scope.columnsAlgemeen = [
                 ];
 
  $scope.columnsVerpakking = [
+                    {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -146,7 +159,7 @@ $scope.columnsAlgemeen = [
 
 
 app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item, Data) {
-    $scope.getWeeknumber = function(dt) 
+        $scope.getWeeknumber = function(dt) 
   {
      var tdt = new Date(dt.valueOf());
      var dayn = (dt.getDay() + 6) % 7;
@@ -159,8 +172,13 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
         }
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
         }
+$scope.convertWeeknumber = function(dt) {
+        blaa = new Date(dt);
+        $scope.weeknr = $scope.getWeeknumber(blaa);
+
+}
   $scope.weekplanning = angular.copy(item);
-                                                 dt = new Date($scope.weekplanning.week);  
+                                               
         $scope.cancel = function () {
             $modalInstance.dismiss('Afsluiten');
         };
@@ -185,7 +203,6 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
                 });
             }else{
                 Data.post('weekplanningen', weekplanning).then(function (result) {
-
                     if(result.status != 'error'){
                         var x = angular.copy(weekplanning);
                         x.save = 'insert';
@@ -197,9 +214,4 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
                 });
             }
         };
-
-        $scope.bla = function(lol){
-            dt = new Date(lol);
-    console.log('lol');
-}
 });

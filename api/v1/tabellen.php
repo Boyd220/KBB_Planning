@@ -59,18 +59,18 @@ $app->delete('/dagplanningen/:id', function($id) {
 
 
 //Weekplanningen
-$app->get('/weekplanningen/:week', function($week) {
+$app->get('/weekplanningen/:weeknr', function($weeknr) {
    global $db;
 
-   $condition = array('week'=>$week);
-    $rows = $db->select("weekplanningen", "id,week, normOogst, plantenOogst, mensOogst, verwachtUrenOogst, normDieven, plantenDieven, mensDieven, verwachtUrenDieven, normBladknippen, plantenBladknippen, mensBlad,  verwachtUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, verwachtUrenSnoeien, normZakken, plantenZakken, mensZakken, verwachtUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, tuin", $condition, array());
+   $condition = array('weeknr'=>$weeknr);
+    $rows = $db->select("weekplanningen", "id,date,weeknr, normOogst, plantenOogst, mensOogst, verwachtUrenOogst, normDieven, plantenDieven, mensDieven, verwachtUrenDieven, normBladknippen, plantenBladknippen, mensBlad,  verwachtUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, verwachtUrenSnoeien, normZakken, plantenZakken, mensZakken, verwachtUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, tuin", $condition, array());
 
     echoResponse2(200, $rows);
 });
 
 $app->post('/weekplanningen', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('week');
+    $mandatory = array('date');
     global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
