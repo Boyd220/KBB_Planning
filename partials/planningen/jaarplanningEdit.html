@@ -12,9 +12,15 @@
                              <small class="errorMessage" data-ng-show="jaarplanning_form.jaar.$dirty &&jaarplanning_form.jaar.$invalid"> Vul een jaar tussen 2015 en 2030 in.</small>
             </form-element>
             <form-element label="WEEKNUMMER" mod="jaarplanning">
-                     <input id="week" type="number" placeholder="{{weeknr}}" ng-model="jaarplanning.weeknr">
+                     <input id="week" type="number" ng-change="addYear(jaarplanning.jaar,jaarplanning.weeknr);" ng-model="jaarplanning.weeknr">
                              <small class="errorMessage" data-ng-show="jaarplanning_form.weeknr.$error.weeknr"> Vul een week tussen 1 en 53 in.</small>
             </form-element>
+
+        <form-element label="WEEKENJAARNUMMER" mod="jaarplanning">
+                     <input id="weekenjaar" type="number" value="{{weeknrJaar}}"  ng-model="jaarplanning.weeknrJaar">
+                             
+            </form-element>
+
 
         <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
 

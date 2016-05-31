@@ -161,6 +161,11 @@ $scope.convertWeeknumber = function(dt) {
         $scope.weeknr = $scope.getWeeknumber(blaa);
 
 }
+
+$scope.addYear = function(jaar, week){
+    $scope.weeknrJaar = week+""+jaar;
+    console.log($scope.weeknrJaar);
+}
   $scope.jaarplanning = angular.copy(item);
         
         $scope.cancel = function () {

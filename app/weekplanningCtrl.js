@@ -1,14 +1,16 @@
 app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.weekplanning = {};
+
     $scope.getWeekplanning = function(weekplanning){
         bla = new Date(weekplanning.weeknr);
         var jaar = bla.getFullYear();
         var week = $scope.getWeeknumber(bla)+""+jaar;
-        console.log(bla + " " + $scope.getWeeknumber(bla) + " " + week + " " + jaar);
+        console.log(week);
         Data.get('weekplanningen/' + week).then(function(result){
             $scope.weekplanningen = result.data;
         });
     };
+
   /*$("#weeklyDatePicker").datetimepicker({
       format: 'MM-DD-YYYY'
   });
@@ -39,6 +41,11 @@ app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
         }
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
         }
+
+        $scope.selectedWeek = function(d){
+    w = new Date(d);
+    $scope.selected= $scope.getWeeknumber(w);
+}
 
 dt = new Date();
 $scope.weekje = [
@@ -96,10 +103,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -107,10 +112,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -119,10 +122,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -130,10 +131,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -141,10 +140,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
@@ -152,12 +149,8 @@ $scope.columnsAlgemeen = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Pallets",predicate:"Verwachte pallets",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
-                    {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
-                    {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},
-                    {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
+                    {text:"Benodigde mensen",predicate:"Benodigde mensen",sortable:true,dataType:"number"},
+                    {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 

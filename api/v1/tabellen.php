@@ -33,9 +33,6 @@ $app->post('/dagplanningen', function() use ($app) {
    
                 echoResponse2(200,$rows);
             }
-
-
-
 });
 
 $app->put('/dagplanningen/:id', function($id) use ($app) { 
@@ -58,17 +55,18 @@ $app->delete('/dagplanningen/:id', function($id) {
 });
 
 
-//Weekplanningen
-$app->get('/weekplanningen/:weeknr', function($weeknr) {
+$app->group('/weekplanningen', function () use ($app) {
+
+$app->get('/:weeknr', function($weeknr) {
    global $db;
    $condition = array('weeknr'=>$weeknr);
-    $rows = $db->select("weekplanningen", "id,weeknr,date, normOogst, plantenOogst, mensOogst, verwachtUrenOogst, normDieven, plantenDieven, mensDieven, verwachtUrenDieven, normBladknippen, plantenBladknippen, mensBlad,  verwachtUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, verwachtUrenSnoeien, normZakken, plantenZakken, mensZakken, verwachtUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, tuin", $condition, array());
+    $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
 
     echoResponse2(200, $rows);
 });
 
 
-$app->post('/weekplanningen', function() use ($app) { 
+$app->post('/', function() use ($app) { 
     $data = json_decode($app->request->getBody());
     $mandatory = array('weeknr');
     global $db;
@@ -78,7 +76,7 @@ $app->post('/weekplanningen', function() use ($app) {
     echoResponse2(200, $rows);
 });
 
-$app->put('/weekplanningen/:id', function($id) use ($app) { 
+$app->put('/:id', function($id) use ($app) { 
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
@@ -89,23 +87,25 @@ $app->put('/weekplanningen/:id', function($id) use ($app) {
     echoResponse(200, $rows);
 });
 
-$app->delete('/weekplanningen/:id', function($id) { 
+$app->delete('/:id', function($id) { 
     global $db;
     $rows = $db->delete("weekplanningen", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Weekplanning removed successfully.";
     echoResponse(200, $rows);
 });
+});
 
-//Jaarplanningen
-$app->get('/jaarplanningen/:jaar', function($jaar) {
+$app->group('/jaarplanningen', function () use ($app) {
+
+$app->get('/:jaar', function($jaar) {
    global $db;
        $condition = array('jaar'=>$jaar);
-    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
+    $rows = $db->select("jaarplanningen", "id,jaar,weeknrJaar plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
     echoResponse2(200, $rows);
 });
 
-$app->post('/jaarplanningen', function() use ($app) {
+$app->post('/', function() use ($app) {
 
     $data = json_decode($app->request->getBody());
     $mandatory = array('jaar', 'weeknr');
@@ -119,7 +119,7 @@ $app->post('/jaarplanningen', function() use ($app) {
 
 });
 
-$app->put('/jaarplanningen/:id', function($id) use ($app) { 
+$app->put('/:id', function($id) use ($app) { 
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
@@ -130,12 +130,22 @@ $app->put('/jaarplanningen/:id', function($id) use ($app) {
     echoResponse(200, $rows);
 });
 
-$app->delete('/jaarplanningen/:id', function($id) { 
+$app->delete('/:id', function($id) { 
     global $db;
     $rows = $db->delete("jaarplanningen", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning removed successfully.";
     echoResponse(200, $rows);
+});
+
+$app->group('/week', function() use ($app){
+$app->get('/:weeknrJaar', function($weeknrJaar) {
+   global $db;
+       $condition = array('weeknrJaar'=>$weeknrJaar);
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, plantenDieven, mensDievenNodig, plantenBladknippen, mensBladNodig, plantenSnoeien, mensSnoeiNodig, plantenZakken, mensZakkenNodig, plantenVerpakking, mensVerpakkingNodig, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtBlad, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
+    echoResponse2(200, $rows);
+});
+});
 });
 
 
