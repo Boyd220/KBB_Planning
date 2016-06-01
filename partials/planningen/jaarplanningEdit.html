@@ -3,26 +3,22 @@
     </button>
     <div class="modal-body">
         <form name="jaarplanning_form" class="form-horizontal" role="form">
-<form-element label="DATUM" mod="jaarplanning">            
-<input id="Date" style="align-content:center; width: 300px; " ng-change="convertWeeknumber(jaarplanning.date);" placeholder="DD/MM/YYYY" type="date" ng-model="jaarplanning.date"/>
-</form-element>
             
               <form-element label="JAARTAL" mod="jaarplanning">
-                     <input type="number" id="Year" min="2015" max="2030" placeholder="YEAR" ng-model="jaarplanning.jaar"/>
+                     <input type="year" id="Year" min="2015" max="2030" placeholder="YEAR" ng-model="jaarplanning.jaar"/>
                              <small class="errorMessage" data-ng-show="jaarplanning_form.jaar.$dirty &&jaarplanning_form.jaar.$invalid"> Vul een jaar tussen 2015 en 2030 in.</small>
             </form-element>
+
             <form-element label="WEEKNUMMER" mod="jaarplanning">
-                     <input id="week" type="number" ng-change="addYear(jaarplanning.jaar,jaarplanning.weeknr);" ng-model="jaarplanning.weeknr">
+                     <input id="week" type="number" placeholder="WEEKNUMMER" ng-model="jaarplanning.weeknr">
                              <small class="errorMessage" data-ng-show="jaarplanning_form.weeknr.$error.weeknr"> Vul een week tussen 1 en 53 in.</small>
             </form-element>
 
-        <form-element label="WEEKENJAARNUMMER" mod="jaarplanning">
-                     <input id="weekenjaar" type="number" value="{{weeknrJaar}}"  ng-model="jaarplanning.weeknrJaar">
-                             
-            </form-element>
-
-
         <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
+
+            <form-element label="TUIN OOGST" mod="jaarplanning">     
+                <input type="text" class="form-control" name="TuinOogst" placeholder="TUINOOGST" ng-model="jaarplanning.tuinOogst" only-numbers>
+            </form-element>
 
             <form-element label="PLANTEN OOGST" mod="jaarplanning">
 
@@ -74,6 +70,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Dieven/draaien</h4>
 
+            <form-element label="TUIN DIEVEN" mod="jaarplanning">     
+                <input type="text" class="form-control" name="TuinDieven" placeholder="TUINDIEVEN" ng-model="jaarplanning.tuinDieven" only-numbers>
+            </form-element>
 
             <form-element label="PLANTEN DIEVEN" mod="jaarplanning">
 
@@ -126,6 +125,9 @@
 
         <h4 style="text-align: center;"; class="modal-title">Bladknippen</h4>
 
+            <form-element label="TUIN BLAD" mod="jaarplanning">     
+                <input type="text" class="form-control" name="TuinOogst" placeholder="TUINBLAD" ng-model="jaarplanning.tuinBlad" only-numbers>
+            </form-element>
 
             <form-element label="PLANTEN BLADKNIPPEN" mod="jaarplanning">
 
@@ -178,6 +180,10 @@
 
         <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
 
+            <form-element label="TUIN SNOEIEN" mod="jaarplanning">     
+                <input type="text" class="form-control" name="TuinSnoeien" placeholder="TUINSNOEIEN" ng-model="jaarplanning.tuinSnoei" only-numbers>
+            </form-element>
+
             <form-element label="PLANTEN SNOEIEN" mod="jaarplanning">
 
                 <input type="text" class="form-control" name="PlantenSnoeien" placeholder="PLANTEN SNOEIEN" ng-model="jaarplanning.plantenSnoeien" only-numbers>
@@ -228,6 +234,10 @@
             </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
+
+            <form-element label="TUIN ZAKKEN" mod="jaarplanning">     
+                <input type="text" class="form-control" name="TuinZakken" placeholder="TUINZAKKEN" ng-model="jaarplanning.tuinZakken" only-numbers>
+            </form-element>
 
             <form-element label="PLANTEN DIEVEN" mod="jaarplanning">
 

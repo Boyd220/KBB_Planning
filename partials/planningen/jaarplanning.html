@@ -29,7 +29,17 @@
 </div>  
 
 <hr/>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Keuzemenu
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <input type="radio" id="TuinOogst" value="TuinOogst" ng-model="content1" name="content1" aria-label="TuinOogst">Tuin oogst</li>
+    <input type="radio" id="TuinDieven" value="TuinDieven" ng-model="content1" name="content1" aria-label="TuinDieven">Tuin dieven</li>
+  </ul>
+</div>
   <input class="form-control" id="Year" placeholder="YEAR" type="year" ng-model="jaarplanning.jaar"/>
+  <input ng-show="content1 == 'TuinOogst'" class="form-control" placeholder="TUINOOGST" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinOogst"/>
+  <input ng-show="content1 == 'TuinDieven'" class="form-control" placeholder="TUINDIEVEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinDieven"/>
 
   <button style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanning(jaarplanning)">Vraag jaarplanning op</button>
   <hr/>

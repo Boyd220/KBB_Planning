@@ -27,12 +27,31 @@
     </li>
     </ul>
 </div> 
+<div class="btn-group">
 
+ <label for="Datum" class="btn btn-default active">
+    <input type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
+  </label>
+
+ <label for="Weeknummer" class="btn btn-default">
+    <input type="radio" id="weeknummer" name="dataKeus" ng-model="dataKeus" value="Weeknummer" aria-label="Weeknummer"> Weeknummer
+  </label>
+
+   <label for="Tuinummer" class="btn btn-default">
+    <input type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
+  </label>
+
+</div>
   <p style="font-weight:bold;" ng-repeat="c in weekje">Huidig weeknummer: {{c.text}}</p>
-<input ng-change="selectedWeek(weekplanning.weeknr);" type="date" name="Date" ng-model="weekplanning.weeknr">
-  <button style="margin-left:0.3em;" class="btn btn-default" ng-click="getWeekplanning(weekplanning)">Vraag weekplanning op</button>
-  <p style="font-weight:bold; margin-top:0.5em;">Gekozen weeknummer: {{selected}}</p>
-
+  <p ng-show="dataKeus == 'Datum'" style="font-weight:bold; color: blue; margin-top:0.5em;">Gekozen weeknummer: {{selected}}</p>
+<input ng-show="dataKeus == 'Datum'" ng-change="selectedWeek(weekplanning.weeknr);" type="date" name="Date" ng-model="weekplanning.weeknr">
+<input ng-show="dataKeus == 'Weeknummer'" placeholder="Weeknummer" min="1" max="53" type="text" numbers-only name="Weeknummer" ng-model="weekplanning.weeknr">
+<input ng-show="dataKeus == 'Tuinnummer'" type="text" numbers-only min="1" max="3" name="Tuinnummer" placeholder="Tuinnummer" ng-model="weekplanning.tuin">
+  <button ng-show="dataKeus == 'Datum'" class="btn btn-default" ng-click="getByDatumWeekplanning(weekplanning)">Vraag weekplanning op</button>
+  <button ng-show="dataKeus == 'Weeknummer'" class="btn btn-default" ng-click="getByWeekWeekplanning(weekplanning)">Vraag weekplanning op</button>
+  <button ng-show="dataKeus == 'Tuinnummer'" class="btn btn-default" ng-click="getByTuinWeekplanning(weekplanning)">Vraag weekplanning op</button>
+<br>
+<br>
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(weekplanning);">&nbsp;Voeg weekplanning toe</button>
 <div class="btn-group">
 
@@ -71,7 +90,7 @@
 
 <div class="table-responsive">
 <div class="panel panel-primary">
-  <div class="panel-heading">weekplanningen
+  <div class="panel-heading">Weekplanningen
     </div>
   <div class="panel-body">
     <table class="table table-striped">

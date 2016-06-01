@@ -57,9 +57,17 @@ $app->delete('/dagplanningen/:id', function($id) {
 
 $app->group('/weekplanningen', function () use ($app) {
 
-$app->get('/:weeknr', function($weeknr) {
+$app->get('/week/:weeknr', function($weeknr) {
    global $db;
    $condition = array('weeknr'=>$weeknr);
+    $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
+
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuin/:tuin', function($tuin) {
+   global $db;
+   $condition = array('tuin'=>$tuin);
     $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
 
     echoResponse2(200, $rows);
@@ -68,7 +76,7 @@ $app->get('/:weeknr', function($weeknr) {
 
 $app->post('/', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('weeknr');
+    $mandatory = array('weeknr','tuin', 'plantenOogst', 'plantenDieven', 'plantenBladknippen', 'plantenZakken', 'plantenSnoeien', 'plantenVerpakking', 'normVerwachtOogst', 'normVerwachtDieven', 'normVerwachtBlad', 'normVerwachtSnoei', 'normVerwachtZakken', 'normVerwachtVerpakking');
     global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
@@ -101,7 +109,7 @@ $app->group('/jaarplanningen', function () use ($app) {
 $app->get('/:jaar', function($jaar) {
    global $db;
        $condition = array('jaar'=>$jaar);
-    $rows = $db->select("jaarplanningen", "id,jaar,weeknrJaar plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
     echoResponse2(200, $rows);
 });
 

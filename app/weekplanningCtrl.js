@@ -1,13 +1,32 @@
 app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.weekplanning = {};
 
-    $scope.getWeekplanning = function(weekplanning){
+    $scope.getByDatumWeekplanning = function(weekplanning){
         bla = new Date(weekplanning.weeknr);
         var jaar = bla.getFullYear();
-        var week = $scope.getWeeknumber(bla)+""+jaar;
+        var week = $scope.getWeeknumber(bla)+"-"+jaar;
         console.log(week);
-        Data.get('weekplanningen/' + week).then(function(result){
+        Data.get('weekplanningen/week/' + week).then(function(result){
+                      Data.toast(result);
             $scope.weekplanningen = result.data;
+
+        });
+    };
+
+    $scope.getByWeekWeekplanning = function(weekplanning){
+      console.log(weekplanning.weeknr);
+        Data.get('weekplanningen/week/' + weekplanning.weeknr).then(function(result){
+                      Data.toast(result);
+            $scope.weekplanningen = result.data;
+
+        });
+    };
+
+      $scope.getByTuinWeekplanning = function(weekplanning){
+        Data.get('weekplanningen/tuin/' +weekplanning.tuin).then(function(result){
+                      Data.toast(result);
+            $scope.weekplanningen = result.data;
+
         });
     };
 
@@ -177,12 +196,15 @@ app.controller('weekplanningenEditCtrl', function ($scope, $modalInstance, item,
         }
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
         }
-
+        $scope.selectedWeek = function(d){
+    w = new Date(d);
+    $scope.selected= $scope.getWeeknumber(w);
+}
 $scope.getW = function(d){
     w = new Date(d);
     var jaar = w.getFullYear();
 console.log($scope.getWeeknumber(w));
-    $scope.weeknr= $scope.getWeeknumber(w)+""+jaar;
+    $scope.weeknr= $scope.getWeeknumber(w)+"-"+jaar;
     $scope.date = w;
 }
     
@@ -205,9 +227,11 @@ console.log($scope.getWeeknumber(w));
                     if(result.status != 'error'){
                         var x = angular.copy(weekplanning);
                         x.save = 'update';
+                        Data.toast(result);
                         $modalInstance.close(x);
                     }else{
                         console.log(result);
+                        Data.toast(result);
                     }
                 });
             }else{
@@ -216,9 +240,11 @@ console.log($scope.getWeeknumber(w));
                         var x = angular.copy(weekplanning);
                         x.save = 'insert';
                         x.id = result.data;
+                        Data.toast(result);
                         $modalInstance.close(x);
                     }else{
                         console.log(result);
+                        Data.toast(result);
                     }
                 });
             }
