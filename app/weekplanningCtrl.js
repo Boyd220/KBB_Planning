@@ -1,11 +1,83 @@
 app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.weekplanning = {};
 
-    $scope.getByDatumWeekplanning = function(weekplanning){
+$scope.dataKeus = "Datum";
+$scope.content="oogst";
+$scope.weekplanning.weeknr ="";
+$scope.weekplanning.tuin ="";
+var outOfBounds;
+
+        $('#datumWeek').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {
+          var d = new Date($("#datumWeek").val());
+          var jaar = d.getFullYear();
+          var week = $scope.getWeeknumber(d)+"-"+jaar;
+          
+          Data.get('weekplanningen/week/' + week).then(function(result)
+          {
+              Data.toast(result);
+              $scope.weekplanningen = result.data;
+          });
+        }
+      });
+
+    $('#datumWeekNr').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {
+          var weeknr = $("#datumWeekNr").val();
+            Data.get('weekplanningen/week/' + weeknr).then(function(result)
+            {
+            Data.toast(result);
+            $scope.weekplanningen = result.data;
+            });
+        }
+      });
+
+    $('#tuinWeek').keypress(function (e, weekplanning) 
+      {
+        if (e.keyCode == 13 && !outOfBounds) 
+        {var t = $("#tuinWeek").val();
+            Data.get('weekplanningen/tuin/' +t).then(function(result)
+            {
+            Data.toast(result);
+            $scope.weekplanningen = result.data;
+            });
+        }
+      });
+
+        $scope.$watch("weekplanning.weeknr",function(newVal,oldVal)
+        {
+            if($scope.weekplanning.weeknr.length>1 && $scope.weekplanning.weeknr.length<3)
+            { 
+                $scope.weekplanning.weeknr = $scope.weekplanning.weeknr+"-";
+            }
+        });
+
+    $scope.$watch("weekplanning.tuin",function(newVal,oldVal)
+        {
+          console.log($scope.weekplanning.tuin);
+            if($scope.weekplanning.tuin>3 || $scope.weekplanning.tuin =="")
+            { 
+              $('#btnDatumTuin').attr('disabled', 'disabled');
+              outOfBounds =true;
+            }
+
+
+           if($scope.weekplanning.tuin<=3 && $scope.weekplanning.tuin>0)
+            { 
+              $('#btnDatumTuin').removeAttr('disabled');
+              outOfBounds = false;
+            }
+        });
+
+        $scope.getByDatumWeekplanning = function(weekplanning){
         bla = new Date(weekplanning.weeknr);
         var jaar = bla.getFullYear();
         var week = $scope.getWeeknumber(bla)+"-"+jaar;
-        console.log(week);
+        
         Data.get('weekplanningen/week/' + week).then(function(result){
                       Data.toast(result);
             $scope.weekplanningen = result.data;
@@ -14,7 +86,6 @@ app.controller('weekplanningCtrl', function ($scope, $modal, $filter, Data) {
     };
 
     $scope.getByWeekWeekplanning = function(weekplanning){
-      console.log(weekplanning.weeknr);
         Data.get('weekplanningen/week/' + weekplanning.weeknr).then(function(result){
                       Data.toast(result);
             $scope.weekplanningen = result.data;
@@ -99,24 +170,6 @@ $scope.weekje = [
             }
         });
     };
-    
-$scope.columnsAlgemeen = [
-                    {text:"Planten oogst",predicate:"Planten oogst",sortable:true,dataType:"number"},
-                    {text:"Norm oogst",predicate:"Norm oogst",sortable:true,dataType:"number"},
-                    {text:"Planten Dieven/Draaien",predicate:"Planten Dieven/draaien",sortable:true,dataType:"number"},                  
-                    {text:"Norm dieven/draaien",predicate:"Norm dieven/draaien",sortable:true,dataType:"number"},
-                    {text:"Planten bladknippen",predicate:"Planten bladknippen",sortable:true,dataType:"number"},
-                    {text:"Norm bladknippen",predicate:"Norm bladknippen",sortable:true,dataType:"number"},
-                    {text:"Planten snoeien",predicate:"Planten snoeien",sortable:true,dataType:"number"},
-                    {text:"Norm snoeien",predicate:"Norm snoeien",sortable:true,dataType:"number"},
-                    {text:"Planten zakken",predicate:"Planten zakken",sortable:true,dataType:"number"},
-                    {text:"Norm zakken",predicate:"Norm zakken",sortable:true,dataType:"number"},
-                    {text:"Aantal pallets",predicate:"Aantal pallets",sortable:true,dataType:"number"},
-                    {text:"Norm verpakking",predicate:"Norm verpakking",sortable:true,dataType:"number"},
-                    {text:"Totaal uren",predicate:"Totaal uren",sortable:true,dataType:"number"},
-                    {text:"Totaal mensen",predicate:"Totaal mensen",sortable:true,dataType:"number"},                   
-                    {text:"Totaal resulaat uren",predicate:"Totaal resulaat uren",sortable:true,dataType:"number"},
-                ];
 
  $scope.columnsOogst = [
                     {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},

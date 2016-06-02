@@ -1,16 +1,39 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.dagplanning = {};
+$scope.content="oogst";
+$scope.dataKeus = "Datum";
+        $('#datumDag').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {
+          var d = $("#datumDag").val();
+          
+          Data.get('dagplanningen/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.weekplanningen = result.data;
+          });
+        }
+      });
 
-    $scope.getDagplanning = function(dagplanning){
-        Data.get('dagplanningen/' + dagplanning.datum).then(function(result){
+    $scope.getDatumDagplanning = function(dagplanning){
+        Data.get('dagplanningen/datum/' + dagplanning.datum).then(function(result){
+            Data.toast(result);
             $scope.dagplanningen = result.data;
-            console.log(dagplanning.datum);
+        });
+    };
+
+        $scope.getTuinDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuin/' + dagplanning.tuin).then(function(result){
+            Data.toast(result);
+            $scope.dagplanningen = result.data;
         });
     };
 
     $scope.deleteDagplanning= function(dagplanning){
         if(confirm("Weet u zeker dat u deze dagplanning wilt verwijderen?")){
             Data.delete("dagplanningen/"+dagplanning.id).then(function(result){
+                Data.toast(result);
                 $scope.dagplanningen = _.without($scope.dagplanningen, _.findWhere($scope.dagplanningen, {id:dagplanning.id}));
             });
         }
@@ -37,23 +60,6 @@ app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
             }
         });
     };
-$scope.columnsAlgemeen = [
-                    {text:"Planten oogst",predicate:"Planten oogst",sortable:true,dataType:"number"},
-                    {text:"Norm oogst",predicate:"Norm oogst",sortable:true,dataType:"number"},
-                    {text:"Planten Dieven/Draaien",predicate:"Planten Dieven/draaien",sortable:true,dataType:"number"},                  
-                    {text:"Norm dieven/draaien",predicate:"Norm dieven/draaien",sortable:true,dataType:"number"},
-                    {text:"Planten bladknippen",predicate:"Planten bladknippen",sortable:true,dataType:"number"},
-                    {text:"Norm bladknippen",predicate:"Norm bladknippen",sortable:true,dataType:"number"},
-                    {text:"Planten snoeien",predicate:"Planten snoeien",sortable:true,dataType:"number"},
-                    {text:"Norm snoeien",predicate:"Norm snoeien",sortable:true,dataType:"number"},
-                    {text:"Planten zakken",predicate:"Planten zakken",sortable:true,dataType:"number"},
-                    {text:"Norm zakken",predicate:"Norm zakken",sortable:true,dataType:"number"},
-                    {text:"Aantal pallets",predicate:"Aantal pallets",sortable:true,dataType:"number"},
-                    {text:"Norm verpakking",predicate:"Norm verpakking",sortable:true,dataType:"number"},
-                    {text:"Totaal uren",predicate:"Totaal uren",sortable:true,dataType:"number"},
-                    {text:"Totaal mensen",predicate:"Totaal mensen",sortable:true,dataType:"number"},                   
-                    {text:"Totaal resulaat uren",predicate:"Totaal resulaat uren",sortable:true,dataType:"number"},
-                ];
 
  $scope.columnsOogst = [
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
@@ -153,7 +159,6 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
                         Data.toast(result);
                         $modalInstance.close(x);
                     }else{
-                        console.log(result);
                         Data.toast(result);
                     }
                 });
@@ -167,7 +172,6 @@ app.controller('dagplanningenEditCtrl', function ($scope, $modalInstance, item, 
                         Data.toast(result);
                         $modalInstance.close(x);
                     }else{
-                        console.log(result);
                         Data.toast(result);
 
                     }

@@ -27,22 +27,45 @@
     </li>
     </ul>
 </div>  
+<div class="btn-group">
 
+ <label for="Datum" class="btn btn-default active">
+    <input type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
+  </label>
+
+   <label for="Tuinummer" class="btn btn-default">
+    <input type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
+  </label>
+
+</div>
     
 <hr/>
-<input class="form-control" id="Date" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" min="2016-01-01" max="2030-12-31" />
+<input ng-show="dataKeus == 'Datum'" id="datumDag" class="form-control" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" />
+<input ng-show="dataKeus == 'Tuin' && content1 =='TuinOogst'" id="TuinOogst" class="form-control" placeholder="TuinOogst" type="text" ng-model="dagplanning.tuinOogst" />
+<input ng-show="dataKeus == 'Tuin' && content1=='TuinDieven'" id="TuinDieven" class="form-control" placeholder="TuinDieven" type="text" ng-model="dagplanning.tuinDieven"/>
+<input ng-show="dataKeus == 'Tuin' && content1=='TuinBlad'" id="TuinBlad" class="form-control" placeholder="TuinBlad" type="text" ng-model="dagplanning.tuinBlad" />
+<input ng-show="dataKeus == 'Tuin' && content1=='TuinSnoei'" id="TuinSnoei" class="form-control" placeholder="TuinSnoei" type="text" ng-model="dagplanning.tuinSnoei" />
+<input ng-show="dataKeus == 'Tuin' && content1=='TuinZakken'" id="TuinZakken" class="form-control" placeholder="TuinZakken" type="text" ng-model="dagplanning.tuinZakken" />
+<div ng-show="dataKeus =='Tuinnummer'" class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Keuzemenu
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <input type="radio" id="TuinOogst" value="TuinOogst" ng-model="content1" name="content1" aria-label="TuinOogst">Tuin oogst</li>
+    <input type="radio" id="TuinDieven" value="TuinDieven" ng-model="content1" name="content1" aria-label="TuinDieven">Tuin dieven</li>
+    <input type="radio" id="TuinBlad" value="TuinBlad" ng-model="content1" name="content1" aria-label="TuinBlad">Tuin dieven</li>
+    <input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="content1" name="content1" aria-label="TuinSnoei">Tuin dieven</li>
+    <input type="radio" id="TuinZakken" value="TuinZakken" ng-model="content1" name="content1" aria-label="TuinZakken">Tuin dieven</li>
+  </ul>
+</div>
 
-  <button style="margin-top: 1em;" class="btn btn-default" ng-click="getDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="dataKeus == 'Datum'" style="margin-top: 1em;" class="btn btn-default" ng-click="getDatumDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="dataKeus == 'Tuinnummer'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinDagplanning(dagplanning)">Vraag dagplanning op</button>
   <hr/>
 
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(dagplanning);">&nbsp;Voeg dagplanning toe</button>
 <form>
 <div class="btn-group">
-
- <label for="algemeen" class="btn btn-default active">
-    <input type="radio" checked=""  id="algemeen" name="content" ng-model="content" value="algemeen" aria-label="Algemeen">Algemeen
-  </label>
 
  <label for="oogst" class="btn btn-default">
     <input type="radio" id="oogst" name="content" ng-model="content" value="oogst" aria-label="Oogst">Oogst
@@ -82,7 +105,6 @@
     <tr ng-show="dagplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
     <tr ng-hide="dagplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
 
-    <tr ng-repeat="c in columnsAlgemeen"><th ng-show="content == 'algemeen'">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst" >{{c.text}}</th></tr>
     <tr><th ng-show="content == 'dieven'" ng-repeat="c in columnsDieven">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'bladknippen'" ng-repeat="c in columnsBladknippen">{{c.text}}</th></tr>

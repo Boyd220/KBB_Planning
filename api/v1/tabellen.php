@@ -1,41 +1,30 @@
 <?php
 $db = new dbTabellen();
 
-//Dagplanningen
-$app->get('/dagplanningen/:datum', function($datum) {
+$app->group('/dagplanningen', function () use ($app) {
+$app->get('/datum/:datum', function($datum) {
    global $db;
    $condition = array('datum'=>$datum);
     $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken ", $condition, array());
     echoResponse2(200, $rows);
 });
 
-$app->post('/dagplanningen', function() use ($app) { 
-        global $db;
-    $data = json_decode($app->request->getBody());
-        $mandatory = array('datum');
-        $paramValue = $app->request->post('datum');
-    $condition = array('datum'=> !$paramValue);
-        $bla= $db->select("dagplanningen", "datum", $condition, array());
-
-            
-            if($bla["status"]=="warning")
-            {
-
-            $rows = $db->insert("dagplanningen", $data, $mandatory);
-            $rows["message"] = serialize($paramValue);
-          
-            echoResponse2(200, $rows);
-            }
-
-            if($bla["status"]=="success")
-            {
-                $rows["message"] = "Datum bestaat al.";
-   
-                echoResponse2(200,$rows);
-            }
+$app->get('/tuin/:tuin', function($tuin) {
+   global $db;
+   $condition = array('tuin'=>$tuin);
+    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken ", $condition, array());
+    echoResponse2(200, $rows);
 });
 
-$app->put('/dagplanningen/:id', function($id) use ($app) { 
+$app->post('/', function() use ($app) { 
+    global $db;
+    $data = json_decode($app->request->getBody());
+    $mandatory = array('datum');
+    $rows = $db->insert("dagplanningen", $data, $mandatory);
+    $rows["message"] = serialize($paramValue);
+});
+
+$app->put('/:id', function($id) use ($app) { 
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
@@ -46,12 +35,13 @@ $app->put('/dagplanningen/:id', function($id) use ($app) {
     echoResponse(200, $rows);
 });
 
-$app->delete('/dagplanningen/:id', function($id) { 
+$app->delete('/:id', function($id) { 
     global $db;
     $rows = $db->delete("dagplanningen", array('id'=>$id));
     if($rows["status"]=="success")
         $rows["message"] = "Dagplanning successvol verwijderd";
     echoResponse(200, $rows);
+});
 });
 
 
@@ -68,8 +58,13 @@ $app->get('/week/:weeknr', function($weeknr) {
 $app->get('/tuin/:tuin', function($tuin) {
    global $db;
    $condition = array('tuin'=>$tuin);
-    $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
 
+            $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
+           if($rows["status"] =="success")
+           {
+                $rows["message"] =="Data gevonden uit databank.";
+           }
+    
     echoResponse2(200, $rows);
 });
 
@@ -144,15 +139,6 @@ $app->delete('/:id', function($id) {
     if($rows["status"]=="success")
         $rows["message"] = "Jaarplanning removed successfully.";
     echoResponse(200, $rows);
-});
-
-$app->group('/week', function() use ($app){
-$app->get('/:weeknrJaar', function($weeknrJaar) {
-   global $db;
-       $condition = array('weeknrJaar'=>$weeknrJaar);
-    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, plantenDieven, mensDievenNodig, plantenBladknippen, mensBladNodig, plantenSnoeien, mensSnoeiNodig, plantenZakken, mensZakkenNodig, plantenVerpakking, mensVerpakkingNodig, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtBlad, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
-    echoResponse2(200, $rows);
-});
 });
 });
 
