@@ -41,16 +41,21 @@
     <input type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
   </label>
 
+  <label for="WeekenTuin" class="btn btn-default">
+    <input type="radio" id="weekEnTuin" name="dataKeus" ng-model="dataKeus" value="WeekEnTuin" aria-label="WeekEnTuin"> Week en tuin
+  </label>
+
 </div>
   <p style="font-weight:bold;" ng-repeat="c in weekje">Huidig weeknummer: {{c.text}}</p>
   <p ng-show="dataKeus == 'Datum'" style="font-weight:bold; color: blue; margin-top:0.5em;">Gekozen weeknummer: {{selected}}</p>
 <input id="datumWeek" ng-show="dataKeus == 'Datum'" ng-change="selectedWeek(weekplanning.weeknr);" type="date" name="Date" ng-model="weekplanning.weeknr">
-<input id="datumWeekNr" ng-show="dataKeus == 'Weeknummer'" maxlength="7" minlength="7" placeholder="ww-jjjj" type="text" numbers-only name="Weeknummer" ng-model="weekplanning.weeknr">
-<input id="tuinWeek" ng-show="dataKeus == 'Tuinnummer'" minlength="1" maxlength="1" type="text" name="Tuinnummer" placeholder="Tuinnummer" ng-model="weekplanning.tuin" numbers-only>
+<input id="datumWeekNr" ng-show="dataKeus == 'Weeknummer'|| dataKeus == 'WeekEnTuin'" maxlength="7" minlength="7" placeholder="ww-jjjj" type="text" numbers-only name="Weeknummer" ng-model="weekplanning.weeknr">
+<input id="tuinWeek" ng-show="dataKeus == 'Tuinnummer' || dataKeus == 'WeekEnTuin'" minlength="1" maxlength="1" type="text" name="Tuinnummer" placeholder="Tuinnummer" ng-model="weekplanning.tuin" numbers-only>
 
   <button ng-show="dataKeus == 'Datum'" class="btn btn-default" ng-click="getByDatumWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <button ng-show="dataKeus == 'Weeknummer'" class="btn btn-default" ng-click="getByWeekWeekplanning(weekplanning)">Vraag weekplanning op</button>
   <button id="btnDatumTuin" ng-show="dataKeus == 'Tuinnummer'" class="btn btn-default" ng-click="getByTuinWeekplanning(weekplanning)">Vraag weekplanning op</button>
+  <button id="btnDatumTuin" ng-show="dataKeus == 'WeekEnTuin'" class="btn btn-default" ng-click="getByTuinEnWeekWeekplanning(weekplanning)">Vraag weekplanning op</button>
 <br>
 <br>
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(weekplanning);">&nbsp;Voeg weekplanning toe</button>

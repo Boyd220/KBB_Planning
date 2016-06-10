@@ -33,16 +33,30 @@
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Keuzemenu
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <input type="radio" id="TuinOogst" value="TuinOogst" ng-model="content1" name="content1" aria-label="TuinOogst">Tuin oogst</li>
-    <input type="radio" id="TuinDieven" value="TuinDieven" ng-model="content1" name="content1" aria-label="TuinDieven">Tuin dieven</li>
+    <li><input type="radio" id="Jaar" value="Jaar" ng-model="keuzeMenu" name="keuzeMenu" aria-label="Jaar">Jaar</li>
+    <li><input type="radio" id="TuinOogst" value="TuinOogst" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinOogst">Tuin oogst</li>
+    <li><input type="radio" id="TuinDieven" value="TuinDieven" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinDieven">Tuin dieven</li>
+    <li><input type="radio" id="TuinBlad" value="TuinBlad" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinBlad">Tuin bladknippen</li>
+    <li><input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinSnoei">Tuin snoeien</li>
+    <li><input type="radio" id="TuinZakken" value="TuinZakken" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinZakken">Tuin zakken</li>
   </ul>
 </div>
   <input class="form-control" id="Year" placeholder="YEAR" type="year" ng-model="jaarplanning.jaar"/>
-  <input ng-show="content1 == 'TuinOogst'" class="form-control" placeholder="TUINOOGST" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinOogst"/>
-  <input ng-show="content1 == 'TuinDieven'" class="form-control" placeholder="TUINDIEVEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinDieven"/>
+  <input ng-show="keuzeMenu == 'TuinOogst'" class="form-control" placeholder="TUINOOGST" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinOogst"/>
+  <input ng-show="keuzeMenu == 'TuinDieven'" class="form-control" placeholder="TUINDIEVEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinDieven"/>
+  <input ng-show="keuzeMenu == 'TuinBlad'" class="form-control" placeholder="TUINBLAD" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinBlad"/>
+  <input ng-show="keuzeMenu == 'TuinSnoei'" class="form-control" placeholder="TUINSNOEI" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinSnoei"/>
+  <input ng-show="keuzeMenu == 'TuinZakken'" class="form-control" placeholder="TUINZAKKEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinZakken"/>
 
-  <button style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanning(jaarplanning)">Vraag jaarplanning op</button>
-  <hr/>
+  <button ng-show="keuzeMenu == 'Jaar'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanning(jaarplanning)">Vraag jaarplanning op</button>
+  <button ng-show="keuzeMenu == 'TuinOogst'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinOogst(jaarplanning)">Vraag jaarplanning op</button>
+  <button ng-show="keuzeMenu == 'TuinDieven'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinDieven(jaarplanning)">Vraag jaarplanning op</button>
+  <button ng-show="keuzeMenu == 'TuinBlad'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinBlad(jaarplanning)">Vraag jaarplanning op</button>
+  <button ng-show="keuzeMenu == 'TuinSnoei'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinSnoei(jaarplanning)">Vraag jaarplanning op</button>
+  <button ng-show="keuzeMenu == 'TuinZakken'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinZakken(jaarplanning)">Vraag jaarplanning op</button>
+
+
+    <hr/>
 
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(jaarplanning);">&nbsp;Voeg jaarplanning toe</button>
 <form>
@@ -101,12 +115,13 @@
 
     <tr ng-show="content=='oogst'" ng-repeat="c in jaarplanningen | orderBy:'+weeknr'" id="{{c.jaar}}">
     <td>{{c.weeknr}}</td>
+    <td>{{c.tuinOogst}}</td>
         <td>{{c.plantenOogst}}</td>
         <td>{{c.normVerwachtOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
         <td>{{c.mensOogstNodig}}</td>
-        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar >=0" style="color:red;">{{c.mensOogstBeschikbaar}}</td>
-        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar <0" style="color:green;">{{c.mensOogstBeschikbaar}}</td>
+        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar >0" style="color:red;">{{c.mensOogstBeschikbaar}}</td>
+        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar <=0" style="color:green;">{{c.mensOogstBeschikbaar}}</td>
           <td ng-show="c.normVerwachtOogst-c.normResultaatOogst >=1" style="color:red;">{{c.normResultaatOogst}}</td>
           <td ng-show="c.normVerwachtOogst-c.normResultaatOogst <1" style="color:green;">{{c.normResultaatOogst}}</td>
           <td ng-show="c.verwachtUrenOogst - c.resultaatUrenOogst <0" style="color:red;">{{c.resultaatUrenOogst}}</td>
@@ -120,12 +135,13 @@
 
         <tr ng-show="content=='dieven'" ng-repeat="c in jaarplanningen | orderBy:'+weeknr'" id="{{c.jaar}}">
             <td>{{c.weeknr}}</td>
+            <td>{{c.tuinDieven}}</td>
           <td>{{c.plantenDieven}}</td>
           <td>{{c.normVerwachtDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
           <td>{{c.mensDievenNodig}}</td>
-          <td ng-show="c.mensDievenNodig -c.mensDievenBeschikbaar>=0" style="color:red;">{{c.mensDievenBeschikbaar}}</td>
-          <td ng-show="c.mensDievenNodig -c.mensDievenBeschikbaar<0" style="color:green;">{{c.mensDievenBeschikbaar}}</td>
+          <td ng-show="c.mensDievenNodig -c.mensDievenBeschikbaar>0" style="color:red;">{{c.mensDievenBeschikbaar}}</td>
+          <td ng-show="c.mensDievenNodig -c.mensDievenBeschikbaar<=0" style="color:green;">{{c.mensDievenBeschikbaar}}</td>
           <td ng-show="c.normVerwachtDieven-c.normResultaatDieven >=1" style="color:red;">{{c.normResultaatDieven}}</td>
           <td ng-show="c.normVerwachtDieven-c.normResultaatDieven <1" style="color:green;">{{c.normResultaatDieven}}</td>
           <td ng-show="c.verwachtUrenDieven - c.resultaatUrenDieven <0" style="color:red;">{{c.resultaatUrenDieven}}</td>
@@ -139,12 +155,13 @@
 
                 <tr ng-show="content=='bladknippen'" ng-repeat="c in jaarplanningen | orderBy:'+weeknr'" id="{{c.jaar}}">
                     <td>{{c.weeknr}}</td>
+                    <td>{{c.tuinBlad}}</td>
           <td>{{c.plantenBladknippen}}</td>
           <td>{{c.normVerwachtBlad}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
           <td>{{c.mensBladNodig}}</td>
-          <td ng-show="c.mensBladNodig -c.mensBladBeschikbaar>=0" style="color:red;">{{c.mensBladBeschikbaar}}</td>
-          <td ng-show="c.mensBladNodig -c.mensBladBeschikbaar<0" style="color:green;">{{c.mensBladBeschikbaar}}</td>
+          <td ng-show="c.mensBladNodig -c.mensBladBeschikbaar>0" style="color:red;">{{c.mensBladBeschikbaar}}</td>
+          <td ng-show="c.mensBladNodig -c.mensBladBeschikbaar<=0" style="color:green;">{{c.mensBladBeschikbaar}}</td>
           <td ng-show="c.normVerwachtBlad-c.normResultaatBlad >=1" style="color:red;">{{c.normResultaatBlad}}</td>
           <td ng-show="c.normVerwachtBlad-c.normResultaatBlad <1" style="color:green;">{{c.normResultaatBlad}}</td>
           <td ng-show="c.verwachtUrenBlad - c.resultaatUrenBlad <0" style="color:red;">{{c.resultaatUrenBlad}}</td>
@@ -158,12 +175,13 @@
 
                 <tr ng-show="content=='snoeien'" ng-repeat="c in jaarplanningen | orderBy:'+weeknr'" id="{{c.jaar}}">
                     <td>{{c.weeknr}}</td>
+                    <td>{{c.tuinSnoei}}</td>
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normVerwachtSnoei}}</td>
           <td>{{c.verwachtUrenSnoeien}}</td>
           <td>{{c.mensSnoeiNodig}}</td>
-          <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar>=0" style="color:red;">{{c.mensSnoeiBeschikbaar}}</td>
-          <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar<0" style="color:green;">{{c.mensSnoeiBeschikbaar}}</td>
+          <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar>0" style="color:red;">{{c.mensSnoeiBeschikbaar}}</td>
+          <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar<=0" style="color:green;">{{c.mensSnoeiBeschikbaar}}</td>
           <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoei>=1" style="color:red;">{{c.normResultaatSnoei}}</td>
           <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoei <1" style="color:green;">{{c.normResultaatSnoei}}</td>
           <td ng-show="c.verwachtUrenSnoei - c.resultaatUrenSnoei <0" style="color:red;">{{c.resultaatUrenSnoei}}</td>
@@ -177,12 +195,13 @@
 
                 <tr ng-show="content=='zakken'" ng-repeat="c in jaarplanningen | orderBy:'+weeknr'" id="{{c.jaar}}">
                     <td>{{c.weeknr}}</td>
+                    <td>{{c.tuinZakken}}</td>
           <td>{{c.plantenZakken}}</td>
           <td>{{c.normVerwachtZakken}}</td>
           <td>{{c.verwachtUrenZakken}}</td>
           <td>{{c.mensZakkenNodig}}</td>
-          <td ng-show="c.mensZakkenNodig -c.mensZakkenBeschikbaar>=0" style="color:red;">{{c.mensZakkenBeschikbaar}}</td>
-          <td ng-show="c.mensZakkenNodig -c.mensZakkenBeschikbaar<0" style="color:green;">{{c.mensZakkenBeschikbaar}}</td>
+          <td ng-show="c.mensZakkenNodig -c.mensZakkenBeschikbaar>0" style="color:red;">{{c.mensZakkenBeschikbaar}}</td>
+          <td ng-show="c.mensZakkenNodig -c.mensZakkenBeschikbaar<=0" style="color:green;">{{c.mensZakkenBeschikbaar}}</td>
           <td ng-show="c.normVerwachtZakken-c.normResultaatZakken >=1" style="color:red;">{{c.normResultaatZakken}}</td>
           <td ng-show="c.normVerwachtZakken-c.normResultaatZakken <1" style="color:green;">{{c.normResultaatZakken}}</td>
           <td ng-show="c.verwachtUrenZakken - c.resultaatUrenZakken <0" style="color:red;">{{c.resultaatUrenZakken}}</td>
@@ -200,8 +219,8 @@
           <td>{{c.normVerwachtVerpakking}}</td>
           <td>{{c.verwachtUrenVerpakking}}</td>
           <td>{{c.mensVerpakkingNodig}}</td>
-          <td ng-show="c.mensVerpakkingNodig -c.mensVerpakkingBeschikbaar>=0" style="color:red;">{{c.mensVerpakkingBeschikbaar}}</td>
-          <td ng-show="c.mensVerpakkingNodig -c.mensVerpakkingBeschikbaar<0" style="color:green;">{{c.mensVerpakkingBeschikbaar}}</td>
+          <td ng-show="c.mensVerpakkingNodig -c.mensVerpakkingBeschikbaar>0" style="color:red;">{{c.mensVerpakkingBeschikbaar}}</td>
+          <td ng-show="c.mensVerpakkingNodig -c.mensVerpakkingBeschikbaar<=0" style="color:green;">{{c.mensVerpakkingBeschikbaar}}</td>
           <td ng-show="c.normVerwachtVerpakking-c.normResultaatVerpakking >=1" style="color:red;">{{c.normResultaatVerpakking}}</td>
           <td ng-show="c.normVerwachtVerpakking-c.normResultaatVerpakking <1" style="color:green;">{{c.normResultaatVerpakking}}</td>
           <td ng-show="c.verwachtUrenVerpakking - c.resultaatUrenVerpakking <0" style="color:red;">{{c.resultaatUrenVerpakking}}</td>

@@ -101,6 +101,15 @@ var outOfBounds;
         });
     };
 
+    $scope.getByTuinEnWeekWeekplanning = function(weekplanning){
+      Data.get('weekplanningen/weekentuin/' + weekplanning.tuin + "/" + weekplanning.weeknr).then(function(result){
+        console.log(weekplanning.tuin);
+        Data.toast(result);
+        $scope.weekplanningen = result.data;
+
+      });
+    };
+
   /*$("#weeklyDatePicker").datetimepicker({
       format: 'MM-DD-YYYY'
   });

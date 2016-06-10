@@ -68,6 +68,19 @@ $app->get('/tuin/:tuin', function($tuin) {
     echoResponse2(200, $rows);
 });
 
+$app->get('/weekentuin/:tuin/:weeknr', function($tuin, $weeknr) {
+   global $db;
+   $condition = array('tuin'=>$tuin, 'weeknr' => $weeknr);
+
+            $rows = $db->select("weekplanningen", "id,weeknr,date, normVerwachtOogst, plantenOogst, mensOogstBeschikbaar, mensOogstNodig, normVerwachtDieven, plantenDieven, mensDievenBeschikbaar, mensDievenNodig, normVerwachtBlad, plantenBladknippen, mensBladBeschikbaar, mensBladNodig, normVerwachtSnoei, plantenSnoeien, mensSnoeiBeschikbaar, mensSnoeiNodig, normVerwachtZakken, plantenZakken, mensZakkenBeschikbaar, mensZakkenNodig, normVerwachtVerpakking, plantenVerpakking, mensVerpakkingBeschikbaar, mensVerpakkingNodig, tuin", $condition, array());
+           if($rows["status"] =="success")
+           {
+                $rows["message"] =="Data gevonden uit databank.";
+           }
+    
+    echoResponse2(200, $rows);
+});
+
 
 $app->post('/', function() use ($app) { 
     $data = json_decode($app->request->getBody());
@@ -101,13 +114,58 @@ $app->delete('/:id', function($id) {
 
 $app->group('/jaarplanningen', function () use ($app) {
 
-$app->get('/:jaar', function($jaar) {
+$app->get('/jaar/:jaar', function($jaar) {
    global $db;
        $condition = array('jaar'=>$jaar);
-    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking", $condition, array());
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking, tuinOogst, tuinZakken, tuinSnoei, tuinBlad, tuinDieven", $condition, array());
     echoResponse2(200, $rows);
 });
 
+$app->get('/tuinOogst/:tuinOogst/:jaar', function($tuinOogst, $jaar){
+    global $db;
+
+    $condition = array('tuinOogst'=>$tuinOogst, 'jaar'=>$jaar);
+
+        $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, weeknr, mensOogstBeschikbaar, normVerwachtOogst, tuinOogst", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+
+$app->get('/tuin/:tuinDieven/:jaar', function($tuinDieven, $jaar){
+    global $db;
+
+    $condition = array('tuinDieven'=>$tuinDieven, 'jaar'=>$jaar);
+
+        $rows = $db->select("jaarplanningen", "id,jaar, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, weeknr, mensDievenBeschikbaar, normVerwachtDieven, tuinDieven", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuin/:tuinBlad/:jaar', function($tuinBlad, $jaar){
+    global $db;
+
+    $condition = array('tuinBlad'=>$tuinBlad, 'jaar'=>$jaar);
+
+        $rows = $db->select("jaarplanningen", "id,jaar, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, weeknr, mensBladBeschikbaar, normVerwachtBlad, tuinBlad", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuin/:tuinSnoei/:jaar', function($tuinSnoei, $jaar){
+    global $db;
+
+    $condition = array('tuinSnoei'=>$tuinSnoei, 'jaar'=>$jaar);
+
+        $rows = $db->select("jaarplanningen", "id,jaar, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, weeknr, mensSnoeiBeschikbaar, normVerwachtSnoei, tuinSnoei", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuin/:tuinZakken/:jaar', function($tuinZakken, $jaar){
+    global $db;
+
+    $condition = array('tuinZakken'=>$tuinZakken, 'jaar'=>$jaar);
+
+        $rows = $db->select("jaarplanningen", "id,jaar, plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, weeknr, mensZakkenBeschikbaar, normVerwachtZakken, tuinZakken", $condition, array());
+    echoResponse2(200, $rows);
+});
 $app->post('/', function() use ($app) {
 
     $data = json_decode($app->request->getBody());

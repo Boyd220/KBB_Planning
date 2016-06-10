@@ -1,27 +1,66 @@
 app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.jaarplanning = {};
-
+$scope.keuzeMenu = "Jaar";
+$scope.content = "oogst";
     
           $('#Year').keypress(function (e) {
         if (e.keyCode == 13) {
             var jaar = $('#Year').val();
 
-        Data.get('jaarplanningen/' + jaar).then(function(result){
+        Data.get('jaarplanningen/jaar/' + jaar).then(function(result){
+            Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     
-}
-});
+            }
+        });
 
     $scope.getJaarplanning = function(jaarplanning){
-        Data.get('jaarplanningen/' + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/jaar/' + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
             $scope.jaarplanningen = result.data;
-            console.log(jaarplanning.jaar);
         });
     };
+
+        $scope.getJaarplanningTuinOogst = function(jaarplanning){
+        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinOogst + "/" + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+    };
+
+            $scope.getJaarplanningTuinDieven = function(jaarplanning){
+        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinDieven + "/" + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+    };
+
+            $scope.getJaarplanningTuinSnoei = function(jaarplanning){
+        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinSnoei + "/" + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+    };
+
+            $scope.getJaarplanningTuinZakken = function(jaarplanning){
+        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinZakken + "/" + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+    };
+
+            $scope.getJaarplanningTuinBlad = function(jaarplanning){
+        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinBlad + "/" + jaarplanning.jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+    };
+
     $scope.deleteJaarplanning= function(jaarplanning){
         if(confirm("Weet u zeker dat u deze jaarplanning wilt verwijderen?")){
             Data.delete("jaarplanningen/"+jaarplanning.id).then(function(result){
+                Data.toast(result);
                 $scope.jaarplanningen = _.without($scope.jaarplanningen, _.findWhere($scope.jaarplanningen, {id:jaarplanning.id}));
             });
         }
@@ -50,6 +89,7 @@ app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     
 $scope.columnsAlgemeen = [
                     {text:"Planten oogst",predicate:"Planten oogst",sortable:true,dataType:"number"},
+                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Planten Dieven/Draaien",predicate:"Planten Dieven/draaien",sortable:true,dataType:"number"},                  
                     {text:"Planten bladknippen",predicate:"Planten bladknippen",sortable:true,dataType:"number"},
                     {text:"Planten snoeien",predicate:"Planten snoeien",sortable:true,dataType:"number"},
@@ -63,6 +103,7 @@ $scope.columnsAlgemeen = [
 
  $scope.columnsOogst = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -75,6 +116,7 @@ $scope.columnsAlgemeen = [
 
  $scope.columnsDieven = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -88,6 +130,7 @@ $scope.columnsAlgemeen = [
 
  $scope.columnsBladknippen = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -100,6 +143,7 @@ $scope.columnsAlgemeen = [
 
  $scope.columnsSnoeien = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -112,6 +156,7 @@ $scope.columnsAlgemeen = [
 
  $scope.columnsZakken = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
+                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Verwachte norm",predicate:"Verwachte norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
@@ -164,7 +209,6 @@ $scope.convertWeeknumber = function(dt) {
 
 $scope.addYear = function(jaar, week){
     $scope.weeknrJaar = week+""+jaar;
-    console.log($scope.weeknrJaar);
 }
   $scope.jaarplanning = angular.copy(item);
         
@@ -189,7 +233,6 @@ $scope.addYear = function(jaar, week){
                         $modalInstance.close(x);
                     }else{
                         Data.toast(result);
-                        console.log(result);
                     }
                 });
             }else{
@@ -203,7 +246,6 @@ $scope.addYear = function(jaar, week){
                         $modalInstance.close(x);
                     }else{
                         Data.toast(result);
-                        console.log(result);
                     }
                 });
             }
