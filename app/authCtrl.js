@@ -13,17 +13,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             }
         });
     };
-    $scope.signup = {email:'',password:'',name:'', u_role:''};
-    $scope.signUp = function (werknemer) {
-        Data.post('signUp', {
-            werknemer: werknemer
-        }).then(function (results) {
-            Data.toast(results);
-            if (results.status == "success") {
-                $location.path('dashboard');
-            }
-        });
-    };
+
     $scope.logout = function () {
         Data.get('logout').then(function (results) {
             Data.toast(results);

@@ -5,23 +5,52 @@ $app->group('/dagplanningen', function () use ($app) {
 $app->get('/datum/:datum', function($datum) {
    global $db;
    $condition = array('datum'=>$datum);
-    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken ", $condition, array());
+    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensNodigOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, normDieven, plantenDieven, mensNodigDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensNodigBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensNodigSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensNodigZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensNodigVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken, mensBeschikbaarOogst, mensBeschikbaarDieven, mensBeschikbaarBlad, mensBeschikbaarSnoei, mensBeschikbaarZakken, mensBeschikbaarVerpakking ", $condition, array());
     echoResponse2(200, $rows);
 });
 
-$app->get('/tuin/:tuin', function($tuin) {
+$app->get('/tuinOogst/:tuinOogst', function($tuinOogst) {
    global $db;
-   $condition = array('tuin'=>$tuin);
-    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst normDieven, plantenDieven, mensDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, normBladknippen, plantenBladknippen, mensBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, normSnoeien, plantenSnoeien, mensSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, normZakken, plantenZakken, mensZakken, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, normVerpakking, plantenVerpakking, mensVerpakking, normResultaatVerpakking, verwachtUrenVerpakking,verwachtPalletsVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, tuinOogst, tuinDieven, tuinBlad, tuinSnoeien, tuinZakken ", $condition, array());
+   $condition = array('tuinOogst'=>$tuinOogst);
+    $rows = $db->select("dagplanningen", "id,datum, normOogst, plantenOogst, mensNodigOogst, mensBeschikbaarOogst, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, tuinOogst", $condition, array());
     echoResponse2(200, $rows);
 });
 
+$app->get('/tuinDieven/:tuinDieven', function($tuinDieven) {
+   global $db;
+   $condition = array('tuinDieven'=>$tuinDieven);
+    $rows = $db->select("dagplanningen", "id,datum,normDieven, plantenDieven, mensNodigDieven, mensBeschikbaarDieven, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, tuinDieven", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuinBlad/:tuinBlad', function($tuinBlad) {
+   global $db;
+   $condition = array('tuinBlad'=>$tuinBlad);
+    $rows = $db->select("dagplanningen", "id,datum, normBladknippen, plantenBladknippen, mensNodigBlad, mensBeschikbaarBlad, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, tuinBlad", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuinSnoeien/:tuinSnoeien', function($tuinSnoeien) {
+   global $db;
+   $condition = array('tuinSnoeien'=>$tuinSnoeien);
+    $rows = $db->select("dagplanningen", "id,datum, normSnoeien, plantenSnoeien, mensNodigSnoei, mensBeschikbaarSnoei, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien, tuinSnoeien", $condition, array());
+    echoResponse2(200, $rows);
+});
+
+$app->get('/tuinZakken/:tuinZakken', function($tuinZakken) {
+   global $db;
+   $condition = array('tuinZakken'=>$tuinZakken);
+    $rows = $db->select("dagplanningen", "id,datum, normZakken, plantenZakken, mensNodigZakken, mensBeschikbaarZakken normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, tuinZakken ", $condition, array());
+    echoResponse2(200, $rows);
+});
 $app->post('/', function() use ($app) { 
-    global $db;
     $data = json_decode($app->request->getBody());
     $mandatory = array('datum');
+    global $db;
     $rows = $db->insert("dagplanningen", $data, $mandatory);
-    $rows["message"] = serialize($paramValue);
+    if($rows["status"]=="success")
+        $rows["message"] = "Dagplanning added successfully.";
+    echoResponse2(200, $rows);
 });
 
 $app->put('/:id', function($id) use ($app) { 

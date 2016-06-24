@@ -1,6 +1,7 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.dagplanning = {};
 $scope.content="oogst";
+$scope.content1="TuinOogst"
 $scope.dataKeus = "Datum";
         $('#datumDag').keypress(function (e) 
       {
@@ -23,8 +24,36 @@ $scope.dataKeus = "Datum";
         });
     };
 
-        $scope.getTuinDagplanning = function(dagplanning){
-        Data.get('dagplanningen/tuin/' + dagplanning.tuin).then(function(result){
+        $scope.getTuinOogstDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuinOogst/' + dagplanning.tuinOogst).then(function(result){
+            Data.toast(result);
+            $scope.dagplanningen = result.data;
+        });
+    };
+
+            $scope.getTuinDievenDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuinDieven/' + dagplanning.tuinDieven).then(function(result){
+            Data.toast(result);
+            $scope.dagplanningen = result.data;
+        });
+    };
+
+            $scope.getTuinBladDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuinBlad/' + dagplanning.tuinBlad).then(function(result){
+            Data.toast(result);
+            $scope.dagplanningen = result.data;
+        });
+    };
+
+            $scope.getTuinSnoeienDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuinSnoeien/' + dagplanning.tuinSnoeien).then(function(result){
+            Data.toast(result);
+            $scope.dagplanningen = result.data;
+        });
+    };
+
+            $scope.getTuinZakkenDagplanning = function(dagplanning){
+        Data.get('dagplanningen/tuinZakken/' + dagplanning.tuinZakken).then(function(result){
             Data.toast(result);
             $scope.dagplanningen = result.data;
         });
@@ -62,22 +91,26 @@ $scope.dataKeus = "Datum";
     };
 
  $scope.columnsOogst = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsDieven = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
@@ -85,44 +118,52 @@ $scope.dataKeus = "Datum";
 
 
  $scope.columnsBladknippen = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsSnoeien = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsZakken = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
  $scope.columnsVerpakking = [
+                    {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
                     {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
                     {text:"Pallets",predicate:"Verwachte pallets",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen",predicate:"Aantal mensen",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},

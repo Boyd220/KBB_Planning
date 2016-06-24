@@ -41,25 +41,34 @@
     
 <hr/>
 <input ng-show="dataKeus == 'Datum'" id="datumDag" class="form-control" placeholder="DD/MM/YYYY" type="date" ng-model="dagplanning.datum" />
-<input ng-show="dataKeus == 'Tuin' && content1 =='TuinOogst'" id="TuinOogst" class="form-control" placeholder="TuinOogst" type="text" ng-model="dagplanning.tuinOogst" />
-<input ng-show="dataKeus == 'Tuin' && content1=='TuinDieven'" id="TuinDieven" class="form-control" placeholder="TuinDieven" type="text" ng-model="dagplanning.tuinDieven"/>
-<input ng-show="dataKeus == 'Tuin' && content1=='TuinBlad'" id="TuinBlad" class="form-control" placeholder="TuinBlad" type="text" ng-model="dagplanning.tuinBlad" />
-<input ng-show="dataKeus == 'Tuin' && content1=='TuinSnoei'" id="TuinSnoei" class="form-control" placeholder="TuinSnoei" type="text" ng-model="dagplanning.tuinSnoei" />
-<input ng-show="dataKeus == 'Tuin' && content1=='TuinZakken'" id="TuinZakken" class="form-control" placeholder="TuinZakken" type="text" ng-model="dagplanning.tuinZakken" />
+<div ng-show="dataKeus == 'Tuinnummer'">
+<input ng-show="content1 == 'TuinOogst'" id="TuinOogst" class="form-control" placeholder="TuinOogst" type="text" ng-model="dagplanning.tuinOogst" />
+<input ng-show="content1 == 'TuinDieven'" id="TuinDieven" class="form-control" placeholder="TuinDieven" type="text" ng-model="dagplanning.tuinDieven"/>
+<input ng-show="content1 == 'TuinBlad'" id="TuinBlad" class="form-control" placeholder="TuinBlad" type="text" ng-model="dagplanning.tuinBlad" />
+<input ng-show="content1 == 'TuinSnoei'" id="TuinSnoei" class="form-control" placeholder="TuinSnoei" type="text" ng-model="dagplanning.tuinSnoei" />
+<input ng-show="content1 == 'TuinZakken'" id="TuinZakken" class="form-control" placeholder="TuinZakken" type="text" ng-model="dagplanning.tuinZakken" />
+</div>
+
 <div ng-show="dataKeus =='Tuinnummer'" class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Keuzemenu
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
     <input type="radio" id="TuinOogst" value="TuinOogst" ng-model="content1" name="content1" aria-label="TuinOogst">Tuin oogst</li>
     <input type="radio" id="TuinDieven" value="TuinDieven" ng-model="content1" name="content1" aria-label="TuinDieven">Tuin dieven</li>
-    <input type="radio" id="TuinBlad" value="TuinBlad" ng-model="content1" name="content1" aria-label="TuinBlad">Tuin dieven</li>
-    <input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="content1" name="content1" aria-label="TuinSnoei">Tuin dieven</li>
-    <input type="radio" id="TuinZakken" value="TuinZakken" ng-model="content1" name="content1" aria-label="TuinZakken">Tuin dieven</li>
+    <input type="radio" id="TuinBlad" value="TuinBlad" ng-model="content1" name="content1" aria-label="TuinBlad">Tuin Blad</li>
+    <input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="content1" name="content1" aria-label="TuinSnoei">Tuin snoeien</li>
+    <input type="radio" id="TuinZakken" value="TuinZakken" ng-model="content1" name="content1" aria-label="TuinZakken">Tuin zakken</li>
   </ul>
 </div>
 
   <button ng-show="dataKeus == 'Datum'" style="margin-top: 1em;" class="btn btn-default" ng-click="getDatumDagplanning(dagplanning)">Vraag dagplanning op</button>
-  <button ng-show="dataKeus == 'Tuinnummer'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <div ng-show="dataKeus == 'Tuinnummer'">
+  <button ng-show="content1 == 'TuinOogst'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinOogstDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="content1 == 'TuinDieven'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinDievenDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="content1 == 'TuinBlad'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinBladDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="content1 == 'TuinSnoei'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinSnoeienDagplanning(dagplanning)">Vraag dagplanning op</button>
+  <button ng-show="content1 == 'TuinZakken'" style="margin-top: 1em;" class="btn btn-default" ng-click="getTuinZakkenDagplanning(dagplanning)">Vraag dagplanning op</button>
+  </div>
   <hr/>
 
 
@@ -114,11 +123,14 @@
     <tr><th ng-show="content == 'overige'" ng-repeat="c in columnsOverige">{{c.text}}</th></tr>
 
     <tr ng-show="content=='oogst'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+    <td>{{c.datum}}</td>
     <td>{{c.tuinOogst}}</td>
         <td>{{c.plantenOogst}}</td>
         <td>{{c.normOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
-        <td>{{c.mensOogst}}</td>
+        <td>{{c.mensNodigOogst}}</td>
+        <td ng-show="c.mensNodigOogst-c.mensBeschikbaarOogst >=0" style="color:red;">{{c.mensBeschikbaarOogst}}</td>
+        <td ng-show="c.mensNodigOogst -c.mensBeschikbaarOogst <0" style="color:green;">{{c.mensBeschikbaarOogst}}</td>
         <td>{{c.normResultaatOogst}}</td>
         <td>{{c.resultaatUrenOogst}}</td>
         <td style="width:100px">
@@ -129,11 +141,14 @@
     </tr>
 
         <tr ng-show="content=='dieven'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <td>{{c.datum}}</td>
         <td>{{c.tuinDieven}}</td>
           <td>{{c.plantenDieven}}</td>
           <td>{{c.normDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
-          <td>{{c.mensDieven}}</td>
+        <td>{{c.mensNodigDieven}}</td>
+        <td ng-show="c.mensNodigDieven-c.mensBeschikbaarDieven >=0" style="color:red;">{{c.mensBeschikbaarDieven}}</td>
+        <td ng-show="c.mensNodigDieven -c.mensBeschikbaarDieven <0" style="color:green;">{{c.mensBeschikbaarDieven}}</td>
           <td>{{c.normResultaatDieven}}</td>
           <td>{{c.resultaatUrenDieven}}</td>
           <td style="width:100px">
@@ -144,11 +159,14 @@
         </tr>
 
                 <tr ng-show="content=='bladknippen'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.datum}}</td>
                 <td>{{c.tuinBlad}}</td>
           <td>{{c.plantenBladknippen}}</td>
           <td>{{c.normBladknippen}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
-          <td>{{c.mensBlad}}</td>
+          <td>{{c.mensNodigBlad}}</td>
+          <td ng-show="c.mensNodigBlad-c.mensBeschikbaarBlad >=0" style="color:red;">{{c.mensBeschikbaarBlad}}</td>
+          <td ng-show="c.mensNodigBlad -c.mensBeschikbaarBlad <0" style="color:green;">{{c.mensBeschikbaarBlad}}</td>
           <td>{{c.normResultaatBlad}}</td>
           <td>{{c.resultaatUrenBlad}}</td>
           <td style="width:100px">
@@ -159,11 +177,14 @@
         </tr>
 
                 <tr ng-show="content=='snoeien'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.datum}}</td>
                 <td>{{c.tuinSnoeien}}</td>
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normSnoeien}}</td>
           <td>{{c.verwachtUrenSnoeien}}</td>
-          <td>{{c.mensSnoei}}</td>
+          <td>{{c.mensNodigSnoei}}</td>
+          <td ng-show="c.mensNodigSnoei-c.mensBeschikbaarSnoei >=0" style="color:red;">{{c.mensBeschikbaarSnoei}}</td>
+          <td ng-show="c.mensNodigSnoei -c.mensBeschikbaarSnoei <0" style="color:green;">{{c.mensBeschikbaarSnoei}}</td>
           <td>{{c.normResultaatSnoeien}}</td>
           <td>{{c.resultaatUrenSnoeien}}</td>
           <td style="width:100px">
@@ -174,11 +195,14 @@
         </tr>
 
                 <tr ng-show="content=='zakken'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+                <td>{{c.datum}}</td>
                 <td>{{c.tuinZakken}}</td>
           <td>{{c.plantenZakken}}</td>
           <td>{{c.normZakken}}</td>
           <td>{{c.verwachtUrenZakken}}</td>
-          <td>{{c.mensZakken}}</td>
+          <td>{{c.mensNodigZakken}}</td>
+          <td ng-show="c.mensNodigZakken-c.mensBeschikbaarZakken >=0" style="color:red;">{{c.mensBeschikbaarZakken}}</td>
+          <td ng-show="c.mensNodigZakken -c.mensBeschikbaarZakken <0" style="color:green;">{{c.mensBeschikbaarZakken}}</td>
           <td>{{c.normResultaatZakken}}</td>
           <td>{{c.resultaatUrenZakken}}</td>
           <td style="width:100px">
@@ -189,11 +213,14 @@
         </tr>
 
         <tr ng-show="content=='verpakking'" ng-repeat="c in dagplanningen | orderBy:'+datum'" id="{{c.date}}">
+        <td>{{c.datum}}</td>
           <td>{{c.plantenVerpakking}}</td>
           <td>{{c.normVerpakking}}</td>
           <td>{{c.verwachtUrenVerpakking}}</td>
           <td>{{c.verwachtPalletsVerpakking}}</td>
-          <td>{{c.mensVerpakking}}</td>
+          <td>{{c.mensNodigVerpakking}}</td>
+          <td ng-show="c.mensNodigVerpakking-c.mensBeschikbaarVerpakking >=0" style="color:red;">{{c.mensBeschikbaarVerpakking}}</td>
+          <td ng-show="c.mensNodigVerpakking -c.mensBeschikbaarVerpakking <0" style="color:green;">{{c.mensBeschikbaarVerpakking}}</td>
           <td>{{c.normResultaatVerpakking}}</td>
           <td>{{c.resultaatPalletsVerpakking}}</td>
           <td>{{c.resultaatUrenVerpakking}}</td>

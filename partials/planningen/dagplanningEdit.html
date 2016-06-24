@@ -6,7 +6,9 @@
     </div>
     <div class="modal-body">
       <form name="dagplanning_form" class="form-horizontal" role="form" novalidate>
-        <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="dagplanning.datum"/> 
+            <form-element>
+                    <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="dagplanning.datum"/> 
+             </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
 
@@ -36,10 +38,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensOogst" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensOogst.$dirty &&dagplanning_form.mensOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensOogstNodig" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensNodigOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigOogst.$dirty &&dagplanning_form.mensNodigOogst.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensOogstBeschikbaar" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensBeschikbaarOogst" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarOogst.$dirty &&dagplanning_form.mensBeschikbaarOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -85,10 +94,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensDieven" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensDieven.$dirty &&dagplanning_form.mensDieven.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensDievenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigDieven" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigDieven.$dirty &&dagplanning_form.mensNodigDieven.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensDievenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarDieven" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarDieven.$dirty &&dagplanning_form.mensBeschikbaarDieven.$invalid"> Vul het beschikbaar aantal mensen in</small>
 
             </form-element>
 
@@ -134,10 +150,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensBlad" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBlad.$dirty &&dagplanning_form.mensBlad.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensBladNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigBlad" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigBlad.$dirty &&dagplanning_form.mensNodigBlad.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensBladBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarBlad" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarBlad.$dirty &&dagplanning_form.mensBeschikbaarBlad.$invalid"> Vul het beschikbaar aantal mensen in</small>
 
             </form-element>
 
@@ -183,10 +206,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensSnoeien" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensSnoei" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensSnoei.$dirty &&dagplanning_form.mensSnoei.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensSnoeienNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigSnoei" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigSnoei.$dirty &&dagplanning_form.mensNodigSnoei.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensSnoeienBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarSnoei" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarSnoei.$dirty &&dagplanning_form.mensBeschikbaarSnoei.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -232,10 +262,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensZakken" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensZakken.$dirty &&dagplanning_form.mensZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensZakkenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigZakken" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigZakken.$dirty &&dagplanning_form.mensNodigZakken.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensZakkenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarZakken" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarZakken.$dirty &&dagplanning_form.mensBeschikbaarZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
 
             </form-element>
 
@@ -284,10 +321,17 @@
 
             </form-element>
 
-            <form-element label="AANTAL MENSEN" mod="dagplanning">
+            <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensVerpakking" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensVerpakking.$dirty &&dagplanning_form.mensVerpakking.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensVerpakkingNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigVerpakking.$dirty &&dagplanning_form.mensNodigVerpakking.$invalid"> Vul het nodige aantal mensen in</small>
+
+            </form-element>
+
+            <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
+            
+                <input type="text" class="form-control" name="MensVerpakkingBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarVerpakking" only-numbers>
+                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigVerpakking.$dirty &&dagplanning_form.mensNodigVerpakking.$invalid"> Vul het nodige aantal mensen in</small>
 
             </form-element>
 

@@ -62,10 +62,6 @@
 <form>
 <div class="btn-group">
 
- <label for="algemeen" class="btn btn-default active">
-    <input type="radio" checked=""  id="algemeen" name="content" ng-model="content" value="algemeen" aria-label="Algemeen">Algemeen
-  </label>
-
  <label for="oogst" class="btn btn-default">
     <input type="radio" id="oogst" name="content" ng-model="content" value="oogst" aria-label="Oogst">Oogst
   </label>
@@ -104,7 +100,6 @@
     <tr ng-show="jaarplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
     <tr ng-hide="jaarplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
     
-<tr ng-repeat="c in columnsAlgemeen"><th ng-show="content == 'algemeen'">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst" >{{c.text}}</th></tr>
     <tr><th ng-show="content == 'dieven'" ng-repeat="c in columnsDieven">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'bladknippen'" ng-repeat="c in columnsBladknippen">{{c.text}}</th></tr>

@@ -5,45 +5,64 @@
         <h3 class="modal-title">Pas werknemer aan [Werknemersnummer: {{werknemer.werknemersnummer}}]</h3>
     </div>
     <div class="modal-body">
-        <form name="werknemer_form" class="form-horizontal" role="form" novalidate>
+<form name="signupForm" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="email">E-mail</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Email" name="email" ng-model="signup.email" focus/>
+                                        <span ng-show="signupForm.email.$error.email" class="help-inline">E-mail is niet geldig.</span> 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="password">Password</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" required/>
+                                <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid">Voer uw wachtwoord in.</small>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="password2">Herhaal wachtwoord</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name="password2" placeholder="Password Again" ng-model="signup.password2" password-match="signup.password" required/>                                
+                                <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.required"> Herhaal uw gekozen wachtwoord</small>
 
-            <form-element label="NUMMER" mod="werknemer">
-                <input type="text" class="form-control" name="Werknemersnummer" placeholder="NUMMER" ng-model="werknemer.werknemersnummer" only-numbers>
-                 <small class="errorMessage" ng-show="werknemer_form.werknemersnummer.$dirty && werknemer_form.werknemersnummer.$invalid"> Vul het werknemersnummer in in</small>
-            </form-element>
+                               <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.passwordNoMatch && !signupForm.password2.$error.required"> Wachtwoorden komen niet overeen</small>
 
-            <form-element label="ACHTERNAAM" mod="werknemer">
-                <input type="text" class="form-control" name="Achternaam" placeholder="ACHTERNAAM" ng-model="werknemer.achternaam"/>
-                 <small class="errorMessage" ng-show="werknemer_form.achternaam.$dirty && werknemer_form.achternaam.$invalid"> Vul de achternaam in</small>
-            </form-element>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="name">Naam</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Name" ng-model="signup.name" />
+                            </span>
+                                </div>
+                            </div>
 
-            <form-element label="VOORNAAM" mod="werknemer">
-                <input type="text" name="Voornaam" class="form-control" placeholder="VOORNAAM" ng-model="werknemer.voornaam"/>
-                <small class="errorMessage" ng-show="werknemer_form.voornaam.$dirty && werknemer_form.voornaam.$invalid"> Vul de voornaam in</small>
-            </form-element>
+                                                        <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="u_role">Rol</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Rol" ng-model="signup.u_role" />
+                            </span>
+                                </div>
+                            </div>
 
-           <form-element label="TELEFOONNUMMER" mod="werknemer">
-                <input type="text" name="Telefoonnummer" class="form-control" placeholder="TELEFOONNUMMER" ng-model="werknemer.tel" only-numbers/>
-                <small class="errorMessage" ng-show="werknemer_form.tel.$dirty && werknemer_form.tel.$invalid"> Vul het tel nr in</small>
-            </form-element>
-
-
-             <form-element label="COMMENTS" mod="werknemer">
-                <input type="text" name="Commentaar" class="form-control" placeholder="COMMENTS" ng-model="werknemer.comments"/>
-                <small class="errorMessage" ng-show="werknemer_form.comments.$dirty && werknemer_form.comments.$invalid"> Vul aanvullend commentaar in</small>
-            </form-element>
             <div class="space"></div>
             <div class="space-4"></div>
             <div class="modal-footer">
                 <form-element label="">
                     <div class="text-right">
                         <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Annuleren</a>
-                        <button ng-click="saveWerknemer(werknemer);"
-                                ng-disabled="werknemer_form.$invalid || enableUpdate"
-                                class="btn btn-sm btn-primary"
-                                type="submit">
-                            <i class="ace-icon fa fa-check"></i>{{buttonText}}
-                        </button>
+                <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" ng-click="saveWerknemer(signup)" data-ng-disabled="signupForm.$invalid">
+                                        Opslaan
+                                    </button>
                     </div>
                 </form-element>
             </div>
