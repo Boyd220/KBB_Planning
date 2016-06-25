@@ -1,18 +1,138 @@
 app.controller('dagplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.dagplanning = {};
-$scope.content="oogst";
+    $scope.content="oogst";
 $scope.content1="TuinOogst"
 $scope.dataKeus = "Datum";
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+    var today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datumDag").value = today;
+    $scope.dagplanning.datum = today;
+
+            Data.get('dagplanningen/datum/' + today).then(function(result){
+            $scope.dagplanningen = result.data;
+            Data.toast(result);
+        });
+    $scope.getWeeknumber = function(dt) 
+  {
+     var tdt = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+        }
+
         $('#datumDag').keypress(function (e) 
-      {
+      {         
         if (e.keyCode == 13) 
         {
-          var d = $("#datumDag").val();
-          
-          Data.get('dagplanningen/' + d).then(function(result)
+
+           var d = $("#datumDag").val();
+           bla = new Date(d);
+           var week = $scope.getWeeknumber(bla);
+           console.log(week);
+           var year = bla.getFullYear();
+           var waarde = week+"-"+year;
+          Data.get('dagplanningen/datum/' + d).then(function(result)
           {
               Data.toast(result);
-              $scope.weekplanningen = result.data;
+              $scope.dagplanningen = result.data;
+              console.log(result);
+          });
+
+          Data.get('weekplanningen/week/' + waarde).then(function(result)
+          {
+                Data.toast(result);
+                console.log(result);
+               $scope.weekplanningen = result.data;
+          });
+        }
+      });
+
+                $('#TuinOogst').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+
+           var d = $("#TuinOogst").val();
+          Data.get('dagplanningen/tuinOogst/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.dagplanningen = result.data;
+          });
+        }
+      });
+
+    $('#TuinDieven').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+
+           var d = $("#TuinDieven").val();
+          
+          Data.get('dagplanningen/tuinDieven/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.dagplanningen = result.data;
+          });
+        }
+      });
+
+    $('#TuinBlad').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+
+           var d = $("#TuinBlad").val();
+          
+          Data.get('dagplanningen/tuinBlad/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.dagplanningen = result.data;
+          });
+        }
+      });
+
+    $('#TuinSnoei').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+
+           var d = $("#TuinSnoei").val();
+          
+          Data.get('dagplanningen/tuinSnoei/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.dagplanningen = result.data;
+          });
+        }
+      });
+
+    $('#TuinZakken').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+
+           var d = $("#TuinZakken").val();
+          
+          Data.get('dagplanningen/tuinZakken/' + d).then(function(result)
+          {
+              Data.toast(result);
+              $scope.dagplanningen = result.data;
           });
         }
       });
@@ -103,6 +223,7 @@ $scope.dataKeus = "Datum";
                     {text:"Action",predicate:"",sortable:false}
                 ];
 
+
  $scope.columnsDieven = [
                     {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
                     {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
@@ -158,11 +279,11 @@ $scope.dataKeus = "Datum";
 
  $scope.columnsVerpakking = [
                     {text:"Datum",predicate:"Datum",sortable:true,dataType:"number"},
-                    {text:"Aantal planten",predicate:"Aantal planten",sortable:true,dataType:"number"},
+                    {text:"Verwacht KG",predicate:"Verwacht KG",sortable:true,dataType:"number"},
                     {text:"Norm",predicate:"Norm",sortable:true,dataType:"number"},
-                    {text:"Uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
-                    {text:"Pallets",predicate:"Verwachte pallets",sortable:true,dataType:"number"},
-                    {text:"Aantal mensen nodig",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Mensen nodig",predicate:"Mensen nodig",sortable:true,dataType:"number"},
+                    {text:"Verwachte uren",predicate:"Verwachte uren",sortable:true,dataType:"number"},
+                    {text:"Verwachte Pallets",predicate:"Aantal mensen nodig",sortable:true,dataType:"number"},
                     {text:"Aantal mensen beschikbaar",predicate:"Aantal mensen beschikbaar",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat pallets",predicate:"Resultaat pallets",sortable:true,dataType:"number"},

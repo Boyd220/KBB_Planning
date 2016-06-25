@@ -19,50 +19,43 @@
 
             <form-element label="PLANTEN OOGST" mod="dagplanning">
 
-                <input type="text" class="form-control" name="Plantenoogst" placeholder="PLANTEN OOGST" ng-model="dagplanning.plantenOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenOogst.$dirty &&dagplanning_form.plantenOogst.$invalid"> Vul het aantal te knippen planten in.</small>
+                <input type="text" class="form-control" name="Plantenoogst" placeholder="PLANTEN OOGST" ng-model="dagplanning.plantenOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM OOGST" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormOogst" placeholder="NORM OOGST" ng-model="dagplanning.normOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normOogst.$dirty &&dagplanning_form.normOogst.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormOogst" placeholder="NORM OOGST" ng-model="dagplanning.normOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenOogst" placeholder="VERWACHTE UREN OOGST" ng-model="dagplanning.verwachtUrenOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenOogst.$dirty &&dagplanning_form.verwachtUrenOogst.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="VerwachtUrenOogst" placeholder="VERWACHTE UREN OOGST" ng-model="dagplanning.verwachtUrenOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensOogstNodig" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensNodigOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigOogst.$dirty &&dagplanning_form.mensNodigOogst.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensOogstNodig" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensNodigOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensOogstBeschikbaar" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensBeschikbaarOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarOogst.$dirty &&dagplanning_form.mensBeschikbaarOogst.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensOogstBeschikbaar" placeholder="AANTAL MENSEN" ng-model="dagplanning.mensBeschikbaarOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormOogst" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatOogst.$dirty &&dagplanning_form.normResultaatNormOogst.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormOogst" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatOogstDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenOogst" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenOogst" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenOogst.$dirty &&dagplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenOogst" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenOogstDag" only-numbers>
 
             </form-element>
 
@@ -70,55 +63,47 @@
 
               <form-element label="TUIN DIEVEN" mod="dagplanning">
                             <input type="number" class="form-control" name="TuinDieven" placeholder="TUIN DIEVEN" ng-model="dagplanning.tuinDieven" only-numbers min="1" max="3">
-                             <small class="errorMessage" ng-show="dagplanning_form.tuinDieven.$dirty &&dagplanning_form.tuinDieven.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN DIEVEN" mod="dagplanning">
 
-                <input type="text" class="form-control" name="PlantenDieven" placeholder="PLANTEN Dieven" ng-model="dagplanning.plantenDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenDieven.$dirty &&dagplanning_form.plantenDieven.$invalid"> Vul het aantal te dieven/draaien planten in.</small>
+                <input type="text" class="form-control" name="PlantenDieven" placeholder="PLANTEN Dieven" ng-model="dagplanning.plantenDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM DIEVEN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormDieven" placeholder="NORM DIEVEN" ng-model="dagplanning.normDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normDieven.$dirty &&dagplanning_form.normDieven.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormDieven" placeholder="NORM DIEVEN" ng-model="dagplanning.normDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenDieven" placeholder="VERWACHTE UREN Dieven" ng-model="dagplanning.verwachtUrenDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenDieven.$dirty &&dagplanning_form.verwachtUrenDieven.$invalid"> Vul de beoogde uren in</small>
+                <input type="text" class="form-control" name="VerwachtUrenDieven" placeholder="VERWACHTE UREN Dieven" ng-model="dagplanning.verwachtUrenDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensDievenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigDieven.$dirty &&dagplanning_form.mensNodigDieven.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensDievenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensDievenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarDieven.$dirty &&dagplanning_form.mensBeschikbaarDieven.$invalid"> Vul het beschikbaar aantal mensen in</small>
+                <input type="text" class="form-control" name="MensDievenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormDieven" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatDieven.$dirty &&dagplanning_form.normResultaatNormDieven.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormDieven" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatDievenDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenDieven" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenDieven" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenDieven.$dirty &&dagplanning_form.resultaatUrenOogst.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenDieven" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenDievenDag" only-numbers>
 
             </form-element>
 
@@ -126,167 +111,143 @@
 
               <form-element label="TUIN BLADKNIPPEN" mod="dagplanning">
                             <input type="number" class="form-control" name="TuinBlad" placeholder="TUIN BLADKNIPPEN" ng-model="dagplanning.tuinBlad" only-numbers min="1" max="3">
-                             <small class="errorMessage" ng-show="dagplanning_form.tuinBlad.$dirty &&dagplanning_form.tuinBlad.$invalid"> Vul een geldige tuin in</small>
             </form-element>
 
             <form-element label="PLANTEN BLADKNIPPEN" mod="dagplanning">
 
-                <input type="text" class="form-control" name="PlantenBladknippen" placeholder="PLANTEN BLADKNIPPEN" ng-model="dagplanning.plantenBladknippen" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenBladknippen.$dirty &&dagplanning_form.plantenBladknippen.$invalid"> Vul het aantal te bladknippen planten in.</small>
+                <input type="text" class="form-control" name="PlantenBladknippen" placeholder="PLANTEN BLADKNIPPEN" ng-model="dagplanning.plantenBladknippenDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM BLADKNIPPEN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormBlad" placeholder="NORM BLADKNIPPEN" ng-model="dagplanning.normBladknippen" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normBladknippen.$dirty &&dagplanning_form.normBladknippen.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormBlad" placeholder="NORM BLADKNIPPEN" ng-model="dagplanning.normBladknippenDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenBlad" placeholder="VERWACHTE UREN BLADKNIPPEN" ng-model="dagplanning.verwachtUrenBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenBlad.$dirty &&dagplanning_form.verwachtUrenBlad.$invalid"> Vul de beoogde uren in</small>
+                <input type="text" class="form-control" name="VerwachtUrenBlad" placeholder="VERWACHTE UREN BLADKNIPPEN" ng-model="dagplanning.verwachtUrenBladDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensBladNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigBlad.$dirty &&dagplanning_form.mensNodigBlad.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensBladNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigBladDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensBladBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarBlad.$dirty &&dagplanning_form.mensBeschikbaarBlad.$invalid"> Vul het beschikbaar aantal mensen in</small>
+                <input type="text" class="form-control" name="MensBladBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarBladDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormBlad" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatBlad.$dirty &&dagplanning_form.normResultaatNormBlad.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormBlad" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatBladDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenBlad" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenBlad" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenBlad.$dirty &&dagplanning_form.resultaatUrenBlad.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenBlad" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenBladDag" only-numbers>
 
             </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Snoeien</h4>
 
               <form-element label="TUIN SNOEIEN" mod="dagplanning">
-                            <input type="number" class="form-control" name="TuinSnoeien" placeholder="TUIN SNOEIEN" ng-model="dagplanning.tuinSnoeien" only-numbers min="1" max="3">
-                             <small class="errorMessage" ng-show="dagplanning_form.tuinSnoeien.$dirty &&dagplanning_form.tuinSnoeien.$invalid"> Vul een geldige tuin in</small>
+                            <input type="number" class="form-control" name="TuinSnoeien" placeholder="TUIN SNOEIEN" ng-model="dagplanning.tuinSnoeienDag" only-numbers min="1" max="3">
             </form-element>
 
             <form-element label="PLANTEN SNOEIEN" mod="dagplanning">
 
-                <input type="text" class="form-control" name="PlantenSnoeien" placeholder="PLANTEN SNOEIEN" ng-model="dagplanning.plantenSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenSnoeien.$dirty &&dagplanning_form.plantenSnoeien.$invalid"> Vul het aantal te snoeien planten in.</small>
+                <input type="text" class="form-control" name="PlantenSnoeien" placeholder="PLANTEN SNOEIEN" ng-model="dagplanning.plantenSnoeienDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM SNOEIEN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormSnoeien" placeholder="NORM SNOEIEN" ng-model="dagplanning.normSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normSnoeien.$dirty &&dagplanning_form.normSnoeienn.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormSnoeien" placeholder="NORM SNOEIEN" ng-model="dagplanning.normSnoeienDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenSnoeien" placeholder="VERWACHTE UREN SNOEIEN" ng-model="dagplanning.verwachtUrenSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenSnoeien.$dirty &&dagplanning_form.verwachtUrenSnoeien.$invalid"> Vul de beoogde uren in</small>
+                <input type="text" class="form-control" name="VerwachtUrenSnoeien" placeholder="VERWACHTE UREN SNOEIEN" ng-model="dagplanning.verwachtUrenSnoeienDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensSnoeienNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigSnoei" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigSnoei.$dirty &&dagplanning_form.mensNodigSnoei.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensSnoeienNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigSnoeiDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensSnoeienBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarSnoei" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarSnoei.$dirty &&dagplanning_form.mensBeschikbaarSnoei.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensSnoeienBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarSnoeiDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormSnoeien" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatSnoeien.$dirty &&dagplanning_form.normResultaatNormSnoeien.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormSnoeien" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatSnoeienDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenSnoeien" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenSnoeien" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenSnoeien.$dirty &&dagplanning_form.resultaatUrenSnoeien.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenSnoeien" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenSnoeienDag" only-numbers>
 
             </form-element>
 
         <h4 style="text-align: center;"; class="modal-title">Zakken</h4>
 
               <form-element label="TUIN ZAKKEN" mod="dagplanning">
-                            <input type="number" class="form-control" name="TuinZakken" placeholder="TUIN ZAKKEN" ng-model="dagplanning.tuinZakken" only-numbers min="1" max="3">
-                             <small class="errorMessage" ng-show="dagplanning_form.tuinZakken.$dirty &&dagplanning_form.tuinZakken.$invalid"> Vul een geldige tuin in</small>
+                            <input type="number" class="form-control" name="TuinZakken" placeholder="TUIN ZAKKEN" ng-model="dagplanning.tuinZakkenDag" only-numbers min="1" max="3">
             </form-element>
 
             <form-element label="PLANTEN ZAKKEN" mod="dagplanning">
 
-                <input type="text" class="form-control" name="PlantenZakken" placeholder="PLANTEN ZAKKEN" ng-model="dagplanning.plantenZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenZakken.$dirty &&dagplanning_form.plantenZakken.$invalid"> Vul het aantal te zakken planten in.</small>
+                <input type="text" class="form-control" name="PlantenZakken" placeholder="PLANTEN ZAKKEN" ng-model="dagplanning.plantenZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM ZAKKEN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormZakken" placeholder="NORM ZAKKEN" ng-model="dagplanning.normZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normZakken.$dirty &&dagplanning_form.normZakken.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormZakken" placeholder="NORM ZAKKEN" ng-model="dagplanning.normZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenZakken" placeholder="VERWACHTE UREN ZAKKEN" ng-model="dagplanning.verwachtUrenZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenZakken.$dirty &&dagplanning_form.verwachtUrenZakken.$invalid"> Vul de beoogde uren in</small>
+                <input type="text" class="form-control" name="VerwachtUrenZakken" placeholder="VERWACHTE UREN ZAKKEN" ng-model="dagplanning.verwachtUrenZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensZakkenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigZakken.$dirty &&dagplanning_form.mensNodigZakken.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensZakkenNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensZakkenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensBeschikbaarZakken.$dirty &&dagplanning_form.mensBeschikbaarZakken.$invalid"> Vul het beschikbare aantal mensen in</small>
+                <input type="text" class="form-control" name="MensZakkenBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormZakken" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatZakken.$dirty &&dagplanning_form.normResultaatNormZakken.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormZakken" placeholder="RESULTAAT NORM" ng-model="dagplanning.normResultaatZakkenDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenZakken" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenZakken" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenZakken.$dirty &&dagplanning_form.resultaatUrenZakken.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenZakken" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenZakkenDag" only-numbers>
 
             </form-element>
 
@@ -295,64 +256,55 @@
 
             <form-element label="PLANTEN VERPAKKING" mod="dagplanning">
 
-                <input type="text" class="form-control" name="PlantenVerpakking" placeholder="PLANTEN VERPAKKING" ng-model="dagplanning.plantenVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.plantenVerpakking.$dirty &&dagplanning_form.plantenVerpakking.$invalid"> Vul het aantal te verpakken planten in.</small>
+                <input type="text" class="form-control" name="PlantenVerpakking" placeholder="PLANTEN VERPAKKING" ng-model="dagplanning.plantenVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="NORM VERPAKKING" mod="dagplanning">
             
-                <input type="text" class="form-control" name="NormVerpakking" placeholder="NORM VERPAKKING" ng-model="dagplanning.normVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normVerpakking.$dirty &&dagplanning_form.normVerpakking.$invalid"> Vul de beoogde norm in</small>
+                <input type="text" class="form-control" name="NormVerpakking" placeholder="NORM VERPAKKING" ng-model="dagplanning.normVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtUrenVerpakking" placeholder="VERWACHTE UREN VERPAKKING" ng-model="dagplanning.verwachtUrenVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtUrenVerpakking.$dirty &&dagplanning_form.verwachtUrenVerpakking.$invalid"> Vul de beoogde uren in</small>
+                <input type="text" class="form-control" name="VerwachtUrenVerpakking" placeholder="VERWACHTE UREN VERPAKKING" ng-model="dagplanning.verwachtUrenVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="VERWACHTE PALLETS" mod="dagplanning">
             
-                <input type="text" class="form-control" name="VerwachtePalletsVerpakking" placeholder="VERWACHTING PALLETS" ng-model="dagplanning.verwachtPalletsVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.verwachtPalletsVerpakking.$dirty &&dagplanning_form.verwachtPalletsVerpakking.$invalid"> Vul de verwachte aantal pallets in</small>
+                <input type="text" class="form-control" name="VerwachtePalletsVerpakking" placeholder="VERWACHTING PALLETS" ng-model="dagplanning.verwachtPalletsVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN NODIG" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensVerpakkingNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigVerpakking.$dirty &&dagplanning_form.mensNodigVerpakking.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensVerpakkingNodig" placeholder="AANTAL MENSEN NODIG" ng-model="dagplanning.mensNodigVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="AANTAL MENSEN BESCHIKBAAR" mod="dagplanning">
             
-                <input type="text" class="form-control" name="MensVerpakkingBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.mensNodigVerpakking.$dirty &&dagplanning_form.mensNodigVerpakking.$invalid"> Vul het nodige aantal mensen in</small>
+                <input type="text" class="form-control" name="MensVerpakkingBeschikbaar" placeholder="AANTAL MENSEN BESCHIKBAAR" ng-model="dagplanning.mensBeschikbaarVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT NORM" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatNormVerpakking" placeholder="RESULTAAT VERPAKKING" ng-model="dagplanning.normResultaatVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.normResultaatVerpakking.$dirty &&dagplanning_form.normResultaatNormVerpakking.$invalid"> Vul het normresultaat in</small>
+                <input type="text" class="form-control" name="ResultaatNormVerpakking" placeholder="RESULTAAT VERPAKKING" ng-model="dagplanning.normResultaatVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT PALLETS" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatPalletsVerpakking" placeholder="RESULTAAT PALLETS" ng-model="dagplanning.resultaatPalletsVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatPalletsVerpakking.$dirty &&dagplanning_form.resultaatPalletsVerpakking.$invalid"> Vul het resulterende aantal pallets in</small>
+                <input type="text" class="form-control" name="ResultaatPalletsVerpakking" placeholder="RESULTAAT PALLETS" ng-model="dagplanning.resultaatPalletsVerpakkingDag" only-numbers>
 
             </form-element>
 
             <form-element label="RESULTAAT UREN" mod="dagplanning">
             
-                <input type="text" class="form-control" name="ResultaatUrenVerpakking" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenVerpakking" only-numbers>
-                 <small class="errorMessage" ng-show="dagplanning_form.resultaatUrenVerpakking.$dirty &&dagplanning_form.resultaatUrenVerpakking.$invalid"> Vul de resulterend uren in</small>
+                <input type="text" class="form-control" name="ResultaatUrenVerpakking" placeholder="RESULTAAT UREN" ng-model="dagplanning.resultaatUrenVerpakkingDag" only-numbers>
 
             </form-element>
 
