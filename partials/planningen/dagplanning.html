@@ -29,7 +29,7 @@
 </div>  
 <div class="btn-group">
 
- <label for="Datum" class="btn btn-default active">
+ <label for="Datum" class="btn btn-default">
     <input ng-click="filterData();" type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
   </label>
 
@@ -45,7 +45,7 @@
 <input ng-show="content1 == 'TuinOogst'" id="TuinOogst" class="form-control" placeholder="TuinOogst" type="text" ng-model="dagplanning.tuinOogst" />
 <input ng-show="content1 == 'TuinDieven'" id="TuinDieven" class="form-control" placeholder="TuinDieven" type="text" ng-model="dagplanning.tuinDieven"/>
 <input ng-show="content1 == 'TuinBlad'" id="TuinBlad" class="form-control" placeholder="TuinBlad" type="text" ng-model="dagplanning.tuinBlad" />
-<input ng-show="content1 == 'TuinSnoei'" id="TuinSnoei" class="form-control" placeholder="TuinSnoei" type="text" ng-model="dagplanning.tuinSnoei" />
+<input ng-show="content1 == 'TuinSnoei'" id="TuinSnoei" class="form-control" placeholder="TuinSnoei" type="text" ng-model="dagplanning.tuinSnoeien" />
 <input ng-show="content1 == 'TuinZakken'" id="TuinZakken" class="form-control" placeholder="TuinZakken" type="text" ng-model="dagplanning.tuinZakken" />
 </div>
 
@@ -130,10 +130,10 @@
           <td>{{c.normOogstDag}}</td>
           <td>{{c.verwachtUrenOogstDag}}</td>
         <td>{{c.mensNodigOogstDag}}</td>
-        <td ng-show="c.mensNodigOogstDag-c.mensBeschikbaarOogstDag >=0" style="color:red;">{{c.mensBeschikbaarOogstDag}}</td>
-        <td ng-show="c.mensNodigOogstDag -c.mensBeschikbaarOogstDag <0" style="color:green;">{{c.mensBeschikbaarOogstDag}}</td>
+        <td ng-show="c.mensNodigOogstDag-c.mensBeschikbaarOogstDag >0" style="color:red;">{{c.mensBeschikbaarOogstDag}}</td>
+        <td ng-show="c.mensNodigOogstDag -c.mensBeschikbaarOogstDag <=0" style="color:green;">{{c.mensBeschikbaarOogstDag}}</td>
         <td ng-show="c.normOogstDag- c.normResultaatOogstDag >=0" style="color:red;">{{c.normResultaatOogstDag}}</td>
-        <td ng-show="c.normOogstDag- c.normResultaatOogstDag <0" style="color:green;">{{c.normResultaatDievenDag}}</td>
+        <td ng-show="c.normOogstDag- c.normResultaatOogstDag <0" style="color:green;">{{c.normResultaatOogstDag}}</td>
         <td ng-show="c.verwachtUrenOogstDag - c.resultaatUrenOogstDag>= 0" style="color:green;">{{c.resultaatUrenOogstDag}}</td>
         <td ng-show="c.verwachtUrenOogstDag - c.resultaatUrenOogstDag < 0" style="color:red;">{{c.resultaatUrenOogstDag}}</td>
         <td style="width:100px">
@@ -147,9 +147,9 @@
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenOogst/5}}</td>
         <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtOogst/5}}</td>
         <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenOogst/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensOogstNodig/5}}</td>
-        <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar/5}}</td>
-        <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensOogstNodig}}</td>
+        <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar}}</td>
+        <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar}}</td>
     </tr>
 
         <tr ng-repeat="c in dagplanningen | orderBy:'-datum'" id="{{c.datum}}" ng-show="content=='dieven'">
@@ -159,8 +159,8 @@
           <td>{{c.normDievenDag}}</td>
           <td>{{c.verwachtUrenDievenDag}}</td>
         <td>{{c.mensNodigDievenDag}}</td>
-        <td ng-show="c.mensNodigDievenDag-c.mensBeschikbaarDievenDag >=0" style="color:red;">{{c.mensBeschikbaarDievenDag}}</td>
-        <td ng-show="c.mensNodigDievenDag -c.mensBeschikbaarDievenDag <0" style="color:green;">{{c.mensBeschikbaarDievenDag}}</td>
+        <td ng-show="c.mensNodigDievenDag-c.mensBeschikbaarDievenDag >0" style="color:red;">{{c.mensBeschikbaarDievenDag}}</td>
+        <td ng-show="c.mensNodigDievenDag -c.mensBeschikbaarDievenDag <=0" style="color:green;">{{c.mensBeschikbaarDievenDag}}</td>
         <td ng-show="c.normDievenDag - c.normResultaatDievenDag >=0" style="color:red;">{{c.normResultaatDievenDag}}</td>
         <td ng-show="c.normDievenDag - c.normResultaatDievenDag <0" style="color:green;">{{c.normResultaatDievenDag}}</td>
         <td ng-show="c.verwachtUrenDievenDag - c.resultaatUrenDievenDag >= 0" style="color:green;">{{c.resultaatUrenDievenDag}}</td>
@@ -175,11 +175,11 @@
         <tr ng-repeat="x in weekplanningen | orderBy:'-weeknr'" id="{{c.weeknr}}" ng-show="content=='dieven'">
         <td><p style="font-weight:bold;">Weeknummer: </p>{{x.weeknr}}</td>
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenDieven/5}}</td>
-        <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtBlad/5}}</td>
-        <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenBlad/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensBladNodig/5}}</td>
-        <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar/5}}</td>
-        <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtDieven/5}}</td>
+        <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenDieven/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensDievenNodig}}</td>
+        <td ng-show="x.mensDievenNodig-x.mensDievenBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensDievenBeschikbaar}}</td>
+        <td ng-show="x.mensDievenNodig-x.mensDievenBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensDievenBeschikbaar}}</td>
     </tr>
 
 
@@ -190,8 +190,8 @@
           <td>{{c.normBladknippenDag}}</td>
           <td>{{c.verwachtUrenBladDag}}</td>
           <td>{{c.mensNodigBladDag}}</td>
-          <td ng-show="c.mensNodigBladDag-c.mensBeschikbaarBladDag >=0" style="color:red;">{{c.mensBeschikbaarBladDag}}</td>
-          <td ng-show="c.mensNodigBladDag -c.mensBeschikbaarBladDag <0" style="color:green;">{{c.mensBeschikbaarBladDag}}</td>
+          <td ng-show="c.mensNodigBladDag-c.mensBeschikbaarBladDag >0" style="color:red;">{{c.mensBeschikbaarBladDag}}</td>
+          <td ng-show="c.mensNodigBladDag -c.mensBeschikbaarBladDag <=0" style="color:green;">{{c.mensBeschikbaarBladDag}}</td>
         <td ng-show="c.normBladknippenDag - c.normResultaatBladDag >=0" style="color:red;">{{c.normResultaatBladDag}}</td>
         <td ng-show="c.normBladknippenDag - c.normResultaatBladDag <0" style="color:green;">{{c.normResultaatBladDag}}</td>
         <td ng-show="c.verwachtUrenBladDag - c.resultaatUrenBladDag >= 0" style="color:green;">{{c.resultaatUrenBladDag}}</td>
@@ -206,11 +206,11 @@
       <tr ng-repeat="x in weekplanningen | orderBy:'-weeknr'" id="{{c.weeknr}}" ng-show="content=='bladknippen'">
         <td><p style="font-weight:bold;">Weeknummer: </p>{{x.weeknr}}</td>
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenBladknippen/5}}</td>
-        <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtDieven/5}}</td>
-        <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenDieven/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensDievenNodig/5}}</td>
-        <td ng-show="x.mensDievenNodig-x.mensDievenBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensDievenBeschikbaar/5}}</td>
-        <td ng-show="x.mensDievenNodig-x.mensDievenBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensDievenBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtBlad/5}}</td>
+        <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenBlad/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensBladNodig}}</td>
+        <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar}}</td>
+        <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar}}</td>
     </tr>
     </div>
 
@@ -221,11 +221,11 @@
           <td>{{c.normSnoeienDag}}</td>
           <td>{{c.verwachtUrenSnoeienDag}}</td>
           <td>{{c.mensNodigSnoeiDag}}</td>
-          <td ng-show="c.mensNodigSnoeiDag-c.mensBeschikbaarSnoeiDag >=0" style="color:red;">{{c.mensBeschikbaarSnoeiDag}}</td>
-          <td ng-show="c.mensNodigSnoeiDag -c.mensBeschikbaarSnoeiDag <0" style="color:green;">{{c.mensBeschikbaarSnoeiDag}}</td>
+          <td ng-show="c.mensNodigSnoeiDag-c.mensBeschikbaarSnoeiDag >0" style="color:red;">{{c.mensBeschikbaarSnoeiDag}}</td>
+          <td ng-show="c.mensNodigSnoeiDag -c.mensBeschikbaarSnoeiDag <=0" style="color:green;">{{c.mensBeschikbaarSnoeiDag}}</td>
         <td ng-show="c.normSnoeienDag - c.normResultaatSnoeienDag >=0" style="color:red;">{{c.normResultaatSnoeienDag}}</td>
         <td ng-show="c.normSnoeienDag - c.normResultaatSnoeienDag <0" style="color:green;">{{c.normResultaatSnoeienDag}}</td>
-        <td ng-show="c.verwachtUrenSnoeienDag - c.resultaatUrenSnoeienDag >= 0" style="color:green;">{{c.resultaatUrenDievenDag}}</td>
+        <td ng-show="c.verwachtUrenSnoeienDag - c.resultaatUrenSnoeienDag >= 0" style="color:green;">{{c.resultaatUrenSnoeienDag}}</td>
         <td ng-show="c.verwachtUrenSnoeienDag - c.resultaatUrenSnoeienDag < 0" style="color:red;">{{c.resultaatUrenSnoeienDag}}</td>
           <td style="width:100px">
               <div class="btn-group">
@@ -240,9 +240,9 @@
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenSnoeien/5}}</td>
         <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtSnoei/5}}</td>
         <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenSnoei/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensSnoeiNodig/5}}</td>
-        <td ng-show="x.mensSnoeiNodig-x.mensSnoeiBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensSnoeiNodig/5}}</td>
-        <td ng-show="x.mensSnoeiNodig-x.mensSnoeiBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensSnoeiBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensSnoeiNodig}}</td>
+        <td ng-show="x.mensSnoeiNodig-x.mensSnoeiBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensSnoeiNodig}}</td>
+        <td ng-show="x.mensSnoeiNodig-x.mensSnoeiBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensSnoeiBeschikbaar}}</td>
     </tr>
     </div>
 
@@ -253,8 +253,8 @@
           <td>{{c.normZakkenDag}}</td>
           <td>{{c.verwachtUrenZakkenDag}}</td>
           <td>{{c.mensNodigZakkenDag}}</td>
-          <td ng-show="c.mensNodigZakkenDag-c.mensBeschikbaarZakkenDag >=0" style="color:red;">{{c.mensBeschikbaarZakkenDag}}</td>
-          <td ng-show="c.mensNodigZakkenDag -c.mensBeschikbaarZakkenDag <0" style="color:green;">{{c.mensBeschikbaarZakkenDag}}</td>
+          <td ng-show="c.mensNodigZakkenDag-c.mensBeschikbaarZakkenDag >0" style="color:red;">{{c.mensBeschikbaarZakkenDag}}</td>
+          <td ng-show="c.mensNodigZakkenDag -c.mensBeschikbaarZakkenDag <=0" style="color:green;">{{c.mensBeschikbaarZakkenDag}}</td>
         <td ng-show="c.normZakkenDag- c.normResultaatZakkenDag >=0" style="color:red;">{{c.normResultaatZakkenDag}}</td>
         <td ng-show="c.normZakkenDag - c.normResultaatZakkenDag <0" style="color:green;">{{c.normResultaatZakkenDag}}</td>
         <td ng-show="c.verwachtUrenZakkenDag - c.resultaatUreZakkenDag >= 0" style="color:green;">{{c.resultaatUrenZakkenDag}}</td>
@@ -272,9 +272,9 @@
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenZakken/5}}</td>
         <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtZakken/5}}</td>
         <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenZakken/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensZakkenNodig/5}}</td>
-        <td ng-show="x.mensZakkenNodig-x.mensZakkenBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensZakkenBeschikbaar/5}}</td>
-        <td ng-show="x.mensZakkenNodig-x.mensZakkenBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensZakkenBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensZakkenNodig}}</td>
+        <td ng-show="x.mensZakkenNodig-x.mensZakkenBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensZakkenBeschikbaar}}</td>
+        <td ng-show="x.mensZakkenNodig-x.mensZakkenBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensZakkenBeschikbaar}}</td>
     </tr>
     </div>
 
@@ -285,8 +285,8 @@
           <td>{{c.verwachtUrenVerpakkingDag}}</td>
           <td>{{c.verwachtPalletsVerpakkingDag}}</td>
           <td>{{c.mensNodigVerpakkingDag}}</td>
-          <td ng-show="c.mensNodigVerpakkingDag-c.mensBeschikbaarVerpakkingDag >=0" style="color:red;">{{c.mensBeschikbaarVerpakkingDag}}</td>
-          <td ng-show="c.mensNodigVerpakkingDag -c.mensBeschikbaarVerpakkingDag <0" style="color:green;">{{c.mensBeschikbaarVerpakkingDag}}</td>
+          <td ng-show="c.mensNodigVerpakkingDag-c.mensBeschikbaarVerpakkingDag >0" style="color:red;">{{c.mensBeschikbaarVerpakkingDag}}</td>
+          <td ng-show="c.mensNodigVerpakkingDag -c.mensBeschikbaarVerpakkingDag <=0" style="color:green;">{{c.mensBeschikbaarVerpakkingDag}}</td>
           <td ng-show="c.normVerpakkingDag - c.normResultaatVerpakkingDag <0" style="color:green;" >{{c.normResultaatVerpakkingDag}}</td>
           <td ng-show="c.normVerpakkingDag - c.normResultaatVerpakkingDag >=0" style="color:red">{{c.normResultaatVerpakkingDag}}</td>
           <td ng-show="c.verwachtPalletsVerpakkingDag - c.resultaatPalletsVerpakkingDag <=0" style="color:green;">{{c.resultaatPalletsVerpakkingDag}}</td>
@@ -306,9 +306,9 @@
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenVerpakking/5}}</td>
         <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtVerpakking/5}}</td>
         <td><p style="font-weight:bold;">Prognose uren: </p>{{x.verwachtUrenVerpakking/5}}</td>
-        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensVerpakkingNodig/5}}</td>
-        <td ng-show="x.mensVerpakkingNodig-x.mensVerpakkingBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensVerpakkingBeschikbaar/5}}</td>
-        <td ng-show="x.mensVerpakkingNodig-x.mensVerpakkingBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensVerpakkingBeschikbaar/5}}</td>
+        <td><p style="font-weight:bold;">Benodigde mensen: </p>{{x.mensVerpakkingNodig}}</td>
+        <td ng-show="x.mensVerpakkingNodig-x.mensVerpakkingBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensVerpakkingBeschikbaar}}</td>
+        <td ng-show="x.mensVerpakkingNodig-x.mensVerpakkingBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensVerpakkingBeschikbaar}}</td>
     </tr>
     </div>
 

@@ -29,7 +29,7 @@
 </div> 
 <div class="btn-group">
 
- <label for="Datum" class="btn btn-default active">
+ <label for="Datum" class="btn btn-default">
     <input ng-click="filterData();" type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
   </label>
 
@@ -59,6 +59,7 @@
 <br>
 <br>
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(weekplanning);">&nbsp;Voeg weekplanning toe</button>
+<form>
 <div class="btn-group">
 
  <label for="oogst" class="btn btn-default">
@@ -114,8 +115,8 @@
         <td>{{c.normVerwachtOogst}}</td>
         <td>{{c.verwachtUrenOogst}}</td>
         <td>{{c.mensOogstNodig}}</td>
-        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar >=0" style="color:red;">{{c.mensOogstBeschikbaar}}</td>
-        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar <0" style="color:green;">{{c.mensOogstBeschikbaar}}</td>
+        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar >0" style="color:red;">{{c.mensOogstBeschikbaar}}</td>
+        <td ng-show="c.mensOogstNodig-c.mensOogstBeschikbaar <=0" style="color:green;">{{c.mensOogstBeschikbaar}}</td>
         <td ng-show="c.normVerwachtOogst - c.resultaatNormOogst >=0" style="color:red;">{{c.resultaatNormOogst}}</td>
         <td ng-show="c.normVerwachtOogst - c.resultaatNormOogst <0" style="color:green;">{{c.resultaatNormOogst}}</td>
         <td ng-show="c.verwachtUrenOogst - c.resultaatUrenOogst >= 0" style="color:green;">{{c.resultaatUrenOogst}}</td>
@@ -134,8 +135,8 @@
           <td>{{c.normVerwachtDieven}}</td>
           <td>{{c.verwachtUrenDieven}}</td>
           <td>{{c.mensDievenNodig}}</td>
-        <td ng-show="c.mensDievenNodig-c.mensDievenBeschikbaar >=0" style="color:red;">{{c.mensDievenBeschikbaar}}</td>
-        <td ng-show="c.mensDievenNodig-c.mensDievenBeschikbaar <0" style="color:green;">{{c.mensDievenBeschikbaar}}</td>
+        <td ng-show="c.mensDievenNodig-c.mensDievenBeschikbaar >0" style="color:red;">{{c.mensDievenBeschikbaar}}</td>
+        <td ng-show="c.mensDievenNodig-c.mensDievenBeschikbaar <=0" style="color:green;">{{c.mensDievenBeschikbaar}}</td>
         <td ng-show="c.normVerwachtDieven - c.resultaatNormDieven >=0" style="color:red;">{{c.resultaatNormDieven}}</td>
         <td ng-show="c.normVerwachtDieven- c.resultaatNormDieven <0" style="color:green;">{{c.resultaatNormDieven}}</td>
         <td ng-show="c.verwachtUrenDieven - c.resultaatUrenDieven >= 0" style="color:green;">{{c.resultaatUrenDieven}}</td>
@@ -154,8 +155,8 @@
           <td>{{c.normVerwachtBlad}}</td>
           <td>{{c.mensBladNodig}}</td>
           <td>{{c.verwachtUrenBlad}}</td>
-        <td ng-show="c.mensBladNodig - c.mensBladBeschikbaar >=0" style="color:red;">{{c.mensBladBeschikbaar}}</td>
-        <td ng-show="c.mensBladNodig - c.mensBladBeschikbaar <0" style="color:green;">{{c.mensBladBeschikbaar}}</td>
+        <td ng-show="c.mensBladNodig - c.mensBladBeschikbaar >0" style="color:red;">{{c.mensBladBeschikbaar}}</td>
+        <td ng-show="c.mensBladNodig - c.mensBladBeschikbaar <=0" style="color:green;">{{c.mensBladBeschikbaar}}</td>
         <td ng-show="c.normVerwachtBlad - c.resultaatNormBlad >=0" style="color:red;">{{c.resultaatNormBlad}}</td>
         <td ng-show="c.normVerwachtBlad- c.resultaatNormBlad <0" style="color:green;">{{c.resultaatNormBlad}}</td>
         <td ng-show="c.verwachtUrenBlad - c.resultaatUrenBlad >= 0" style="color:green;">{{c.resultaatUrenBlad}}</td>
@@ -173,8 +174,9 @@
           <td>{{c.plantenSnoeien}}</td>
           <td>{{c.normVerwachtSnoei}}</td>
           <td>{{c.mensSnoeiNodig}}</td>
-        <td ng-show="c.mensSnoeiNodig-c.mensSnoeiBeschikbaar >=0" style="color:red;">{{c.mensSnoeiBeschikbaar}}</td>
-        <td ng-show="c.mensSnoeiNodig-c.mensSnoeiBeschikbaar <0" style="color:green;">{{c.mensSnoeiBeschikbaar}}</td>
+          <td>{{c.verwachtUrenSnoei}}</td>
+        <td ng-show="c.mensSnoeiNodig-c.mensSnoeiBeschikbaar >0" style="color:red;">{{c.mensSnoeiBeschikbaar}}</td>
+        <td ng-show="c.mensSnoeiNodig-c.mensSnoeiBeschikbaar <=0" style="color:green;">{{c.mensSnoeiBeschikbaar}}</td>
         <td ng-show="c.normVerwachtSnoei - c.resultaatNormSnoei >=0" style="color:red;">{{c.resultaatNormSnoei}}</td>
         <td ng-show="c.normVerwachtSnoei- c.resultaatNormSnoei <0" style="color:green;">{{c.resultaatNormSnoei}}</td>
         <td ng-show="c.verwachtUrenSnoei - c.resultaatUrenSnoei >= 0" style="color:green;">{{c.resultaatUrenSnoei}}</td>
@@ -193,8 +195,8 @@
           <td>{{c.normVerwachtZakken}}</td>
           <td>{{c.mensZakkenNodig}}</td>
           <td>{{c.verwachtUrenSnoei}}</td>
-          <td ng-show="c.mensZakkenNodig-c.mensZakkenBeschikbaar >=0" style="color:red;">{{c.mensZakkenBeschikbaar}}</td>
-        <td ng-show="c.mensZakkenNodig-c.mensZakkenBeschikbaar <0" style="color:green;">{{c.mensZakkenBeschikbaar}}</td>
+          <td ng-show="c.mensZakkenNodig-c.mensZakkenBeschikbaar >0" style="color:red;">{{c.mensZakkenBeschikbaar}}</td>
+        <td ng-show="c.mensZakkenNodig-c.mensZakkenBeschikbaar <=0" style="color:green;">{{c.mensZakkenBeschikbaar}}</td>
         <td ng-show="c.normVerwachtZakken - c.resultaatNormZakken >=0" style="color:red;">{{c.resultaatNormZakken}}</td>
         <td ng-show="c.normVerwachtZakken- c.resultaatNormZakken <0" style="color:green;">{{c.resultaatNormZakken}}</td>
         <td ng-show="c.verwachtUrenZakken - c.resultaatUrenZakken >= 0" style="color:green;">{{c.resultaatUrenZakken}}</td>
@@ -213,8 +215,8 @@
           <td>{{c.mensVerpakkingNodig}}</td>
           <td>{{c.verwachtUrenVerpakking}}</td>
           <td>{{c.verwachtPalletsVerpakking}}</td>
-        <td ng-show="c.mensVerpakkingNodig-c.mensVerpakkingBeschikbaar >=0" style="color:red;">{{c.mensVerpakkingBeschikbaar}}</td>
-        <td ng-show="c.mensVerpakkingNodig-c.mensVerpakkingBeschikbaar <0" style="color:green;">{{c.mensVerpakkingBeschikbaar}}</td>
+        <td ng-show="c.mensVerpakkingNodig-c.mensVerpakkingBeschikbaar >0" style="color:red;">{{c.mensVerpakkingBeschikbaar}}</td>
+        <td ng-show="c.mensVerpakkingNodig-c.mensVerpakkingBeschikbaar <=0" style="color:green;">{{c.mensVerpakkingBeschikbaar}}</td>
           <td ng-show="c.normVerwachtVerpakking - c.resultaatNormVerpakking <0" style="color:green;" >{{c.resultaatNormVerpakking}}</td>
           <td ng-show="c.normVerwachtVerpakking - c.resultaatNormVerpakking >=0" style="color:red">{{c.resultaatNormVerpakking}}</td>
           <td ng-show="c.verwachtPalletsVerpakking - c.resultaatPalletsVerpakking <=0" style="color:green;">{{c.resultaatPalletsVerpakking}}</td>

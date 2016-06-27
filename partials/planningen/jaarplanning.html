@@ -51,11 +51,11 @@
     </div> 
 
   <input class="form-control" id="Year" placeholder="JAAR" type="year" ng-model="jaarplanning.jaar"/>
-  <input ng-show="keuzeMenu == 'TuinOogst'" class="form-control" id="Tuin" placeholder="TUINOOGST" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinOogst"/>
-  <input ng-show="keuzeMenu == 'TuinDieven'" class="form-control" id="Tuin" placeholder="TUINDIEVEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinDieven"/>
-  <input ng-show="keuzeMenu == 'TuinSnoei'" class="form-control" id="Tuin" placeholder="TUINSNOEI" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinSnoei"/>
-  <input ng-show="keuzeMenu == 'TuinZakken'" class="form-control" id="Tuin" placeholder="TUINZAKKEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinZakken"/>
-  <input ng-show="keuzeMenu == 'TuinBlad'" class="form-control" id="Tuin" placeholder="TUINBLAD" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinBlad"/>
+  <input ng-show="keuzeMenu == 'TuinOogst'" class="form-control" id="tuinOogstJaar" placeholder="TUINOOGST" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinOogst"/>
+  <input ng-show="keuzeMenu == 'TuinDieven'" class="form-control" id="tuinDievenJaar" placeholder="TUINDIEVEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinDieven"/>
+  <input ng-show="keuzeMenu == 'TuinSnoei'" class="form-control" id="tuinSnoeiJaar" placeholder="TUINSNOEI" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinSnoei"/>
+  <input ng-show="keuzeMenu == 'TuinZakken'" class="form-control" id="tuinZakkenJaar" placeholder="TUINZAKKEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinZakken"/>
+  <input ng-show="keuzeMenu == 'TuinBlad'" class="form-control" id="tuinBladJaar" placeholder="TUINBLAD" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinBlad"/>
 
   <button ng-show="keuzeMenu == 'Jaar'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanning(jaarplanning)">Vraag jaarplanning op</button>
     <button ng-show="keuzeMenu == 'TuinOogst'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinOogst(jaarplanning)">Vraag jaarplanning op</button>

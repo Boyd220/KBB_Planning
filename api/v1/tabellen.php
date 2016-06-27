@@ -12,7 +12,7 @@ $app->get('/datum/:datum', function($datum) {
 $app->get('/tuinOogst/:tuinOogst', function($tuinOogst) {
    global $db;
    $condition = array('tuinOogst'=>$tuinOogst);
-    $rows = $db->select("dagplanningen", "datum, plantenOogstDag, normOogstDag, verwachtUrenOogstDag, mensNodigOogstDag, mensBeschikbaarOogstDag, normResultaatOogstDag, resultaatUrenOogstDag, tuinOogst", $condition, array());
+    $rows = $db->select("dagplanningen", "id,datum,normOogstDag, plantenOogstDag, mensNodigOogstDag, mensBeschikbaarOogstDag, normResultaatOogstDag, verwachtUrenOogstDag, resultaatUrenOogstDag, tuinOogst", $condition, array());
     echoResponse2(200, $rows);
 });
 
@@ -113,7 +113,7 @@ $app->get('/weekentuin/:tuin/:weeknr', function($tuin, $weeknr) {
 
 $app->post('/', function() use ($app) { 
     $data = json_decode($app->request->getBody());
-    $mandatory = array('weeknr','tuin', 'plantenOogst', 'plantenDieven', 'plantenBladknippen', 'plantenZakken', 'plantenSnoeien', 'plantenVerpakking', 'normVerwachtOogst', 'normVerwachtDieven', 'normVerwachtBlad', 'normVerwachtSnoei', 'normVerwachtZakken', 'normVerwachtVerpakking');
+    $mandatory = array('weeknr','tuin');
     global $db;
     $rows = $db->insert("weekplanningen", $data, $mandatory);
     if($rows["status"]=="success")
