@@ -265,14 +265,28 @@ $app->delete('/werknemers/:id', function($id) {
         $rows["message"] = "Werknemer removed successfully.";
     echoResponse(200, $rows);
 });
+$app->group('/controles', function () use ($app) {
 
-$app->get('/controles', function() {
+$app->get('/datum/:datum', function($datum) {
    global $db;
-    $rows = $db->select("controles", "id,rijOogst, datum, tuinOogst,oogstHangen,oogstBeschadigingTomaat,oogstBeschadigingGewas,oogstOpmerking",array());
+   $condition = array('datum'=>$datum);
+    $rows = $db->select("controles", "id,rijOogst, datum, tuinOogst,oogstHangen,oogstBeschadigingTomaat,oogstBeschadigingGewas,oogstOpmerking", $condition, array());
     echoResponse2(200, $rows);
 });
 
-$app->post('/controles', function() use ($app) { 
+$app->get('/tuinOogst/:tuinOOgst', function($tuinOogst) {
+   global $db;
+   $condition = array('tuinOogst'=>$tuinOogst);
+    $rows = $db->select("controles", "id,rijOogst, datum, tuinOogst,oogstHangen,oogstBeschadigingTomaat,oogstBeschadigingGewas,oogstOpmerking", $condition, array());
+    echoResponse2(200, $rows);
+});
+$app->get('/all', function() {
+   global $db;
+    $rows = $db->select("controles", "id,rijOogst, datum, tuinOogst,oogstHangen,oogstBeschadigingTomaat,oogstBeschadigingGewas,oogstOpmerking", array());
+    echoResponse2(200, $rows);
+});
+
+$app->post('/', function() use ($app) { 
     $data = json_decode($app->request->getBody());
     $mandatory = array();
     global $db;
@@ -282,7 +296,7 @@ $app->post('/controles', function() use ($app) {
     echoResponse2(200, $rows);
 });
 
-$app->put('/controles/:id', function($id) use ($app) { 
+$app->put('/:id', function($id) use ($app) { 
     $data = json_decode($app->request->getBody());
     $condition = array('id'=>$id);
     $mandatory = array();
@@ -292,7 +306,7 @@ $app->put('/controles/:id', function($id) use ($app) {
         $rows["message"] = "Controle successvol geüpdate";
     echoResponse(200, $rows);
 });
-
+});
 $app->delete('/werknemers/:id', function($id) { 
     global $db;
     $rows = $db->delete("werknemers", array('id'=>$id));

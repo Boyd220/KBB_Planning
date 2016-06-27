@@ -15,7 +15,6 @@ $scope.content = "oogst";
             var jaar = $('#Year').val();
 
         Data.get('jaarplanningen/jaar/' + jaar).then(function(result){
-            Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     
@@ -160,20 +159,6 @@ $scope.content = "oogst";
             }
         });
     };
-    
-$scope.columnsAlgemeen = [
-                    {text:"Planten oogst",predicate:"Planten oogst",sortable:true,dataType:"number"},
-                    {text:"Tuin",predicate:"Tuin",sortable:true,dataType:"number"},
-                    {text:"Planten Dieven/Draaien",predicate:"Planten Dieven/draaien",sortable:true,dataType:"number"},                  
-                    {text:"Planten bladknippen",predicate:"Planten bladknippen",sortable:true,dataType:"number"},
-                    {text:"Planten snoeien",predicate:"Planten snoeien",sortable:true,dataType:"number"},
-                    {text:"Planten zakken",predicate:"Planten zakken",sortable:true,dataType:"number"},
-                    {text:"Aantal pallets",predicate:"Aantal pallets",sortable:true,dataType:"number"},
-                    {text:"Norm verpakking",predicate:"Norm verpakking",sortable:true,dataType:"number"},
-                    {text:"Totaal uren",predicate:"Totaal uren",sortable:true,dataType:"number"},
-                    {text:"Totaal mensen",predicate:"Totaal mensen",sortable:true,dataType:"number"},                   
-                    {text:"Totaal resulaat uren",predicate:"Totaal resulaat uren",sortable:true,dataType:"number"},
-                ];
 
  $scope.columnsOogst = [
                      {text:"Weeknummer",predicate:"Weeknummer",sortable:true,dataType:"number"},
@@ -185,7 +170,7 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
  $scope.columnsDieven = [
@@ -198,7 +183,7 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
 
@@ -212,7 +197,7 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
  $scope.columnsSnoeien = [
@@ -225,7 +210,7 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
  $scope.columnsZakken = [
@@ -238,7 +223,7 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
  $scope.columnsVerpakking = [
@@ -250,12 +235,12 @@ $scope.columnsAlgemeen = [
                     {text:"Beschikbare mensen",predicate:"Beschikbare mensen",sortable:true,dataType:"number"},
                     {text:"Resultaat norm",predicate:"Resultaat norm",sortable:true,dataType:"number"},
                     {text:"Resultaat uren",predicate:"Resultaat uren",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
  $scope.columnsOverige = [
                     {text:"Nog in te vullen",predicate:"Nog in te vullen",sortable:true,dataType:"number"},
-                    {text:"Action",predicate:"",sortable:false}
+                    {text:"Bewerkingen",predicate:"Bewerkingen",sortable:false}
                 ];
 
 });

@@ -1,11 +1,87 @@
 app.controller('werkControleCtrl', function ($scope, $modal, $filter, Data) {
     $scope.controle = {};
+$scope.dataKeus ="Datum";
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
 
-          Data.get('controles').then(function(result)
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+    var today = yyyy+'-'+mm+'-'+dd;
+    $scope.controle.datum = today;
+
+          Data.get('controles/datum/'+today).then(function(result)
           {
                $scope.controles = result.data;
           });
-        
+    $('#datumControle').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+            var d = $("#datumControle").val();
+              Data.get('controles/datum/' +d).then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+        }
+    });
+
+        $('#tuinControleOogst').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+            var d = $("#tuinControleOogst").val();
+              Data.get('controles/tuinOogst/' +d).then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+        }
+    });
+
+    $('#AllControle').keypress(function (e) 
+      {         
+        if (e.keyCode == 13) 
+        {
+              Data.get('controles/all').then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+        }
+    });
+  $scope.getControleDatum = function(controle)
+  {
+              Data.get('controles/datum/' +controle.datum).then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+  }
+
+    $scope.getControleTuin = function(controle)
+  {
+              Data.get('controles/tuinOogst/' +controle.tuinOogst).then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+  }   
+
+    $scope.getControleAll = function()
+  {
+              Data.get('controles/all').then(function(result)
+          {
+               $scope.controles = result.data;
+               Data.toast(result);
+          });
+  }     
     $scope.open = function (p,size) {
       getRandomInt(1000,1400);
         var modalInstance = $modal.open({
@@ -29,7 +105,10 @@ app.controller('werkControleCtrl', function ($scope, $modal, $filter, Data) {
             }
         });
     };
+$scope.filterData = function(){
+$scope.controles = null;
 
+}
     function getRandomInt(min, max) {
  $scope.controle.rijOogst= Math.floor(Math.random() * (max - min + 1) + min);
 }

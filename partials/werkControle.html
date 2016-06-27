@@ -30,13 +30,31 @@
         </li>
     </ul>
 </div>
+   <label for="AllControle" class="btn btn-default">
+    <input ng-click="filterData();" type="radio" id="AllControle" name="dataKeus" ng-model="dataKeus" value="AllControle" aria-label="AllControle"> Alles
+  </label>
+ <label for="Datum" class="btn btn-default">
+    <input ng-click="filterData();" type="radio" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
+  </label>
 
+   <label for="Tuinummer" class="btn btn-default">
+    <input ng-click="filterData();" type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
+  </label>
+  <br>
+  <br>
+ <input id="datumControle" ng-show="dataKeus == 'Datum'" type="date" name="Date" ng-model="controle.datum">
+<input id="tuinControleOogst" ng-show="dataKeus == 'Tuinnummer' " minlength="1" maxlength="1" type="text" name="Tuinnummer" placeholder="Tuinnummer" ng-model="controle.tuinOogst" numbers-only> 
+<button ng-show="dataKeus =='AllControle'" type="button" class="btn btn-default" ng-click="getControleAll();">Vraag controle op</button>
+<button ng-show="dataKeus =='Datum'" type="button" class="btn btn-default" ng-click="getControleDatum(controle);">Vraag controle op</button>
+<button ng-show="dataKeus =='Tuinnummer'" type="button" class="btn btn-default" ng-click="getControleTuin(controle);">Vraag controle op</button>
+<br>
+<br>
 <button type="button" class="btn btn-danger fa fa-plus" ng-click="open(controle);">&nbsp;Voeg controle toe</button>
 
 
 <div class="table-responsive">
 <div class="panel panel-primary">
-  <div class="panel-heading">Dagplanningen
+  <div class="panel-heading">Controles
     </div>
   <div class="panel-body">
     <table class="table table-striped">
