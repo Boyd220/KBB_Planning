@@ -47,9 +47,12 @@
         <td>{{c.datum}}</td>
           <td>{{c.rijOogst}}</td>
           <td>{{c.tuinOogst}}</td>
-          <td>{{c.oogstHangen}}</td>
-          <td>{{c.oogstBeschadigingTomaat}}</td>
-          <td>{{c.oogstBeschadigingGewas}}</td>
+          <td ng-if="c.oogstHangen == '1'">Ja</td>
+          <td ng-if="c.oogstHangen == 'Nee'">Nee</td>
+          <td ng-if="c.oogstBeschadigingTomaat =='1'">Ja</td>
+          <td ng-if="c.oogstBeschadigingTomaat =='Nee'">Nee</td>
+          <td ng-if="c.oogstBeschadigingGewas =='1'">Ja</td>
+          <td ng-if="c.oogstBeschadigingGewas =='Nee'">Nee</td>
           <td>{{c.oogstOpmerking}}</td>
           <td style="width:100px">
               <div class="btn-group">
