@@ -29,31 +29,40 @@
 </div>  
 
 <hr/>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Keuzemenu
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><input type="radio" id="Jaar" value="Jaar" ng-model="keuzeMenu" name="keuzeMenu" aria-label="Jaar">Jaar</li>
-    <li><input type="radio" id="TuinOogst" value="TuinOogst" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinOogst">Tuin oogst</li>
-    <li><input type="radio" id="TuinDieven" value="TuinDieven" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinDieven">Tuin dieven</li>
-    <li><input type="radio" id="TuinBlad" value="TuinBlad" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinBlad">Tuin bladknippen</li>
-    <li><input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinSnoei">Tuin snoeien</li>
-    <li><input type="radio" id="TuinZakken" value="TuinZakken" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinZakken">Tuin zakken</li>
-  </ul>
-</div>
-  <input class="form-control" id="Year" placeholder="YEAR" type="year" ng-model="jaarplanning.jaar"/>
-  <input ng-show="keuzeMenu == 'TuinOogst'" class="form-control" placeholder="TUINOOGST" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinOogst"/>
-  <input ng-show="keuzeMenu == 'TuinDieven'" class="form-control" placeholder="TUINDIEVEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinDieven"/>
-  <input ng-show="keuzeMenu == 'TuinBlad'" class="form-control" placeholder="TUINBLAD" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinBlad"/>
-  <input ng-show="keuzeMenu == 'TuinSnoei'" class="form-control" placeholder="TUINSNOEI" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinSnoei"/>
-  <input ng-show="keuzeMenu == 'TuinZakken'" class="form-control" placeholder="TUINZAKKEN" type="text" min="1" max="3" only-numbers ng-model="jaarplanning.tuinZakken"/>
+<div class="btn-group">
+      <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="Jaar" value="Jaar" ng-model="keuzeMenu" name="keuzeMenu" aria-label="Jaar">Jaar</li>
+    </label>
+    <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="TuinOogst" value="TuinOogst" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinOogst">TuinOogst </li>
+    </label>
+        <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="TuinDieven" value="TuinDieven" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinDieven">TuinDieven </li>
+    </label>
+        <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="TuinBlad" value="TuinBlad" ng-model="keuzeMenu" name="keuzeMenu" aria-label="TuinBlad">TuinBlad</li>
+    </label>
+        <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="TuinSnoei" value="TuinSnoei" ng-model="keuzeMenu" name="keuzeMenu" aria-label="Tuin">TuinSnoei </li>
+    </label>
+        <label for="Jaar" class="btn btn-default">
+    <input type="radio" id="TuinZakken" value="TuinZakken" ng-model="keuzeMenu" name="keuzeMenu" aria-label="Tuin">TuinZakken </li>
+    </label>
+    </div> 
+
+  <input class="form-control" id="Year" placeholder="JAAR" type="year" ng-model="jaarplanning.jaar"/>
+  <input ng-show="keuzeMenu == 'TuinOogst'" class="form-control" id="Tuin" placeholder="TUINOOGST" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinOogst"/>
+  <input ng-show="keuzeMenu == 'TuinDieven'" class="form-control" id="Tuin" placeholder="TUINDIEVEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinDieven"/>
+  <input ng-show="keuzeMenu == 'TuinSnoei'" class="form-control" id="Tuin" placeholder="TUINSNOEI" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinSnoei"/>
+  <input ng-show="keuzeMenu == 'TuinZakken'" class="form-control" id="Tuin" placeholder="TUINZAKKEN" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinZakken"/>
+  <input ng-show="keuzeMenu == 'TuinBlad'" class="form-control" id="Tuin" placeholder="TUINBLAD" type="text" only-numbers min="1" max="3" ng-model="jaarplanning.tuinBlad"/>
 
   <button ng-show="keuzeMenu == 'Jaar'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanning(jaarplanning)">Vraag jaarplanning op</button>
-  <button ng-show="keuzeMenu == 'TuinOogst'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinOogst(jaarplanning)">Vraag jaarplanning op</button>
-  <button ng-show="keuzeMenu == 'TuinDieven'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinDieven(jaarplanning)">Vraag jaarplanning op</button>
-  <button ng-show="keuzeMenu == 'TuinBlad'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinBlad(jaarplanning)">Vraag jaarplanning op</button>
-  <button ng-show="keuzeMenu == 'TuinSnoei'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinSnoei(jaarplanning)">Vraag jaarplanning op</button>
-  <button ng-show="keuzeMenu == 'TuinZakken'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinZakken(jaarplanning)">Vraag jaarplanning op</button>
+    <button ng-show="keuzeMenu == 'TuinOogst'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinOogst(jaarplanning)">Vraag jaarplanning op</button>
+    <button ng-show="keuzeMenu == 'TuinDieven'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinDieven(jaarplanning)">Vraag jaarplanning op</button>
+    <button ng-show="keuzeMenu == 'TuinBlad'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinBlad(jaarplanning)">Vraag jaarplanning op</button>
+    <button ng-show="keuzeMenu == 'TuinSnoei'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinSnoei(jaarplanning)">Vraag jaarplanning op</button>
+    <button ng-show="keuzeMenu == 'TuinZakken'" style="margin-top: 1em;" class="btn btn-default" ng-click="getJaarplanningTuinZakken(jaarplanning)">Vraag jaarplanning op</button>
 
 
     <hr/>
@@ -177,10 +186,10 @@
           <td>{{c.mensSnoeiNodig}}</td>
           <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar>0" style="color:red;">{{c.mensSnoeiBeschikbaar}}</td>
           <td ng-show="c.mensSnoeiNodig -c.mensSnoeiBeschikbaar<=0" style="color:green;">{{c.mensSnoeiBeschikbaar}}</td>
-          <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoei>=1" style="color:red;">{{c.normResultaatSnoei}}</td>
-          <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoei <1" style="color:green;">{{c.normResultaatSnoei}}</td>
-          <td ng-show="c.verwachtUrenSnoei - c.resultaatUrenSnoei <0" style="color:red;">{{c.resultaatUrenSnoei}}</td>
-          <td ng-show="c.verwachtUrenSnoei - c.resultaatUrenSnoei >=0" style="color:green;">{{c.resultaatSnoei}}</td>
+          <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoeien>=1" style="color:red;">{{c.normResultaatSnoeien}}</td>
+          <td ng-show="c.normVerwachtSnoei-c.normResultaatSnoeien <1" style="color:green;">{{c.normResultaatSnoeien}}</td>
+          <td ng-show="c.verwachtUrenSnoeien - c.resultaatUrenSnoeien <0" style="color:red;">{{c.resultaatUrenSnoeien}}</td>
+          <td ng-show="c.verwachtUrenSnoeien - c.resultaatUrenSnoeien >=0" style="color:green;">{{c.resultaatUrenSnoeien}}</td>
                     <td style="width:100px">
               <div class="btn-group">
                 <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>

@@ -12,7 +12,7 @@ $app->get('/datum/:datum', function($datum) {
 $app->get('/tuinOogst/:tuinOogst', function($tuinOogst) {
    global $db;
    $condition = array('tuinOogst'=>$tuinOogst);
-    $rows = $db->select("dagplanningen", "datum, plantenOogstDag, normOogstDag, verwachtUrenOogstDag, mensNodigOogstDag, mensBeschikbaarOogstDag normResultaatOogstDag, resultaatUrenOogstDag, tuinOogst", $condition, array());
+    $rows = $db->select("dagplanningen", "datum, plantenOogstDag, normOogstDag, verwachtUrenOogstDag, mensNodigOogstDag, mensBeschikbaarOogstDag, normResultaatOogstDag, resultaatUrenOogstDag, tuinOogst", $condition, array());
     echoResponse2(200, $rows);
 });
 
@@ -146,7 +146,7 @@ $app->group('/jaarplanningen', function () use ($app) {
 $app->get('/jaar/:jaar', function($jaar) {
    global $db;
        $condition = array('jaar'=>$jaar);
-    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking, tuinOogst, tuinZakken, tuinSnoei, tuinBlad, tuinDieven", $condition, array());
+    $rows = $db->select("jaarplanningen", "id,jaar, plantenOogst, mensOogstNodig, normResultaatOogst, verwachtUrenOogst, resultaatUrenOogst, plantenDieven, mensDievenNodig, normResultaatDieven, verwachtUrenDieven, resultaatUrenDieven, plantenBladknippen, mensBladNodig, normResultaatBlad, verwachtUrenBlad, resultaatUrenBlad, plantenSnoeien, mensSnoeiNodig, normResultaatSnoeien, verwachtUrenSnoeien, resultaatUrenSnoeien,  plantenZakken, mensZakkenNodig, normResultaatZakken, verwachtUrenZakken, resultaatUrenZakken, plantenVerpakking, mensVerpakkingNodig, normResultaatVerpakking, verwachtUrenVerpakking, resultaatPalletsVerpakking, resultaatUrenVerpakking, weeknr, mensOogstBeschikbaar, mensDievenBeschikbaar, mensBladBeschikbaar, mensSnoeiBeschikbaar, mensZakkenBeschikbaar, mensVerpakkingBeschikbaar, normVerwachtOogst, normVerwachtDieven, normVerwachtSnoei, normVerwachtSnoei, normVerwachtZakken, normVerwachtVerpakking, normVerwachtBlad, tuinOogst, tuinZakken, tuinSnoei, tuinBlad, tuinDieven", $condition, array());
     echoResponse2(200, $rows);
 });
 
@@ -160,7 +160,7 @@ $app->get('/tuinOogst/:tuinOogst/:jaar', function($tuinOogst, $jaar){
 });
 
 
-$app->get('/tuin/:tuinDieven/:jaar', function($tuinDieven, $jaar){
+$app->get('/tuinDieven/:tuinDieven/:jaar', function($tuinDieven, $jaar){
     global $db;
 
     $condition = array('tuinDieven'=>$tuinDieven, 'jaar'=>$jaar);
@@ -169,7 +169,7 @@ $app->get('/tuin/:tuinDieven/:jaar', function($tuinDieven, $jaar){
     echoResponse2(200, $rows);
 });
 
-$app->get('/tuin/:tuinBlad/:jaar', function($tuinBlad, $jaar){
+$app->get('/tuinBlad/:tuinBlad/:jaar', function($tuinBlad, $jaar){
     global $db;
 
     $condition = array('tuinBlad'=>$tuinBlad, 'jaar'=>$jaar);
@@ -178,7 +178,7 @@ $app->get('/tuin/:tuinBlad/:jaar', function($tuinBlad, $jaar){
     echoResponse2(200, $rows);
 });
 
-$app->get('/tuin/:tuinSnoei/:jaar', function($tuinSnoei, $jaar){
+$app->get('/tuinSnoei/:tuinSnoei/:jaar', function($tuinSnoei, $jaar){
     global $db;
 
     $condition = array('tuinSnoei'=>$tuinSnoei, 'jaar'=>$jaar);
@@ -187,7 +187,7 @@ $app->get('/tuin/:tuinSnoei/:jaar', function($tuinSnoei, $jaar){
     echoResponse2(200, $rows);
 });
 
-$app->get('/tuin/:tuinZakken/:jaar', function($tuinZakken, $jaar){
+$app->get('/tuinZakken/:tuinZakken/:jaar', function($tuinZakken, $jaar){
     global $db;
 
     $condition = array('tuinZakken'=>$tuinZakken, 'jaar'=>$jaar);

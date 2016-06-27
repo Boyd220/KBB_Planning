@@ -30,19 +30,19 @@
 <div class="btn-group">
 
  <label for="Datum" class="btn btn-default active">
-    <input type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
+    <input ng-click="filterData();" type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
   </label>
 
  <label for="Weeknummer" class="btn btn-default">
-    <input type="radio" id="weeknummer" name="dataKeus" ng-model="dataKeus" value="Weeknummer" aria-label="Weeknummer"> Weeknummer
+    <input ng-click="filterData();" type="radio" id="weeknummer" name="dataKeus" ng-model="dataKeus" value="Weeknummer" aria-label="Weeknummer"> Weeknummer
   </label>
 
    <label for="Tuinummer" class="btn btn-default">
-    <input type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
+    <input ng-click="filterData();" type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
   </label>
 
   <label for="WeekenTuin" class="btn btn-default">
-    <input type="radio" id="weekEnTuin" name="dataKeus" ng-model="dataKeus" value="WeekEnTuin" aria-label="WeekEnTuin"> Week en tuin
+    <input ng-click="filterData();" type="radio" id="weekEnTuin" name="dataKeus" ng-model="dataKeus" value="WeekEnTuin" aria-label="WeekEnTuin"> Week en tuin
   </label>
 
 </div>
@@ -92,13 +92,14 @@
 
 <div class="table-responsive">
 <div class="panel panel-primary">
-  <div class="panel-heading">Weekplanningen </div>
+  <div class="panel-heading">Weekplanningen
+    </div>
   <div class="panel-body">
     <table class="table table-striped">
-    <tr ng-show="weekplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
-    <tr ng-hide="weekplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+    <tr ng-show="weekplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;Deze weekplanning bestaat niet.</td></tr>
+    <tr ng-hide="weekplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Laden</td></tr>
 
-    <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst">{{c.text}}</th></tr>
+    <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst" >{{c.text}}</th></tr>
     <tr><th ng-show="content == 'dieven'" ng-repeat="c in columnsDieven">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'bladknippen'" ng-repeat="c in columnsBladknippen">{{c.text}}</th></tr>
     <tr><th ng-show="content == 'snoeien'" ng-repeat="c in columnsSnoeien">{{c.text}}</th></tr>

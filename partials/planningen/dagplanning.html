@@ -30,11 +30,11 @@
 <div class="btn-group">
 
  <label for="Datum" class="btn btn-default active">
-    <input type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
+    <input ng-click="filterData();" type="radio" id="Datum" name="dataKeus" ng-model="dataKeus" value="Datum" aria-label="Datum"> Datum
   </label>
 
    <label for="Tuinummer" class="btn btn-default">
-    <input type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
+    <input ng-click="filterData();" type="radio" id="tuinr" name="dataKeus" ng-model="dataKeus" value="Tuinnummer" aria-label="Tuinnummer"> Tuinnummer
   </label>
 
 </div>
@@ -111,7 +111,7 @@
     </div>
   <div class="panel-body">
     <table class="table table-striped">
-    <tr ng-show="dagplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+    <tr ng-show="dagplanningen.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;Deze dagplanning bestaat niet.</td></tr>
     <tr ng-hide="dagplanningen.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
 
     <tr><th ng-show="content == 'oogst'" ng-repeat="c in columnsOogst" >{{c.text}}</th></tr>
@@ -142,8 +142,7 @@
             </div>
         </td>
     </tr>
- <div ng-hide="dataKeus == 'Tuinnummer'">
-<tr ng-repeat="x in weekplanningen | orderBy:'-weeknr'" id="{{c.weeknr}}" ng-show="content=='oogst'">
+<tr ng-repeat="x in weekplanningen | orderBy:'-weeknr'" id="{{c.weeknr}}" ng-show="content=='oogst' || dataKeus == 'Tuinnummer'">
         <td><p style="font-weight:bold;">Weeknummer: </p>{{x.weeknr}}</td>
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenOogst/5}}</td>
         <td><p style="font-weight:bold;">Verwachte norm: </p>{{x.normVerwachtOogst/5}}</td>
@@ -152,7 +151,6 @@
         <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar/5}}</td>
         <td ng-show="x.mensOogstNodig-x.mensOogstBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensOogstBeschikbaar/5}}</td>
     </tr>
-</div>
 
         <tr ng-repeat="c in dagplanningen | orderBy:'-datum'" id="{{c.datum}}" ng-show="content=='dieven'">
         <td>{{c.datum}}</td>
@@ -173,7 +171,7 @@
               </div>
           </td>
         </tr>
-<div ng-hide="dataKeus == 'Tuinnummer'">
+
         <tr ng-repeat="x in weekplanningen | orderBy:'-weeknr'" id="{{c.weeknr}}" ng-show="content=='dieven'">
         <td><p style="font-weight:bold;">Weeknummer: </p>{{x.weeknr}}</td>
         <td><p style="font-weight:bold;">Verwachte plantenaantal: </p>{{x.plantenDieven/5}}</td>
@@ -183,7 +181,7 @@
         <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar <=0" style="color:green;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar/5}}</td>
         <td ng-show="x.mensBladNodig-x.mensBladBeschikbaar >0" style="color:red;"><p style="font-weight:bold;">Beschikbare mensen: </p>{{x.mensBladBeschikbaar/5}}</td>
     </tr>
-    </div>
+
 
                 <tr ng-repeat="c in dagplanningen | orderBy:'-datum'" id="{{c.datum}}" ng-show="content=='bladknippen'">
                 <td>{{c.datum}}</td>
@@ -250,7 +248,7 @@
 
                 <tr ng-repeat="c in dagplanningen | orderBy:'-datum'" id="{{c.datum}}" ng-show="content=='zakken'">
                 <td>{{c.datum}}</td>
-                <td>{{c.tuinZakkenDag}}</td>
+                <td>{{c.tuinZakken}}</td>
           <td>{{c.plantenZakkenDag}}</td>
           <td>{{c.normZakkenDag}}</td>
           <td>{{c.verwachtUrenZakkenDag}}</td>

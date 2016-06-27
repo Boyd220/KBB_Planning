@@ -19,9 +19,17 @@ $scope.dataKeus = "Datum";
     $scope.dagplanning.datum = today;
 
             Data.get('dagplanningen/datum/' + today).then(function(result){
+                          dt = new Date();
+var w = $scope.getWeeknumber(dt) +"-"+dt.getFullYear();
+                Data.get('weekplanningen/week/' + w).then(function(result)
+                  {
+                      $scope.weekplanningen = result.data;
+                  });
             $scope.dagplanningen = result.data;
             Data.toast(result);
         });
+
+
     $scope.getWeeknumber = function(dt) 
   {
      var tdt = new Date(dt.valueOf());
@@ -51,13 +59,10 @@ $scope.dataKeus = "Datum";
           {
               Data.toast(result);
               $scope.dagplanningen = result.data;
-              console.log(result);
           });
 
           Data.get('weekplanningen/week/' + waarde).then(function(result)
           {
-                Data.toast(result);
-                console.log(result);
                $scope.weekplanningen = result.data;
           });
         }
@@ -137,11 +142,29 @@ $scope.dataKeus = "Datum";
         }
       });
 
+$scope.filterData = function(){
+$scope.weekplanningen = null;
+$scope.dagplanningen = null;
+
+}
+
     $scope.getDatumDagplanning = function(dagplanning){
+
+
+           bla = new Date(dagplanning.datum);
+           var week = $scope.getWeeknumber(bla);
+           console.log(week);
+           var year = bla.getFullYear();
+           var waarde = week+"-"+year;
         Data.get('dagplanningen/datum/' + dagplanning.datum).then(function(result){
             Data.toast(result);
             $scope.dagplanningen = result.data;
         });
+
+        Data.get('weekplanningen/week/' + waarde).then(function(result)
+          {
+               $scope.weekplanningen = result.data;
+          });
     };
 
         $scope.getTuinOogstDagplanning = function(dagplanning){

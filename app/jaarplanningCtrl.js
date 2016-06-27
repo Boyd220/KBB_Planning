@@ -2,7 +2,14 @@ app.controller('jaarplanningCtrl', function ($scope, $modal, $filter, Data) {
     $scope.jaarplanning = {};
 $scope.keuzeMenu = "Jaar";
 $scope.content = "oogst";
-    
+   y = new Date();
+
+   
+
+           Data.get('jaarplanningen/jaar/' + y.getFullYear()).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
           $('#Year').keypress(function (e) {
         if (e.keyCode == 13) {
             var jaar = $('#Year').val();
@@ -15,6 +22,73 @@ $scope.content = "oogst";
             }
         });
 
+        $('#tuinOogstJaar').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {  
+        var jaar = $('#Year').val();
+        var t = $('#tuinOogstJaar').val(); 
+        console.log(jaar+t);        
+        Data.get('jaarplanningen/tuinOogst/' + t + "/" + jaar).then(function(result){
+            $scope.jaarplanningen = result.data;
+        });
+
+        }
+    });
+
+            $('#tuinDievenJaar').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {  
+        var jaar = $('#Year').val();
+        var t = $('#tuinDievenJaar').val();           
+        Data.get('jaarplanningen/tuinDieven/' + t + "/" + jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+        }
+    });
+
+    $('#tuinBladJaar').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {  
+        var jaar = $('#Year').val();
+        var t = $('#tuinBladJaar').val();     
+        Data.get('jaarplanningen/tuinBlad/' + t + "/" + jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+        }
+    });
+
+    $('#tuinSnoeiJaar').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {      
+        var jaar = $('#Year').val();
+        var t = $('#tuinSnoeiJaar').val();    
+        Data.get('jaarplanningen/tuinSnoei/' + t + "/" + jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+
+    }
+});
+
+    $('#tuinZakkenJaar').keypress(function (e) 
+      {
+        if (e.keyCode == 13) 
+        {  
+        var jaar = $('#Year').val();
+        var t = $('#tuinZakkenJaar').val();        
+        Data.get('jaarplanningen/tuinZakken/' + t + "/" + jaar).then(function(result){
+            Data.toast(result);
+            $scope.jaarplanningen = result.data;
+        });
+        }
+    });
+
     $scope.getJaarplanning = function(jaarplanning){
         Data.get('jaarplanningen/jaar/' + jaarplanning.jaar).then(function(result){
             Data.toast(result);
@@ -23,35 +97,35 @@ $scope.content = "oogst";
     };
 
         $scope.getJaarplanningTuinOogst = function(jaarplanning){
-        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinOogst + "/" + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/tuinOogst/' + jaarplanning.tuinOogst + "/" + jaarplanning.jaar).then(function(result){
             Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     };
 
             $scope.getJaarplanningTuinDieven = function(jaarplanning){
-        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinDieven + "/" + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/tuinDieven/' + jaarplanning.tuinDieven + "/" + jaarplanning.jaar).then(function(result){
             Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     };
 
             $scope.getJaarplanningTuinSnoei = function(jaarplanning){
-        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinSnoei + "/" + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/tuinSnoei/' + jaarplanning.tuinSnoei + "/" + jaarplanning.jaar).then(function(result){
             Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     };
 
             $scope.getJaarplanningTuinZakken = function(jaarplanning){
-        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinZakken + "/" + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/tuinZakken/' + jaarplanning.tuinZakken + "/" + jaarplanning.jaar).then(function(result){
             Data.toast(result);
             $scope.jaarplanningen = result.data;
         });
     };
 
             $scope.getJaarplanningTuinBlad = function(jaarplanning){
-        Data.get('jaarplanningen/tuin/' + jaarplanning.tuinBlad + "/" + jaarplanning.jaar).then(function(result){
+        Data.get('jaarplanningen/tuinBlad/' + jaarplanning.tuinBlad + "/" + jaarplanning.jaar).then(function(result){
             Data.toast(result);
             $scope.jaarplanningen = result.data;
         });

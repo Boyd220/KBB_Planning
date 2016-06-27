@@ -19,7 +19,9 @@ $scope.weekplanning.tuin ="";
     } 
     var today = yyyy+'-'+mm+'-'+dd;
 
-
+$scope.filterData = function(){
+  $scope.weekplanningen = null;
+}
 var outOfBounds;
 
         $('#datumWeek').keypress(function (e) 
@@ -74,7 +76,6 @@ var outOfBounds;
 
     $scope.$watch("weekplanning.tuin",function(newVal,oldVal)
         {
-          console.log($scope.weekplanning.tuin);
             if($scope.weekplanning.tuin>3 || $scope.weekplanning.tuin =="")
             { 
               $('#btnDatumTuin').attr('disabled', 'disabled');
