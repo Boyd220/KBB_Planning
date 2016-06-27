@@ -77,4 +77,5 @@
 <script src="app/maandplanningCtrl.js"></script>
 <script src="app/jaarplanningCtrl.js"></script>
 <script src="app/dagplanningCtrl.js"></script>
+<script src="app/werkControleCtrl.js"></script>
 </html>

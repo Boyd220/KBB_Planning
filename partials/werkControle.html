@@ -1,0 +1,76 @@
+<div ng-controller="authCtrl" class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#" ng-click="logout();">Home</a>
+        </li>
+        <li>
+            <a href="#dashboard">Dashboard</a>
+        </li>
+        <li ng-show="admin||manager">
+            <a href="#Werknemers">Werknemers</a>
+        </li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+     Planningen <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li> <a href="#Planningen/Dagplanning"> Dagplanning </a></li>
+        <li>
+            <a href="#Planningen/Weekplanning">Weekplanning</a>
+        </li>
+            
+        <li>
+            <a href="#Planningen/Jaarplanning">Jaarplanning</a>
+        </li>
+    </ul>
+    </li>
+        <li class="active" ng-show="admin||manager">
+            <a href="#Werkcontrole">Controle</a>
+        </li>
+    </ul>
+</div>
+
+<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(controle);">&nbsp;Voeg controle toe</button>
+
+
+<div class="table-responsive">
+<div class="panel panel-primary">
+  <div class="panel-heading">Dagplanningen
+    </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+    <tr ng-show="controles.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;Deze controle bestaat niet.</td></tr>
+    <tr ng-hide="controles.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+    <tr><th ng-repeat="c in columns" >{{c.text}}</th></tr>
+        <tr ng-repeat="c in controles | orderBy:'-datum'" id="{{c.datum}}">
+        <td>{{c.datum}}</td>
+          <td>{{c.rijOogst}}</td>
+          <td>{{c.tuinOogst}}</td>
+          <td>{{c.oogstHangen}}</td>
+          <td>{{c.oogstBeschadigingTomaat}}</td>
+          <td>{{c.oogstBeschadigingGewas}}</td>
+          <td>{{c.oogstOpmerking}}</td>
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+          <tr ng-repeat="c in controles | orderBy:'-datum'" id="{{c.datum}}" ng-show="content=='overige'">
+          <td style="width:100px">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default fa fa-edit" ng-click="open(c);"></button>
+              </div>
+          </td>
+        </tr>
+
+    </table>
+</div>
+</div>
+</div>
+
+              
+
+
+              

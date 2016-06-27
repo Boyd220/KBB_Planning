@@ -1,0 +1,66 @@
+  <button type="button" class="close" ng-click="cancel();">
+        <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
+    </button>
+    <div class="modal-header">
+        <h3 class="modal-title">Voeg controle toe of pas deze aan</h3>
+    </div>
+    <div class="modal-body">
+      <form name="controle_form" class="form-horizontal" role="form" novalidate>
+            <form-element>
+                    <input type="date" class="form-control" id="date" name="date" placeholde="DD/MM/YYYY" name="date" ng-model="controle.datum"/> 
+             </form-element>
+
+        <h4 style="text-align: center;"; class="modal-title">Oogst</h4>
+
+              <form-element label="RIJ OOGST" mod="controle">
+                            <input class="form-control" id="Rij" type="text" only-numbers ng-model="controle.rijOogst"/>
+            </form-element>
+
+            <form-element label="TUIN OOGST" mod="controle">
+
+                <input class="form-control" id="Tuin" type="text" placeholder="TUIN" ng-model="controle.tuinOogst"/>
+
+            </form-element>
+
+            <form-element label="OOGST HANGEN" mod="controle">
+            
+                <input type="checkbox" id="Hangen" value="Ja" ng-model="controle.oogstHangen" name="oogstHangen" aria-label="oogstHangen"> Is er teveel goede oogst blijven hangen?</li>
+
+            </form-element>
+
+            <form-element label="BESCHADIGING TOMATEN" mod="controle">
+            
+                <input type="checkbox" id="beschadigingTomaat" value="Ja" ng-model="controle.oogstBeschadigingTomaat" name="beschadigingTomaat" aria-label="beschadigingTomaat"> Is er teveel schade aan tomaten? </li>
+
+            </form-element>
+
+            <form-element label="BESCHADIGING GEWAS" mod="controle">
+            
+                <input type="checkbox" id="beschadigingGewas" value="Ja" ng-model="controle.oogstBeschadigingGewas" name="beschadigingGewas" aria-label="beschadigingGewas"> Is er teveel schade aan het gewas? </li>
+
+            </form-element>
+
+        <form-element label="OPMERKINGEN OOGST" mod="controle">
+            
+        <input type="text" id="oogstOpmerking" placeholder="Vul hier u optionele opmerking in." ng-model="controle.oogstOpmerking" name="oogstOpmerking" aria-label="oogstOpmerking"></li>
+
+            </form-element>
+ 
+            <div class="space"></div>
+            <div class="space-4"></div>
+            <div class="modal-footer">
+                <form-element label="">
+                    <div class="text-right">
+                        <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Annuleren</a>
+                        <button ng-click="saveControle(controle);"
+                                ng-disabled="controle_form.$invalid || enableUpdate"
+                                class="btn btn-sm btn-primary"
+                                type="submit">
+                            <i class="ace-icon fa fa-check"></i>{{buttonText}}
+                        </button>
+                    </div>
+                </form-element>
+            </div>
+        </form>
+    </div>
+

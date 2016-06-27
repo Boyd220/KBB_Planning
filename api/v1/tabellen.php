@@ -266,6 +266,41 @@ $app->delete('/werknemers/:id', function($id) {
     echoResponse(200, $rows);
 });
 
+$app->get('/controles', function() {
+   global $db;
+    $rows = $db->select("controles", "id,rijOogst, datum, tuinOogst,oogstHangen,oogstBeschadigingTomaat,oogstBeschadigingGewas,oogstOpmerking",array());
+    echoResponse2(200, $rows);
+});
+
+$app->post('/controles', function() use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $mandatory = array();
+    global $db;
+    $rows = $db->insert("controles", $data, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Controle successvol uitgevoerd.";
+    echoResponse2(200, $rows);
+});
+
+$app->put('/controles/:id', function($id) use ($app) { 
+    $data = json_decode($app->request->getBody());
+    $condition = array('id'=>$id);
+    $mandatory = array();
+    global $db;
+    $rows = $db->update("controles", $data, $condition, $mandatory);
+    if($rows["status"]=="success")
+        $rows["message"] = "Controle successvol geüpdate";
+    echoResponse(200, $rows);
+});
+
+$app->delete('/werknemers/:id', function($id) { 
+    global $db;
+    $rows = $db->delete("werknemers", array('id'=>$id));
+    if($rows["status"]=="success")
+        $rows["message"] = "Controle successvol verwijderd.";
+    echoResponse(200, $rows);
+});
+
 //User authentication tabel
 $app->get('/session', function() {
     $db = new DbUserAuth();
